@@ -49,12 +49,10 @@
   "message.nocterra.intro.1": "The gate closes behind you. Ash drifts down like slow snow.",
   "message.nocterra.intro.2": "Eight crowned ones rule this dying land. Each holds a sigil of the crown.",
   "message.nocterra.intro.3": "Take their sigils. The Black-Crowned Throne will answer you.",
-
   "dialogue.nocterra.hint": "1-9: Choose   Esc: Close",
   "dialogue.nocterra.more": "...  (the rest is drowned out)",
   "dialogue.nocterra.common.farewell": "Farewell.",
   "dialogue.nocterra.common.back": "…go back.",
-
   "message.nocterra.npc.met": "You have met %s.",
   "message.nocterra.dialogue.missing": "(This soul has nothing to say. Not yet.)",
   "message.nocterra.lore.unlocked": "[Lore] A memory returns.",
@@ -73,7 +71,6 @@
   "message.nocterra.quest.already_completed": "'%s' is already done.",
   "message.nocterra.quest.reward.xp": "Reward: %s XP",
   "message.nocterra.quest.reward.item": "Reward: %s x%s",
-
   "dialogue.nocterra.warden_of_ash.first": "So. The ash has not eaten you.\nI am the Warden of this grove - what is left of the watch that once stood here. Before the crown fell we kept the dead wood from walking. Now we keep the living from forgetting.\nFind three ember shards in the ash and bring them to me. It is a small thing. The grove answers to small things.",
   "dialogue.nocterra.warden_of_ash.root": "The ash does not speak. But your footsteps are loud enough.\nAsk, and I will answer what I still remember. When you are ready, the marsh widow and the blind scribe remember other pieces.",
   "dialogue.nocterra.warden_of_ash.guard": "I keep the grove. Not the trees - the memory of them.\nUnder the ash there was a forest, and under the forest a kingdom. I watched both burn.\nNow I stand where the path begins, so that someone might walk it.",
@@ -111,14 +108,12 @@
   "dialogue.nocterra.warden_of_ash.choice.gate": "The Black Gate?",
   "dialogue.nocterra.warden_of_ash.choice.child_who": "Who was that child?",
   "dialogue.nocterra.warden_of_ash.choice.child_thanks": "It was the right thing to do.",
-
   "quest.nocterra.ash_first_light.title": "The First Light in the Ash",
   "quest.nocterra.ash_first_light.description": "The Warden of Ash asks you to gather three ember shards from the ashen grove. Collect 3 Ember Shards.",
   "quest.nocterra.ash_hunt.title": "Quiet for the Hollows",
   "quest.nocterra.ash_hunt.description": "Six ash crawlers nest where the King's roots weep. Put them down. Kill 6 Ash Crawlers.",
   "quest.nocterra.rotwood_king_fall.title": "The First Crown Falls",
   "quest.nocterra.rotwood_king_fall.description": "The Rotwood King keeps the first sigil. Take it from him. Defeat the Rotwood King.",
-
   "lore.nocterra.nocterra_ash": "The Ash Grove does not die. The fire of the failed ritual stopped everything in place: grey, still, and watching.",
   "lore.nocterra.ash_grove": "Once the border forest of the kingdom. The dead trees still shed a single leaf each dusk, without wind.",
   "lore.nocterra.black_crown": "Eight crowns, eight regions, one crime. Each crown holds a sigil; the Black Gate counts sigils, not souls.",
@@ -128,14 +123,12 @@
   "lore.nocterra.blind_scribe_rumor": "The scribe read the ritual aloud and lost his eyes. The temple keeps his copies.",
   "lore.nocterra.black_gate_rumor": "The Black Gate opens for five sigils and nothing else.",
   "lore.nocterra.the_last_child": "The last echo of the royal line - the King's brother's blood powered the ritual. The line refuses to end.",
-
   "entity.nocterra.warden_of_ash": "Warden of Ash",
   "entity.nocterra.marsh_widow": "Marsh Widow",
   "entity.nocterra.blind_scribe": "Blind Scribe",
   "entity.nocterra.gate_keeper": "Gate Keeper",
   "entity.nocterra.ashen_merchant": "Ashen Merchant",
   "entity.nocterra.lost_child": "Lost Child",
-
   "dialogue.nocterra.marsh_widow.first": "You walk on graves, stranger. Every step here is a name.\nI am what is left of the widow of this marsh. My daughter was taken to sing the kingdom's grief forever. The church called it an honour.\nGo and stand where the water is black. Then come back and tell me whether the singing is beautiful.",
   "dialogue.nocterra.marsh_widow.root": "The marsh keeps what the kingdom threw away.\nAsk. I have nothing left but answers.",
   "dialogue.nocterra.marsh_widow.quests": "Speak plainly. What do you need of me?",
@@ -157,7 +150,6 @@
   "dialogue.nocterra.marsh_widow.choice.offer_saint": "I will end the singing.",
   "dialogue.nocterra.marsh_widow.choice.after": "What happens now?",
   "dialogue.nocterra.marsh_widow.choice.nothing": "Nothing for now.",
-
   "dialogue.nocterra.blind_scribe.first": "I heard your steps. I see nothing - and yet you are bright in the ash.\nI am the scribe of this temple. I read the king's ritual aloud. It took my eyes and gave me one clear look at everything.\nYou carry sigils. I can hear them singing. Ask me what you came to ask.",
   "dialogue.nocterra.blind_scribe.root": "The temple keeps copies. Copies outlive kings.\nWhat do you want to know?",
   "dialogue.nocterra.blind_scribe.lore_ritual": "The ritual had eight stations. Eight sigils mounted in a ring, eight crowned guardians to keep them apart.\nThe fuel was the king's own brother. He volunteered. He was the only one who knew what the crown would do.\nThe light was never destroyed. It was hidden inside the dusk. That is the sentence I have not been able to stop hearing.",
@@ -178,7 +170,6 @@
   "dialogue.nocterra.blind_scribe.choice.offer": "I will copy the ritual for you.",
   "dialogue.nocterra.blind_scribe.choice.nothing": "Nothing for now.",
   "dialogue.nocterra.blind_scribe.choice.gate": "Where is the castle?",
-
   "dialogue.nocterra.gate_keeper.first": "Stop there.\nThis gate has counted every soul that walked up this road since the crown fell. You are the first in a very long time, and you are carrying something that hums.\nShow me five, or turn around. I do not argue, and I do not enjoy this.",
   "dialogue.nocterra.gate_keeper.root": "The gate counts. I only stand here.\nAsk.",
   "dialogue.nocterra.gate_keeper.keeper_who": "I was the captain of the king's gate guard. The king's last order was to hold the gate no matter what came out of the castle.\nThings came out. I held it. I am still holding it. You do the arithmetic.",
@@ -201,7 +192,6 @@
   "dialogue.nocterra.gate_keeper.choice.not_yet": "Not yet.",
   "dialogue.nocterra.gate_keeper.choice.crown_task": "I will take the crown.",
   "dialogue.nocterra.gate_keeper.choice.more": "Go on.",
-
   "dialogue.nocterra.ashen_merchant.first": "Ha! A customer! In this economy?\nListen, friend - in the ash everything has a price, even memory. Give me something, I give you something, and between us we keep the world's only functioning economy.\nAlso, you look like someone who carries embers. I have a small... request.",
   "dialogue.nocterra.ashen_merchant.root": "Back again? Good. The ash doesn't haggle.\nWhat do you need?",
   "dialogue.nocterra.ashen_merchant.trade_menu": "Here's my ledger. Choose.",
@@ -217,7 +207,6 @@
   "dialogue.nocterra.ashen_merchant.choice.more_gossip": "Go on.",
   "dialogue.nocterra.ashen_merchant.choice.buy_ember": "Ember for ashwood (2 planks -> 3 embers).",
   "dialogue.nocterra.ashen_merchant.choice.buy_planks": "Ashwood for ember (2 embers -> 3 planks).",
-
   "dialogue.nocterra.lost_child.first": "...You're not made of ash.\nEveryone here is made of ash. You're... a person.\nI'm scared. I don't remember the way.",
   "dialogue.nocterra.lost_child.root": "Don't go too fast. My feet are small.",
   "dialogue.nocterra.lost_child.child_name": "I don't remember my name.\nBut I remember a crown. It was cold and it was singing to me. That's why I hid.",
@@ -231,7 +220,6 @@
   "dialogue.nocterra.lost_child.choice.hand": "Take my hand.",
   "dialogue.nocterra.lost_child.choice.go": "Let's go.",
   "dialogue.nocterra.lost_child.choice.stay": "Wait here.",
-
   "quest.nocterra.marsh_lament.title": "A Widow's Marsh",
   "quest.nocterra.marsh_lament.description": "The Marsh Widow asks you to stand where the water is black. Visit the Mourning Marsh.",
   "quest.nocterra.saint_requiem.title": "Requiem for Ysolde",
@@ -246,7 +234,6 @@
   "quest.nocterra.merchant_debt.description": "The Ashen Merchant owes the marsh's dead a funeral pyre. Bring 8 Ashwood Planks.",
   "quest.nocterra.lost_child_return.title": "Don't Let Go",
   "quest.nocterra.lost_child_return.description": "Take the lost child back to the Warden of Ash. Talk to the Warden of Ash.",
-
   "lore.nocterra.widow_daughter": "The widow's daughter was Ysolde, sixteen, chosen to hold the grief of a kingdom. The church called it an honour.",
   "lore.nocterra.sorrow_saint_origin": "Ysolde has sung for forty years without ageing. That is the cruelty of the rite.",
   "lore.nocterra.mourning_marsh": "The kingdom's open grave. The water is what the ground could not swallow.",
@@ -269,5 +256,6 @@
   "lore.nocterra.child_rumor_more": "The gatekeeper bought a spade. The scribe listens to footsteps. The widow buys anything - it is the only conversation she has left.",
   "lore.nocterra.child_crown": "The child remembers a cold crown, singing. They hid under the throne.",
   "lore.nocterra.child_origin": "A road, a big gate, a song that put the castle to sleep. One child didn't sleep.",
-  "lore.nocterra.child_in_ash": "The last echo of the royal line, hiding in the one place the crown never looked."
+  "lore.nocterra.child_in_ash": "The last echo of the royal line, hiding in the one place the crown never looked.",
+  "journal.nocterra.close": "Esc: close"
 }

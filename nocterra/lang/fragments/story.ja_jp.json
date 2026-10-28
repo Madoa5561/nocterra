@@ -49,12 +49,10 @@
   "message.nocterra.intro.1": "門が背後で閉じる。灰が、ゆっくりとした雪のように降りそそぐ。",
   "message.nocterra.intro.2": "この滅びゆく地を、八人の冠の者が治めている。それぞれが冠の刻印をひとつ持つ。",
   "message.nocterra.intro.3": "刻印を奪え。黒冠の玉座が、あなたに応えるはずだ。",
-
   "dialogue.nocterra.hint": "1-9: 選択   Esc: 閉じる",
   "dialogue.nocterra.more": "…（これ以上は、灰に呑まれて聞こえない）",
   "dialogue.nocterra.common.farewell": "さらばだ。",
   "dialogue.nocterra.common.back": "…戻ろう。",
-
   "message.nocterra.npc.met": "%s に出会った。",
   "message.nocterra.dialogue.missing": "(この魂はまだ何も語らない。)",
   "message.nocterra.lore.unlocked": "【知識】記憶が戻ってくる。",
@@ -73,7 +71,6 @@
   "message.nocterra.quest.already_completed": "「%s」はすでに果たしている。",
   "message.nocterra.quest.reward.xp": "報酬: %s XP",
   "message.nocterra.quest.reward.item": "報酬: %s ×%s",
-
   "dialogue.nocterra.warden_of_ash.first": "そうか。灰はお前を喰わなかった。\n私はこの森の番人だ。かつてここに立っていた見張りの、最後の一人。\n灰から「灰の欠片」を三つ拾ってこい。小さなことだ。この森は、小さなことにだけ応える。",
   "dialogue.nocterra.warden_of_ash.root": "灰は語らない。だが、お前の足音はよく響く。\n聞け。まだ覚えていることなら答えよう。準備ができたら、湿原の未亡人と盲目の書記を訪ねろ。あの二人は別の記憶を持っている。",
   "dialogue.nocterra.warden_of_ash.guard": "私は森を守っている。木ではない。木の記憶をだ。\n灰の下にはかつて森があり、森の下には王国があった。私は両方が燃えるのを見た。\n今は道の始まりに立っている。誰かが歩けるように。",
@@ -111,14 +108,12 @@
   "dialogue.nocterra.warden_of_ash.choice.gate": "黒冠の門?",
   "dialogue.nocterra.warden_of_ash.choice.child_who": "あの子は誰だった?",
   "dialogue.nocterra.warden_of_ash.choice.child_thanks": "当然のことをしただけだ。",
-
   "quest.nocterra.ash_first_light.title": "灰に灯る最初の火",
   "quest.nocterra.ash_first_light.description": "灰の番人に頼まれた。灰樹の森で「灰の欠片」を3つ集める。",
   "quest.nocterra.ash_hunt.title": "窪地に静けさを",
   "quest.nocterra.ash_hunt.description": "王の根が涙を流す窪地に、灰の這い虫が6匹巣食っている。片付けろ。",
   "quest.nocterra.rotwood_king_fall.title": "最初の冠が落ちる",
   "quest.nocterra.rotwood_king_fall.description": "腐朽の森王が最初の刻印を守っている。奪え。",
-
   "lore.nocterra.nocterra_ash": "灰樹の森は死なない。失敗した儀式の炎は、すべてをその場で止めた。灰色に、静かに、見つめたまま。",
   "lore.nocterra.ash_grove": "かつて王国の国境の森だった。枯れ木は今も、風もない夕暮れに一枚だけ葉を落とす。",
   "lore.nocterra.black_crown": "八つの冠、八つの地域、ひとつの罪。冠はそれぞれ刻印を宿す。黒冠の門は刻印を数え、魂は数えない。",
@@ -128,14 +123,12 @@
   "lore.nocterra.blind_scribe_rumor": "書記は儀式を読み上げ、両目を失った。神殿に写本が残っている。",
   "lore.nocterra.black_gate_rumor": "黒冠の門は五つの刻印にだけ開く。",
   "lore.nocterra.the_last_child": "王家の最後の残響。王の弟の血が儀式の燃料だった。血筋は終わることを拒んでいる。",
-
   "entity.nocterra.warden_of_ash": "灰の番人",
   "entity.nocterra.marsh_widow": "湿原の未亡人",
   "entity.nocterra.blind_scribe": "盲目の書記",
   "entity.nocterra.gate_keeper": "門番",
   "entity.nocterra.ashen_merchant": "灰の商人",
   "entity.nocterra.lost_child": "迷い子",
-
   "dialogue.nocterra.marsh_widow.first": "墓の上を歩いているぞ、旅人。ここの一歩一歩が名だ。\n私はこの湿原の未亡人の、成れの果てだ。娘は王国の悲しみを永遠に歌うために連れて行かれた。教会はそれを名誉と呼んだ。\n水が黒い場所へ行って、そこで立ってみろ。戻ってきたら、あの歌が美しいかどうか教えてくれ。",
   "dialogue.nocterra.marsh_widow.root": "湿原は、王国が捨てたものを抱いている。\n聞け。私に残っているのは答えだけだ。",
   "dialogue.nocterra.marsh_widow.quests": "単刀直入に言え。私に何を求めている?",
@@ -157,7 +150,6 @@
   "dialogue.nocterra.marsh_widow.choice.offer_saint": "歌を終わらせる。",
   "dialogue.nocterra.marsh_widow.choice.after": "これからどうなる?",
   "dialogue.nocterra.marsh_widow.choice.nothing": "今は何もない。",
-
   "dialogue.nocterra.blind_scribe.first": "足音が聞こえた。私は何も見えん――だが、灰の中でお前だけが明るい。\n私はこの神殿の書記だ。王の儀式を読み上げた。その代償に両目を失い、代わりに一度だけ、すべてをはっきり見た。\nお前は刻印を運んでいる。歌っているのが聞こえる。聞きたいことを聞け。",
   "dialogue.nocterra.blind_scribe.root": "神殿は写本を抱いている。写本は王より長生きする。\n何を知りたい?",
   "dialogue.nocterra.blind_scribe.lore_ritual": "儀式には八つの祭壇があった。八つの刻印を輪に嵌め、八人の冠の守り手がそれを分かつ。\n燃料は王の実の弟だった。自ら志願した。冠が何をするか知っていたのは、彼だけだった。\n光は失われていない。薄暮の中に隠された。その一文だけが、私の耳から離れない。",
@@ -178,7 +170,6 @@
   "dialogue.nocterra.blind_scribe.choice.offer": "儀式を写させてくれ。",
   "dialogue.nocterra.blind_scribe.choice.nothing": "今は何もない。",
   "dialogue.nocterra.blind_scribe.choice.gate": "城はどこだ?",
-
   "dialogue.nocterra.gate_keeper.first": "そこで止まれ。\nこの門は、冠が落ちてからこの道を歩いたすべての魂を数えてきた。久しぶりの来訪者だ。しかも、何かが鳴っているものを運んでいる。\n五つ見せろ。できなければ引き返せ。私は論争しないし、この仕事を楽しんでもいない。",
   "dialogue.nocterra.gate_keeper.root": "門が数える。私は立っているだけだ。\n聞け。",
   "dialogue.nocterra.gate_keeper.keeper_who": "私は王の門衛の長だった。王の最後の命令は、城から何が出てきても門を守れ、だった。\nいろいろ出てきた。私は守った。今も守っている。あとは自分で計算しろ。",
@@ -201,7 +192,6 @@
   "dialogue.nocterra.gate_keeper.choice.not_yet": "まだだ。",
   "dialogue.nocterra.gate_keeper.choice.crown_task": "冠を引き受ける。",
   "dialogue.nocterra.gate_keeper.choice.more": "続けろ。",
-
   "dialogue.nocterra.ashen_merchant.first": "おっ! 客だ! この景気で?\nいいか、友人。灰の中では何にでも値段がつく。記憶にさえな。俺に何かくれ、俺が何かやる。それで世界で唯一動いている経済が回る。\nそれに、お前は灰を運ぶ顔をしている。小さな…頼みがある。",
   "dialogue.nocterra.ashen_merchant.root": "また来たか。いいぞ。灰は値切らない。\n何が要る?",
   "dialogue.nocterra.ashen_merchant.trade_menu": "これが俺の台帳だ。選べ。",
@@ -217,7 +207,6 @@
   "dialogue.nocterra.ashen_merchant.choice.more_gossip": "続けてくれ。",
   "dialogue.nocterra.ashen_merchant.choice.buy_ember": "灰木2枚 → 灰の欠片3つ",
   "dialogue.nocterra.ashen_merchant.choice.buy_planks": "灰の欠片2つ → 灰木3枚",
-
   "dialogue.nocterra.lost_child.first": "…お前、灰でできてない。\nここはみんな灰でできてる。お前は…人間だ。\n怖い。帰り道、思い出せない。",
   "dialogue.nocterra.lost_child.root": "速く歩かないで。足、小さいんだ。",
   "dialogue.nocterra.lost_child.child_name": "名前、覚えてない。\nでも冠は覚えてる。冷たくて、歌ってた。だから隠れた。",
@@ -231,7 +220,6 @@
   "dialogue.nocterra.lost_child.choice.hand": "手を貸して。",
   "dialogue.nocterra.lost_child.choice.go": "行こう。",
   "dialogue.nocterra.lost_child.choice.stay": "ここで待ってて。",
-
   "quest.nocterra.marsh_lament.title": "未亡人の湿原",
   "quest.nocterra.marsh_lament.description": "湿原の未亡人に頼まれた。水が黒い場所に立つ。嘆きの湿原へ行く。",
   "quest.nocterra.saint_requiem.title": "イゾルデの鎮魂歌",
@@ -246,7 +234,6 @@
   "quest.nocterra.merchant_debt.description": "灰の商人は湿原の死者に葬送の火を借りがある。灰木の板を8枚。",
   "quest.nocterra.lost_child_return.title": "離さないで",
   "quest.nocterra.lost_child_return.description": "迷い子を灰の番人のもとへ連れ帰る。灰の番人と話す。",
-
   "lore.nocterra.widow_daughter": "未亡人の娘はイゾルデ、十六。王国の悲しみを抱くために選ばれた。教会はそれを名誉と呼んだ。",
   "lore.nocterra.sorrow_saint_origin": "イゾルデは四十年歌い続け、一日も老いていない。それが儀式の残酷さだ。",
   "lore.nocterra.mourning_marsh": "王国の開いた墓。水は、大地が飲み込めなかったものだ。",
@@ -269,5 +256,6 @@
   "lore.nocterra.child_rumor_more": "門番はシャベルを買った。書記は足音を聞く。未亡人は何でも買う――悲しみ以外の会話が、もうそれしかない。",
   "lore.nocterra.child_crown": "子供は冷たい冠の歌を覚えている。玉座の下に隠れていた。",
   "lore.nocterra.child_origin": "道、大きな門、城を眠らせる歌。一人だけ眠らなかった子供。",
-  "lore.nocterra.child_in_ash": "王家の最後の残響。冠が決して見なかった場所に隠れている。"
+  "lore.nocterra.child_in_ash": "王家の最後の残響。冠が決して見なかった場所に隠れている。",
+  "journal.nocterra.close": "Esc: 閉じる"
 }

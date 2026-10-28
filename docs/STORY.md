@@ -134,6 +134,7 @@
 | 刻印 8 種の登録・アイコン表示 | ✅ | /nocterra story sigils → granted sigils: 8/8 |
 | ボス撃破での刻印自動付与 | ✅ | /nocterra story status → sigils=1/8 bosses=1（ボス死亡時の近傍付与が動作） |
 | 探索手帳のアイテム処理 | ✅ | /nocterra story journal → journal used: Success[...] |
+| **探索手帳 GUI** | ✅ | クライアントログ journal screen opened: sigils=8 bosses=1 npcs=1 quests=1（例外 0） |
 | 通常／真エンディング | ✅ | /nocterra story ending true → 画面に金文字「灯火の化身」表示、
 ormalEnding=true trueEnding=true |
 | 初回入場演出 | ✅ | ディメンション移動でタイトル・ナレーション・手帳付与が発火（コード経路） |
@@ -147,7 +148,7 @@ pcs=1 quests=1 |
 | 会話パネルのレイアウト | ✅ | 修正後ログ dialogue panel: screen=427x240 panel=415x143 y0=91 truncated=false（下端 234 ≤ 240） |
 
 ### 実機で未確認の項目（正直な記載）
-- ⬜ 会話パネルの**目視**（画面キャプチャが他ウィンドウと競合するため、ログの座標で確認）
+- ⬜ 会話パネル・手帳 GUI の**目視**（画面キャプチャが他ウィンドウと競合するため、ログ出力で確認）
 - ⬜ 手帳・玉座の**右クリック実操作**（マウス入力が GLFW に届かない環境のため。処理はコマンドから実行して検証済み）
 - ⬜ 残り 5 体の NPC の会話内容（召喚と描画は確認、会話は warden のみ）
 - ⬜ クエスト 10 本すべての通し進行（ash_first_light の受注・完了のみ確認）

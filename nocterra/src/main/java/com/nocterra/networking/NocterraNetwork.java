@@ -27,6 +27,16 @@ public final class NocterraNetwork {
         PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION);
         Nocterra.LOG.debug("NOCTERRA network payload handler registrar created (version {})", PROTOCOL_VERSION);
         registerCombatPayloads(registrar);
+        registerJournalPayloads(registrar);
+    }
+
+    /** 探索手帳（サーバー→クライアント）の payload 登録。 */
+    private static void registerJournalPayloads(PayloadRegistrar registrar) {
+        registrar.playToClient(
+                com.nocterra.networking.journal.JournalDataPayload.TYPE,
+                com.nocterra.networking.journal.JournalDataPayload.STREAM_CODEC,
+                (payload, context) -> context.enqueueWork(
+                        () -> com.nocterra.client.journal.ClientJournal.open(payload)));
     }
 
     /** combat サブシステムの payload 登録（実装は CombatPayloads 側）。 */

@@ -199,6 +199,7 @@
   "item.nocterra.sorrow_saint_spawn_egg": "Sorrow Saint Spawn Egg",
   "itemGroup.nocterra": "NOCTERRA",
   "journal.nocterra.bosses": "Crowned ones defeated: %s",
+  "journal.nocterra.close": "Esc: close",
   "journal.nocterra.npcs": "Souls met: %s",
   "journal.nocterra.quests": "Tasks completed: %s",
   "journal.nocterra.ready.locked": "The throne is sealed. %s more sigils are required.",

@@ -1,5 +1,6 @@
 package com.nocterra.item;
 
+import com.nocterra.networking.journal.JournalDataPayload;
 import com.nocterra.progression.ProgressionAttachments;
 import com.nocterra.progression.ProgressionData;
 import com.nocterra.progression.SigilType;
@@ -13,15 +14,15 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 
 /**
- * 探索手帳。右クリックで現在の発見状況をチャットにまとめて表示する。所有: Lead。
+ * 探索手帳。右クリックで GUI を開き、発見状況（刻印・撃破・NPC・クエスト・結末）を一覧表示する。所有: Lead。
  *
- * <p>26.3 の {@code Screen} API は描画方式が刷新されており（{@code render(GuiGraphics)} が存在しない）、
- * カスタム画面の実装リスクが高いため、確実に動作するチャット形式＋バニラ進捗画面で代替している。</p>
+ * <p>進行データはサーバー権威のため、サーバーが {@link JournalDataPayload} を送り、
+ * クライアントが {@code JournalScreen} を開く。チャットにも要約を出す（GUI を閉じても残るように）。</p>
  */
 public class ExplorerJournalItem extends Item {
     public ExplorerJournalItem(Properties properties) {
@@ -31,6 +32,7 @@ public class ExplorerJournalItem extends Item {
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (level.isClientSide()) {
+            // クライアントはサーバーからの payload で画面を開く
             return InteractionResult.SUCCESS;
         }
         if (!(player instanceof ServerPlayer serverPlayer)) {
@@ -39,8 +41,20 @@ public class ExplorerJournalItem extends Item {
         ProgressionData data = ProgressionAttachments.get(serverPlayer);
         int total = SigilType.values().length;
 
-        header(player, "journal.nocterra.title");
-        line(player, Component.translatable("journal.nocterra.sigils", data.sigilCount(), total)
+        // 1) GUI 用データ
+        net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(serverPlayer, new JournalDataPayload(
+                data.sigilMask(),
+                data.defeatedBosses().size(),
+                data.discoveredNpcs().size(),
+                data.completedQuests().size(),
+                data.normalEndingSeen(),
+                data.trueEndingSeen()));
+
+        // 2) チャット要約（GUI を閉じた後にも残る）
+        player.sendSystemMessage(Component.translatable("journal.nocterra.title")
+                .withStyle(ChatFormatting.BOLD, ChatFormatting.DARK_PURPLE));
+        player.sendSystemMessage(Component.translatable("journal.nocterra.sigils",
+                        data.sigilCount(), total)
                 .withStyle(ChatFormatting.GOLD));
         for (SigilType type : SigilType.values()) {
             boolean owned = data.hasSigil(type);
@@ -52,34 +66,26 @@ public class ExplorerJournalItem extends Item {
                     .append(Component.literal("  (" + type.regionJp() + ")")
                             .withStyle(ChatFormatting.DARK_GRAY)));
         }
-
-        line(player, Component.translatable("journal.nocterra.bosses", data.defeatedBosses().size())
-                .withStyle(ChatFormatting.RED));
-        line(player, Component.translatable("journal.nocterra.npcs", data.discoveredNpcs().size())
-                .withStyle(ChatFormatting.AQUA));
-        line(player, Component.translatable("journal.nocterra.quests", data.completedQuests().size())
-                .withStyle(ChatFormatting.GREEN));
+        player.sendSystemMessage(Component.translatable("journal.nocterra.bosses",
+                data.defeatedBosses().size()).withStyle(ChatFormatting.RED));
+        player.sendSystemMessage(Component.translatable("journal.nocterra.npcs",
+                data.discoveredNpcs().size()).withStyle(ChatFormatting.AQUA));
+        player.sendSystemMessage(Component.translatable("journal.nocterra.quests",
+                data.completedQuests().size()).withStyle(ChatFormatting.GREEN));
 
         if (data.canTrueEnding()) {
-            line(player, Component.translatable("journal.nocterra.ready.true").withStyle(ChatFormatting.GOLD));
+            player.sendSystemMessage(Component.translatable("journal.nocterra.ready.true")
+                    .withStyle(ChatFormatting.GOLD));
         } else if (data.canNormalEnding()) {
-            line(player, Component.translatable("journal.nocterra.ready.normal").withStyle(ChatFormatting.YELLOW));
+            player.sendSystemMessage(Component.translatable("journal.nocterra.ready.normal")
+                    .withStyle(ChatFormatting.YELLOW));
         } else {
-            line(player, Component.translatable("journal.nocterra.ready.locked", 5 - data.sigilCount())
-                    .withStyle(ChatFormatting.GRAY));
+            player.sendSystemMessage(Component.translatable("journal.nocterra.ready.locked",
+                    5 - data.sigilCount()).withStyle(ChatFormatting.GRAY));
         }
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.BOOK_PAGE_TURN, SoundSource.PLAYERS, 1.0F, 1.0F);
         return InteractionResult.SUCCESS_SERVER;
-    }
-
-    private static void header(Player player, String key) {
-        player.sendSystemMessage(Component.translatable(key)
-                .withStyle(ChatFormatting.BOLD, ChatFormatting.DARK_PURPLE));
-    }
-
-    private static void line(Player player, Component component) {
-        player.sendSystemMessage(component);
     }
 
     @Override

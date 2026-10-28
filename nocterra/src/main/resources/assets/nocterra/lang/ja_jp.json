@@ -199,6 +199,7 @@
   "item.nocterra.sorrow_saint_spawn_egg": "悲嘆の聖女のスポーンエッグ",
   "itemGroup.nocterra": "NOCTERRA",
   "journal.nocterra.bosses": "斃した冠の者: %s",
+  "journal.nocterra.close": "Esc: 閉じる",
   "journal.nocterra.npcs": "出会った魂: %s",
   "journal.nocterra.quests": "果たした依頼: %s",
   "journal.nocterra.ready.locked": "玉座は封じられている。あと %s 個の刻印が必要だ。",
