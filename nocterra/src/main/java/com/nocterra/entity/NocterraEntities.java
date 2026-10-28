@@ -89,7 +89,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<SorrowSaintEntity>> SORROW_SAINT =
             ENTITIES.registerEntityType("sorrow_saint", SorrowSaintEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(1.0F, 2.8F)
+                            .sized(1.1F, 3.3F)
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .notInPeaceful());
@@ -98,7 +98,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<CondemnedKnightLordEntity>> CONDEMNED_KNIGHT_LORD =
             ENTITIES.registerEntityType("condemned_knight_lord", CondemnedKnightLordEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(1.2F, 2.9F)
+                            .sized(1.3F, 3.3F)
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .notInPeaceful());
@@ -107,7 +107,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<AbyssalSeaEmperorEntity>> ABYSSAL_SEA_EMPEROR =
             ENTITIES.registerEntityType("abyssal_sea_emperor", AbyssalSeaEmperorEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(1.3F, 2.3F)
+                            .sized(1.6F, 3.4F)
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .notInPeaceful());
@@ -116,7 +116,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<SandglassTwinKingsEntity>> SANDGLASS_TWIN_KINGS =
             ENTITIES.registerEntityType("sandglass_twin_kings", SandglassTwinKingsEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(1.1F, 2.8F)
+                            .sized(1.2F, 3.0F)
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .notInPeaceful());
@@ -125,7 +125,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<AstelFallenStarDragonEntity>> ASTEL_FALLEN_STAR_DRAGON =
             ENTITIES.registerEntityType("astel_fallen_star_dragon", AstelFallenStarDragonEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(2.2F, 2.6F)
+                            .sized(2.4F, 3.3F)
                             .clientTrackingRange(14)
                             .updateInterval(2)
                             .notInPeaceful());
@@ -134,7 +134,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<SilverExecutionerEntity>> SILVER_EXECUTIONER =
             ENTITIES.registerEntityType("silver_executioner", SilverExecutionerEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(1.1F, 2.8F)
+                            .sized(1.2F, 3.1F)
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .notInPeaceful());
@@ -162,7 +162,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<EmberIncarnationEntity>> EMBER_INCARNATION =
             ENTITIES.registerEntityType("ember_incarnation", EmberIncarnationEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(1.0F, 2.9F)
+                            .sized(1.1F, 3.1F)
                             .clientTrackingRange(14)
                             .updateInterval(2)
                             .fireImmune()
@@ -172,7 +172,7 @@ public final class NocterraEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<ForgottenKnightEntity>> FORGOTTEN_KNIGHT =
             ENTITIES.registerEntityType("forgotten_knight", ForgottenKnightEntity::new, MobCategory.MONSTER,
                     builder -> builder
-                            .sized(0.9F, 2.8F)
+                            .sized(1.0F, 3.0F)
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .notInPeaceful());

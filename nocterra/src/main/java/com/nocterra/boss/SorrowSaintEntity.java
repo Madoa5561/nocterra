@@ -55,7 +55,7 @@ import net.minecraft.world.phys.Vec3;
  *   <li>フェーズ 2 (HP 50% 以下): 上記 + 嘆きの合唱（半径 7 に 8 ダメージ + 移動速度低下）、亡霊 2 体召喚</li>
  * </ul>
  *
- * <p>アニメーション: {@code animation.nocterra.sorrow_saint.{idle,float,cast,attack,hurt,death,phase2}}</p>
+ * <p>アニメーション: {@code animation.nocterra.sorrow_saint.{idle,walk,attack1,attack2,hurt,death,phase2}}</p>
  */
 public class SorrowSaintEntity extends Monster implements GeoEntity {
     public static final String CONTROLLER = "main";
@@ -65,15 +65,15 @@ public class SorrowSaintEntity extends Monster implements GeoEntity {
             SynchedEntityData.defineId(SorrowSaintEntity.class, EntityDataSerializers.INT);
 
     public static final String ANIM_IDLE = "animation.nocterra.sorrow_saint.idle";
-    public static final String ANIM_FLOAT = "animation.nocterra.sorrow_saint.float";
-    public static final String ANIM_CAST = "animation.nocterra.sorrow_saint.cast";
-    public static final String ANIM_ATTACK = "animation.nocterra.sorrow_saint.attack";
+    public static final String ANIM_WALK = "animation.nocterra.sorrow_saint.walk";
+    public static final String ANIM_ATTACK1 = "animation.nocterra.sorrow_saint.attack1";
+    public static final String ANIM_ATTACK2 = "animation.nocterra.sorrow_saint.attack2";
     public static final String ANIM_HURT = "animation.nocterra.sorrow_saint.hurt";
     public static final String ANIM_DEATH = "animation.nocterra.sorrow_saint.death";
     public static final String ANIM_PHASE2 = "animation.nocterra.sorrow_saint.phase2";
 
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop(ANIM_IDLE);
-    private static final RawAnimation FLOAT = RawAnimation.begin().thenLoop(ANIM_FLOAT);
+    private static final RawAnimation WALK = RawAnimation.begin().thenLoop(ANIM_WALK);
     private static final RawAnimation PHASE2 = RawAnimation.begin().thenLoop(ANIM_PHASE2);
 
     /** 攻撃判断は 5 tick ごと。 */
@@ -313,10 +313,10 @@ public class SorrowSaintEntity extends Monster implements GeoEntity {
         };
         this.getLookControl().setLookAt(target, 30.0F, 30.0F);
         if (variant == 0) {
-            this.triggerAnim(CONTROLLER, "attack");
+            this.triggerAnim(CONTROLLER, "attack1");
             this.playSound(SoundEvents.WITHER_AMBIENT, 1.0F, 0.55F);
         } else {
-            this.triggerAnim(CONTROLLER, "cast");
+            this.triggerAnim(CONTROLLER, "attack2");
             this.playSound(SoundEvents.EVOKER_CAST_SPELL, 1.1F, 0.7F);
         }
     }
@@ -555,15 +555,15 @@ public class SorrowSaintEntity extends Monster implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<SorrowSaintEntity>(CONTROLLER, 6, this::animationPredicate)
                 .receiveTriggeredAnimations()
-                .triggerableAnim("attack", RawAnimation.begin().thenPlay(ANIM_ATTACK))
-                .triggerableAnim("cast", RawAnimation.begin().thenPlay(ANIM_CAST))
+                .triggerableAnim("attack1", RawAnimation.begin().thenPlay(ANIM_ATTACK1))
+                .triggerableAnim("attack2", RawAnimation.begin().thenPlay(ANIM_ATTACK2))
                 .triggerableAnim("hurt", RawAnimation.begin().thenPlay(ANIM_HURT))
                 .triggerableAnim("death", RawAnimation.begin().thenPlay(ANIM_DEATH)));
     }
 
     private PlayState animationPredicate(AnimationTest<SorrowSaintEntity> test) {
         if (test.isMoving()) {
-            return test.setAndContinue(FLOAT);
+            return test.setAndContinue(WALK);
         }
         return test.setAndContinue(this.getPhase() >= 2 ? PHASE2 : IDLE);
     }
