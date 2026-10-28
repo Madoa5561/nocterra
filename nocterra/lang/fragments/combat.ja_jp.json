@@ -17,5 +17,19 @@
   "nocterra.weapon_element.frost": "霜",
   "nocterra.weapon_element.void": "虚無",
   "nocterra.message.stamina_insufficient": "スタミナが足りない。",
-  "nocterra.message.no_weapon": "戦技を持つ武器を装備していない。"
+  "nocterra.message.no_weapon": "戦技を持つ武器を装備していない。",
+  "item.nocterra.ashen_fiber": "灰の繊維",
+  "item.nocterra.wisp_dust": "亡霊の燐粉",
+  "item.nocterra.bog_iron": "沼鉄",
+  "item.nocterra.shattered_crown": "砕けた冠片",
+  "item.nocterra.abyssal_scale": "深淵の鱗",
+  "item.nocterra.ember_core": "火核",
+  "item.nocterra.ashen_sabre": "灰繊維のサーベル",
+  "item.nocterra.bog_iron_greatsword": "沼鉄の大剣",
+  "item.nocterra.wispglass_dagger": "燐粉の短剣",
+  "item.nocterra.crownbreaker": "冠砕き",
+  "item.nocterra.ashen_helmet": "灰装備の兜",
+  "item.nocterra.ashen_chestplate": "灰装備の鎧",
+  "item.nocterra.ashen_leggings": "灰装備の脚甲",
+  "item.nocterra.ashen_boots": "灰装備の具足"
 }

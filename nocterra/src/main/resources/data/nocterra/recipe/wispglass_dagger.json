@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "WWW",
+    " F ",
+    "FE "
+  ],
+  "key": {
+    "W": "nocterra:wisp_dust",
+    "F": "nocterra:ashen_fiber",
+    "E": "nocterra:ember_shard"
+  },
+  "result": {
+    "count": 1,
+    "id": "nocterra:wispglass_dagger"
+  }
+}

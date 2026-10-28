@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nocterra:ashen_armor"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "nocterra:ashen_armor_leggings"
+      }
+    ]
+  }
+}

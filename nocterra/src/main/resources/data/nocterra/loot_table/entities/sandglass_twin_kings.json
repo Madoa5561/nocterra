@@ -46,6 +46,25 @@
           "name": "nocterra:sigil_sandglass"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:shattered_crown",
+          "modifier": [
+            {
+              "type": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/sandglass_twin_kings"

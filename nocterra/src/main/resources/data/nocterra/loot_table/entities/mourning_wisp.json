@@ -47,6 +47,20 @@
           "name": "minecraft:glow_ink_sac"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:wisp_dust",
+          "weight": 35
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 65
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/mourning_wisp"

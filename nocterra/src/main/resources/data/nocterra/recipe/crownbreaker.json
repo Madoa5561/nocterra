@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " C ",
+    " B ",
+    "CBS"
+  ],
+  "key": {
+    "C": "nocterra:shattered_crown",
+    "B": "nocterra:bog_iron",
+    "S": "nocterra:abyssal_scale"
+  },
+  "result": {
+    "count": 1,
+    "id": "nocterra:crownbreaker"
+  }
+}

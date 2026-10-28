@@ -47,6 +47,20 @@
           "name": "minecraft:rotten_flesh"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:ashen_fiber",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 60
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/ash_crawler"

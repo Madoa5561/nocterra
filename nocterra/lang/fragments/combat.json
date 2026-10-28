@@ -17,5 +17,19 @@
   "nocterra.weapon_element.frost": "Frost",
   "nocterra.weapon_element.void": "Void",
   "nocterra.message.stamina_insufficient": "Not enough stamina.",
-  "nocterra.message.no_weapon": "No weapon with a weapon skill is equipped."
+  "nocterra.message.no_weapon": "No weapon with a weapon skill is equipped.",
+  "item.nocterra.ashen_fiber": "Ashen Fiber",
+  "item.nocterra.wisp_dust": "Wisp Dust",
+  "item.nocterra.bog_iron": "Bog Iron",
+  "item.nocterra.shattered_crown": "Shattered Crown Fragment",
+  "item.nocterra.abyssal_scale": "Abyssal Scale",
+  "item.nocterra.ember_core": "Ember Core",
+  "item.nocterra.ashen_sabre": "Ashen-Fiber Sabre",
+  "item.nocterra.bog_iron_greatsword": "Bog-Iron Greatsword",
+  "item.nocterra.wispglass_dagger": "Wispglass Dagger",
+  "item.nocterra.crownbreaker": "Crownbreaker",
+  "item.nocterra.ashen_helmet": "Ashen Helm",
+  "item.nocterra.ashen_chestplate": "Ashen Cuirass",
+  "item.nocterra.ashen_leggings": "Ashen Greaves",
+  "item.nocterra.ashen_boots": "Ashen Sabatons"
 }

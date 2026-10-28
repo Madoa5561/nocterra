@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " B ",
+    "BLB",
+    "L E"
+  ],
+  "key": {
+    "B": "nocterra:bog_iron",
+    "L": "nocterra:ashwood_log",
+    "E": "nocterra:ember_shard"
+  },
+  "result": {
+    "count": 1,
+    "id": "nocterra:bog_iron_greatsword"
+  }
+}
