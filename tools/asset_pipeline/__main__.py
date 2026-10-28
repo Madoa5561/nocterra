@@ -11,8 +11,9 @@ validate <...>  format-check glb / png / ogg-wav-mp3 / json
 texture <img>   local texture processing (no API)
 balance         non-billable Tripo balance probe
 voices          non-billable Fish voice-model listing
-convert-audio   WAV/MP3 -> Ogg Vorbis via ffmpeg
+converts audio  WAV/MP3 -> Ogg Vorbis via ffmpeg
 recover         return interrupted (lease-expired) jobs to pending
+produce <group> run the approved LIVE production batch (hud | textures | audio | tripo | all)
 """
 
 from __future__ import annotations
@@ -31,6 +32,7 @@ from .jobs import JobSpecError, load_job
 from .ledger import BudgetExceeded, Ledger
 from .manifest import AssetManifest
 from .openai_image import SpendLocked
+from .production import run_group
 from .queue import JobQueue
 from .runner import PipelineError, dry_run_job, process_local_texture, run_job, write_run_report
 from .util import human_bytes, human_usd, short
@@ -590,6 +592,77 @@ def cmd_recover(args: argparse.Namespace) -> int:
 
 
 # --------------------------------------------------------------------------
+# production
+# --------------------------------------------------------------------------
+def cmd_produce(args: argparse.Namespace) -> int:
+    cfg = _config(args)
+    if cfg.spend_locked:
+        print(
+            f"refusing production: spend gate is closed ({cfg.mode}). "
+            "The Lead must set ASSET_DRY_RUN=false and ASSET_AUTO_SPEND=true.",
+            file=sys.stderr,
+        )
+        return EXIT_CONFIG
+    if not args.confirm_spend:
+        print(
+            "refusing production: pass --confirm-spend after the Lead's approval "
+            "(each request is also checked against ASSET_MAX_COST_USD before sending).",
+            file=sys.stderr,
+        )
+        return EXIT_CONFIG
+    ledger, queue = _open_state(cfg)
+    try:
+        report = run_group(
+            cfg,
+            args.group,
+            ledger,
+            queue,
+            force=args.force,
+            only=[item for item in (args.only or "").split(",") if item.strip()],
+            on_event=(lambda message: print(message, flush=True)),
+        )
+        if args.json:
+            _print_json(report)
+        else:
+            _render_production(report)
+        return EXIT_OK if not report.get("errors") else EXIT_ERROR
+    except (BudgetExceeded, SpendLocked) as exc:
+        print(f"stopped by the budget guard: {exc}", file=sys.stderr)
+        return EXIT_CONFIG
+    finally:
+        ledger.close()
+        queue.close()
+
+
+def _render_production(report: dict[str, Any]) -> None:
+    cost = report.get("cost") or {}
+    print("\n" + "=" * 78)
+    print("PRODUCTION RESULT")
+    print("=" * 78)
+    print(f"  images  : {len(report.get('images', []))} entries")
+    print(f"  audio   : {len(report.get('audio', []))} entries")
+    print(f"  models  : {len(report.get('models', []))} entries")
+    print(f"  skipped : {len(report.get('skipped', []))}")
+    print(f"  errors  : {len(report.get('errors', []))}")
+    print(
+        f"\n  cost (operator price table): total={human_usd(cost.get('total_usd'))} "
+        f"(images={human_usd(cost.get('images_usd'))} audio={human_usd(cost.get('audio_usd'))} "
+        f"models={human_usd(cost.get('models_usd'))})"
+    )
+    print(
+        f"  ledger committed={human_usd(cost.get('ledger_committed_usd'))} "
+        f"reserved={human_usd(cost.get('ledger_reserved_usd'))} "
+        f"remaining={human_usd(cost.get('remaining_usd'))}/{human_usd(cost.get('max_cost_usd'))}"
+    )
+    if report.get("errors"):
+        print("\n  ERRORS:")
+        for error in report["errors"]:
+            print(f"    - {error.get('asset_id')}: {error.get('error')}")
+    print("\n  manifest: generated_assets/manifests/assets.json")
+    print("  report  : generated_assets/manifests/production_report.json")
+
+
+# --------------------------------------------------------------------------
 # parser
 # --------------------------------------------------------------------------
 def build_parser() -> argparse.ArgumentParser:
@@ -631,7 +704,7 @@ def build_parser() -> argparse.ArgumentParser:
     listing.add_argument("--service", choices=["openai", "tripo", "fish", "local"])
     listing.add_argument("--limit", type=int, default=50)
     listing.add_argument("--manifest", action="store_true", help="list manifest assets instead of jobs")
-    listing.add_argument("--kind", choices=["texture", "model", "audio"])
+    listing.add_argument("--kind", choices=["texture", "model", "audio", "hud"])
     listing.add_argument("--json", action="store_true")
     listing.set_defaults(func=cmd_list)
 
@@ -675,6 +748,18 @@ def build_parser() -> argparse.ArgumentParser:
     recover = sub.add_parser("recover", help="requeue interrupted (lease-expired) jobs")
     recover.add_argument("--json", action="store_true")
     recover.set_defaults(func=cmd_recover)
+
+    produce = sub.add_parser(
+        "produce", help="run the approved LIVE production batch (spends real money)"
+    )
+    produce.add_argument("group", choices=["hud", "textures", "audio", "tripo", "all"])
+    produce.add_argument("--force", action="store_true", help="regenerate even if the asset exists")
+    produce.add_argument(
+        "--only", default="", help="comma-separated boss ids / asset names to process (smoke test)"
+    )
+    produce.add_argument("--confirm-spend", action="store_true", help="required acknowledgement")
+    produce.add_argument("--json", action="store_true")
+    produce.set_defaults(func=cmd_produce)
 
     return parser
 

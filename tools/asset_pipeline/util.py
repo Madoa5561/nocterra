@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import os
 import tempfile
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -14,11 +14,36 @@ __all__ = [
     "atomic_write_json",
     "human_bytes",
     "human_usd",
+    "json_default",
     "now_stamp",
     "read_json",
     "save_dry_run_preview",
     "short",
 ]
+
+
+def json_default(value: Any) -> Any:
+    """Make numpy scalars / Paths / sets / datetimes JSON-safe.
+
+    Manifest writes must never fail on a paid asset because a helper leaked a
+    ``numpy.int64`` (this actually happened once: ``remove_background`` counted
+    flood-filled pixels with ``np.count_nonzero``).
+    """
+    item = getattr(value, "item", None)
+    if callable(item):
+        try:
+            return item()
+        except (TypeError, ValueError):
+            pass
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, (datetime, date)):
+        return value.isoformat()
+    if isinstance(value, (set, frozenset)):
+        return sorted(str(entry) for entry in value)
+    if isinstance(value, tuple):
+        return list(value)
+    return str(value)
 
 
 def now_stamp() -> str:
@@ -32,7 +57,9 @@ def read_json(path: str | Path) -> Any:
 def atomic_write_json(path: str | Path, payload: Any) -> Path:
     destination = Path(path)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    text = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
+    text = json.dumps(
+        payload, ensure_ascii=False, indent=2, sort_keys=False, default=json_default
+    ) + "\n"
     fd, tmp_name = tempfile.mkstemp(prefix=f".{destination.stem}-", suffix=".tmp", dir=destination.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:

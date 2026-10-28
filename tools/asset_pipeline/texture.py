@@ -27,13 +27,19 @@ __all__ = [
     "alpha_cutout",
     "comparison_sheet",
     "detect_background_color",
+    "fit_square",
+    "make_center_tileable",
     "nearest_resize",
+    "nine_slice_report",
     "open_rgba",
     "process_texture",
     "quantize_palette",
     "remove_background",
+    "resize_to",
+    "tile_seam_correct",
     "tileability",
     "tile_preview",
+    "trim_alpha",
 ]
 
 #: Sentinel colours used while flood-filling; the least-likely one wins.
@@ -177,7 +183,7 @@ def remove_background(
         out = array.copy()
         out[mask, 3] = 0
         info["removed_pixels"] = int(mask.sum())
-        info["corner_flood_fills"] = filled
+        info["corner_flood_fills"] = int(filled)
     else:
         raise ValueError(f"unknown method {method!r} (expected flood|color)")
 
@@ -428,3 +434,154 @@ def process_texture(
             report["warnings"].append(f"{size}px: tileability {tiling['verdict']} (worst ratio {tiling['worst_ratio']})")
 
     return report
+
+
+# --------------------------------------------------------------------------
+# HUD / arbitrary-size helpers (bilinear is allowed for non-pixel-art HUD art)
+# --------------------------------------------------------------------------
+def resize_to(
+    img: Image.Image,
+    size: tuple[int, int],
+    *,
+    resample: int = Image.Resampling.BILINEAR,
+) -> Image.Image:
+    """Resize to an explicit ``(width, height)`` with a chosen filter."""
+    width, height = int(size[0]), int(size[1])
+    if width <= 0 or height <= 0:
+        raise ValueError(f"invalid target size {size!r}")
+    return img.convert("RGBA").resize((width, height), resample)
+
+
+def trim_alpha(img: Image.Image, *, padding_ratio: float = 0.04) -> Image.Image:
+    """Crop to the non-transparent bounding box (plus a small even padding)."""
+    src = img.convert("RGBA")
+    bbox = src.getchannel("A").getbbox()
+    if bbox is None:
+        return src
+    left, top, right, bottom = bbox
+    pad = int(round(max(right - left, bottom - top) * max(0.0, padding_ratio)))
+    left = max(0, left - pad)
+    top = max(0, top - pad)
+    right = min(src.width, right + pad)
+    bottom = min(src.height, bottom + pad)
+    return src.crop((left, top, right, bottom))
+
+
+def fit_square(
+    img: Image.Image,
+    size: int,
+    *,
+    resample: int = Image.Resampling.BILINEAR,
+    background: tuple[int, int, int, int] = (0, 0, 0, 0),
+) -> Image.Image:
+    """Center *img* on a transparent square canvas, then resize to ``size x size``."""
+    src = img.convert("RGBA")
+    side = max(src.width, src.height)
+    canvas = Image.new("RGBA", (side, side), background)
+    canvas.paste(src, ((side - src.width) // 2, (side - src.height) // 2), src)
+    return canvas.resize((int(size), int(size)), resample)
+
+
+def ensure_multiple_of_16(width: int, height: int) -> tuple[int, int]:
+    """Round a size up to the nearest multiple of 16 (HUD/UI texture requirement)."""
+    def _round(value: int) -> int:
+        return int(math.ceil(max(1, value) / 16.0) * 16)
+
+    return _round(width), _round(height)
+
+
+def tile_seam_correct(img: Image.Image, *, axes: Sequence[str] = ("x", "y")) -> Image.Image:
+    """Remove wrap seams by spreading the edge difference across a linear ramp.
+
+    For the x axis the RGB correction is ``+d/2`` at column 0 and ``-d/2`` at the
+    last column (``d = right - left``), which makes the two edge columns identical
+    after wrapping while keeping the change smooth. Alpha is preserved untouched.
+    """
+    array = np.asarray(img.convert("RGBA")).astype(np.float32)
+    height, width = array.shape[:2]
+    rgb = array[:, :, :3]
+    if "x" in axes and width > 1:
+        diff = rgb[:, -1, :] - rgb[:, 0, :]
+        ramp = (0.5 - np.arange(width, dtype=np.float32) / (width - 1))[None, :, None]
+        rgb = rgb + diff[:, None, :] * ramp
+    if "y" in axes and height > 1:
+        diff = rgb[-1, :, :] - rgb[0, :, :]
+        ramp = (0.5 - np.arange(height, dtype=np.float32) / (height - 1))[:, None, None]
+        rgb = rgb + diff[None, :, :] * ramp
+    out = array.copy()
+    out[:, :, :3] = np.clip(rgb, 0.0, 255.0)
+    return Image.fromarray(out.astype(np.uint8), mode="RGBA")
+
+
+def make_center_tileable(
+    img: Image.Image,
+    *,
+    corner: int = 16,
+    tile_width: int = 16,
+) -> Image.Image:
+    """Force the 9-slice centre band to be an exact ``tile_width`` px repeat.
+
+    The generated middle slice is downscaled to ``tile_width``, seam-corrected, then
+    tiled across the centre region. The left/right caps are left untouched, so the
+    result can be stretched horizontally with a repeating centre.
+    """
+    src = img.convert("RGBA")
+    width, height = src.size
+    if width <= corner * 2 or height < 1:
+        return src
+    centre = src.crop((corner, 0, width - corner, height))
+    if centre.width < tile_width:
+        return src
+    sample = centre.resize((tile_width, centre.height), Image.Resampling.BILINEAR)
+    sample = tile_seam_correct(sample, axes=("x",))
+    tiled = Image.new("RGBA", centre.size, (0, 0, 0, 0))
+    for x in range(0, centre.width, tile_width):
+        tiled.paste(sample, (x, 0))
+    out = src.copy()
+    out.paste(tiled, (corner, 0))
+    return out
+
+
+def nine_slice_report(
+    img: Image.Image,
+    *,
+    corner: int = 16,
+    center: int = 16,
+) -> dict[str, Any]:
+    """Check the 9-slice contract: 16 px caps + a repeatable ``center`` px band."""
+    src = img.convert("RGBA")
+    width, height = src.size
+    array = np.asarray(src).astype(np.float32)
+    caps_present = width > corner * 2
+    centre_region = src.crop((corner, 0, width - corner, height)) if caps_present else src
+    centre_tiling = tileability(centre_region)
+    left_cap = array[:, :corner, :3]
+    right_cap = array[:, width - corner :, :3]
+    centre_mean = np.mean(array[:, corner : width - corner, :3], axis=1, keepdims=True)
+    cap_contrast = float(
+        (np.mean(np.abs(left_cap - centre_mean)) + np.mean(np.abs(right_cap - centre_mean))) / 2
+    )
+    corners = [
+        int(src.getpixel((0, 0))[3]),
+        int(src.getpixel((width - 1, 0))[3]),
+        int(src.getpixel((0, height - 1))[3]),
+        int(src.getpixel((width - 1, height - 1))[3]),
+    ]
+    width_ok = width % 16 == 0 and height % 16 == 0
+    centre_repeat_ok = centre_tiling["ratio_x"] <= 1.5
+    return {
+        "size": [width, height],
+        "multiple_of_16": width_ok,
+        "corner_px": corner,
+        "center_repeat_px": center,
+        "center_region_width": max(0, width - corner * 2),
+        "center_ratio_x": centre_tiling["ratio_x"],
+        "center_ratio_y": centre_tiling["ratio_y"],
+        "center_verdict": centre_tiling["verdict"],
+        "center_repeatable": centre_repeat_ok,
+        "caps_contrast": round(cap_contrast, 3),
+        "caps_decorated": cap_contrast >= 2.0,
+        "corner_alpha": corners,
+        "ok": bool(width_ok and centre_repeat_ok and all(alpha == 0 for alpha in corners)),
+    }
+

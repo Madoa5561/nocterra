@@ -17,7 +17,8 @@ public final class NocterraClient {
     public static void initialize(IEventBus modBus) {
         modBus.addListener(NocterraClient::registerRenderers);
         modBus.addListener(NocterraClient::registerKeyMappings);
-        // クライアント tick / HUD 描画はここに追加する
+        // ゲームバス: ボスHPバーの独自描画（バニラのバーを置き換える）
+        NeoForge.EVENT_BUS.addListener(com.nocterra.client.hud.NocterraBossOverlay::onBossEventProgress);
     }
 
     private static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-28T04:49:49+00:00",
+  "assets": [
+    {
+      "asset_id": "raw_hud_portrait_rotwood_king",
+      "revision": 1,
+      "kind": "hud",
+      "stage": "raw",
+      "path": "generated_assets/raw/openai/58d495ca12cfd4ccbb2d5ad7364200a2064c6c51c70f77d3634d1f3021494a6f.png",
+      "service": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "prompt": "an ancient rotting forest king, bark-plated skull-like face, antler crown of blackened oak, moss and pale fungi growing from the shoulders, hollow amber eyes, tattered dark green cloak. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "parameters": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "an ancient rotting forest king, bark-plated skull-like face, antler crown of blackened oak, moss and pale fungi growing from the shoulders, hollow amber eyes, tattered dark green cloak. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "created_at": "2026-10-28T04:49:18+00:00",
+      "cost": {
+        "estimated_usd": 0.07,
+        "actual_usd": 0.07,
+        "note": "API returns no itemised price; amount computed from the operator-supplied ASSET_PRICE_JSON / credit / character price table (not invoice-verified)."
+      },
+      "job_id": "prod_hud_portrait_rotwood_king",
+      "source_asset_id": null,
+      "sha256": "58d495ca12cfd4ccbb2d5ad7364200a2064c6c51c70f77d3634d1f3021494a6f",
+      "bytes": 2142212,
+      "license_note": "AI-generated with OpenAI Images for NOCTERRA. Provider terms / commercial-use rights are UNVERIFIED by this pipeline - confirm before public release.",
+      "validation": {
+        "ok": true,
+        "kind": "png",
+        "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\58d495ca12cfd4ccbb2d5ad7364200a2064c6c51c70f77d3634d1f3021494a6f.png",
+        "errors": [],
+        "warnings": [],
+        "details": {
+          "width": 1024,
+          "height": 1024,
+          "bit_depth": 8,
+          "color_type": 6,
+          "file_size": 2142212,
+          "mode": "RGBA",
+          "format": "PNG",
+          "has_alpha": true,
+          "alpha_extrema": [
+            0,
+            254
+          ]
+        }
+      },
+      "warnings": []
+    },
+    {
+      "asset_id": "hud_portrait_rotwood_king",
+      "revision": 1,
+      "kind": "hud",
+      "stage": "processed",
+      "path": "generated_assets/processed/hud/boss_portrait/rotwood_king.png",
+      "service": "local",
+      "model": null,
+      "prompt": null,
+      "parameters": {
+        "operation": "trim-alpha + fit-square(bilinear) + alpha-blend",
+        "source_size": [
+          1024,
+          1024
+        ],
+        "target_size": [
+          128,
+          128
+        ],
+        "background_handling": {
+          "method": "flood",
+          "tolerance": 26,
+          "detected_background_rgba": [
+            2,
+            3,
+            2,
+            255
+          ],
+          "border_share": 0.0015,
+          "key_color_rgb": [
+            2,
+            3,
+            2
+          ],
+          "removed_pixels": 104,
+          "corner_flood_fills": 104,
+          "removed_ratio": 0.2878
+        },
+        "corner_alpha_after": [
+          0,
+          0,
+          255,
+          255
+        ],
+        "sha256": "0503e6139bc72c79ea35d2b07515c92b35608ba59b029da7b0a211322f45f1dd",
+        "bytes": 31179
+      },
+      "created_at": "2026-10-28T04:49:49+00:00",
+      "cost": {
+        "estimated_usd": 0.0,
+        "actual_usd": 0.0,
+        "note": "local processing only"
+      },
+      "job_id": null,
+      "source_asset_id": "raw_hud_portrait_rotwood_king",
+      "sha256": "0503e6139bc72c79ea35d2b07515c92b35608ba59b029da7b0a211322f45f1dd",
+      "bytes": 31179,
+      "license_note": "Derived locally from the source asset; the source licence applies.",
+      "validation": {
+        "ok": true,
+        "kind": "png",
+        "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\rotwood_king.png",
+        "errors": [],
+        "warnings": [],
+        "details": {
+          "width": 128,
+          "height": 128,
+          "bit_depth": 8,
+          "color_type": 6,
+          "file_size": 31179,
+          "mode": "RGBA",
+          "format": "PNG",
+          "has_alpha": true,
+          "alpha_extrema": [
+            0,
+            255
+          ]
+        }
+      },
+      "warnings": [
+        "alpha/format issue"
+      ]
+    }
+  ]
+}

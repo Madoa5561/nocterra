@@ -752,11 +752,24 @@ def test_fish_request(work: Path) -> None:
 # harness
 # --------------------------------------------------------------------------
 def _cfg_for(work: Path) -> Config:
+    """Hermetic config for tests: never inherits the live-spend .env settings.
+
+    The self-test must stay safe even when the repository is in
+    LIVE-SPEND-ENABLED mode, so the gates and prices are forced to their safe
+    defaults here regardless of what .env says.
+    """
     cfg = Config.load(envmod.Env(repo_root=REPO_ROOT))
     cfg.state_dir = work / "state"
     cfg.raw_dir = work / "raw"
     cfg.processed_dir = work / "processed"
     cfg.manifests_dir = work / "manifests"
+    # hard safety: no billable call can ever pass the gates inside the self-test
+    cfg.dry_run = True
+    cfg.auto_spend = False
+    cfg.max_cost_usd = 0.0
+    cfg.fish_usd_per_1k_chars = None
+    cfg.tripo_credit_usd = None
+    cfg.warnings = [w for w in cfg.warnings if "unpriced" in w or "ASSET_" in w]
     cfg.ensure_state_dirs()
     return cfg
 

@@ -5,10 +5,14 @@
   "entity.nocterra.bog_ghoul": "沼の屍鬼",
   "entity.nocterra.rotwood_king": "腐朽の森王",
   "entity.nocterra.sorrow_saint": "悲嘆の聖女",
+  "entity.nocterra.condemned_knight_lord": "断罪の騎士長",
+  "entity.nocterra.abyssal_sea_emperor": "深淵の海帝",
   "item.nocterra.ashen_wraith_spawn_egg": "灰樹の亡霊のスポーンエッグ",
   "item.nocterra.ash_crawler_spawn_egg": "灰樹の這い虫のスポーンエッグ",
   "item.nocterra.mourning_wisp_spawn_egg": "嘆きの亡霊のスポーンエッグ",
   "item.nocterra.bog_ghoul_spawn_egg": "沼の屍鬼のスポーンエッグ",
   "item.nocterra.rotwood_king_spawn_egg": "腐朽の森王のスポーンエッグ",
-  "item.nocterra.sorrow_saint_spawn_egg": "悲嘆の聖女のスポーンエッグ"
+  "item.nocterra.sorrow_saint_spawn_egg": "悲嘆の聖女のスポーンエッグ",
+  "item.nocterra.condemned_knight_lord_spawn_egg": "断罪の騎士長のスポーンエッグ",
+  "item.nocterra.abyssal_sea_emperor_spawn_egg": "深淵の海帝のスポーンエッグ"
 }

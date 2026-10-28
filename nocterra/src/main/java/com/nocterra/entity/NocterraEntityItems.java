@@ -58,6 +58,16 @@ public final class NocterraEntityItems {
             SpawnEggItem::new,
             properties -> properties.spawnEgg(NocterraEntities.SORROW_SAINT.get()));
 
+    public static final DeferredItem<Item> CONDEMNED_KNIGHT_LORD_SPAWN_EGG = ITEMS.registerItem(
+            "condemned_knight_lord_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.CONDEMNED_KNIGHT_LORD.get()));
+
+    public static final DeferredItem<Item> ABYSSAL_SEA_EMPEROR_SPAWN_EGG = ITEMS.registerItem(
+            "abyssal_sea_emperor_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.ABYSSAL_SEA_EMPEROR.get()));
+
     public static void register(IEventBus modBus) {
         ITEMS.register(modBus);
     }

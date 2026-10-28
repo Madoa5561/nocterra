@@ -1,6 +1,8 @@
 package com.nocterra.entity;
 
 import com.nocterra.Nocterra;
+import com.nocterra.boss.AbyssalSeaEmperorEntity;
+import com.nocterra.boss.CondemnedKnightLordEntity;
 import com.nocterra.boss.RotwoodKingEntity;
 import com.nocterra.boss.SorrowSaintEntity;
 import net.minecraft.world.entity.EntityType;
@@ -84,6 +86,24 @@ public final class NocterraEntities {
                             .updateInterval(2)
                             .notInPeaceful());
 
+    /** ボス「断罪の騎士長」（亡国の城塞）。 */
+    public static final DeferredHolder<EntityType<?>, EntityType<CondemnedKnightLordEntity>> CONDEMNED_KNIGHT_LORD =
+            ENTITIES.registerEntityType("condemned_knight_lord", CondemnedKnightLordEntity::new, MobCategory.MONSTER,
+                    builder -> builder
+                            .sized(1.2F, 2.9F)
+                            .clientTrackingRange(12)
+                            .updateInterval(2)
+                            .notInPeaceful());
+
+    /** ボス「深淵の海帝」（深淵の海）。水陸両用。 */
+    public static final DeferredHolder<EntityType<?>, EntityType<AbyssalSeaEmperorEntity>> ABYSSAL_SEA_EMPEROR =
+            ENTITIES.registerEntityType("abyssal_sea_emperor", AbyssalSeaEmperorEntity::new, MobCategory.MONSTER,
+                    builder -> builder
+                            .sized(1.3F, 2.3F)
+                            .clientTrackingRange(12)
+                            .updateInterval(2)
+                            .notInPeaceful());
+
     public static void register(IEventBus modBus) {
         ENTITIES.register(modBus);
         NocterraEntityItems.register(modBus);
@@ -98,6 +118,8 @@ public final class NocterraEntities {
         event.put(BOG_GHOUL.get(), BogGhoulEntity.createAttributes().build());
         event.put(ROTWOOD_KING.get(), RotwoodKingEntity.createAttributes().build());
         event.put(SORROW_SAINT.get(), SorrowSaintEntity.createAttributes().build());
+        event.put(CONDEMNED_KNIGHT_LORD.get(), CondemnedKnightLordEntity.createAttributes().build());
+        event.put(ABYSSAL_SEA_EMPEROR.get(), AbyssalSeaEmperorEntity.createAttributes().build());
     }
 
     private static void onRegisterSpawnPlacements(RegisterSpawnPlacementsEvent event) {

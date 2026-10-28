@@ -1,8 +1,10 @@
 package com.nocterra.client;
 
+import com.nocterra.client.render.AbyssalSeaEmperorRenderer;
 import com.nocterra.client.render.AshCrawlerRenderer;
 import com.nocterra.client.render.AshenWraithRenderer;
 import com.nocterra.client.render.BogGhoulRenderer;
+import com.nocterra.client.render.CondemnedKnightLordRenderer;
 import com.nocterra.client.render.MourningWispRenderer;
 import com.nocterra.client.render.RotwoodKingRenderer;
 import com.nocterra.client.render.SorrowSaintRenderer;
@@ -31,5 +33,9 @@ public final class NocterraClientRenderers {
                 context -> new RotwoodKingRenderer(context));
         event.registerEntityRenderer(NocterraEntities.SORROW_SAINT.get(),
                 context -> new SorrowSaintRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.CONDEMNED_KNIGHT_LORD.get(),
+                context -> new CondemnedKnightLordRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.ABYSSAL_SEA_EMPEROR.get(),
+                context -> new AbyssalSeaEmperorRenderer(context));
     }
 }

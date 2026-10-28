@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nocterra:item/abyssal_sea_emperor_spawn_egg"
+  }
+}

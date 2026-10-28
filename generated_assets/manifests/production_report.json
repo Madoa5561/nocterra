@@ -1,0 +1,73 @@
+{
+  "started_at": "2026-10-28T13:48:54+0900",
+  "mode": "LIVE-SPEND-ENABLED",
+  "images": [
+    {
+      "asset_id": "hud_portrait_rotwood_king",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\58d495ca12cfd4ccbb2d5ad7364200a2064c6c51c70f77d3634d1f3021494a6f.png",
+      "prompt": "an ancient rotting forest king, bark-plated skull-like face, antler crown of blackened oak, moss and pale fungi growing from the shoulders, hollow amber eyes, tattered dark green cloak. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "an ancient rotting forest king, bark-plated skull-like face, antler crown of blackened oak, moss and pale fungi growing from the shoulders, hollow amber eyes, tattered dark green cloak. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "58d495ca12cfd4ccbb2d5ad7364200a2064c6c51c70f77d3634d1f3021494a6f"
+    }
+  ],
+  "audio": [],
+  "models": [],
+  "skipped": [],
+  "errors": [
+    {
+      "asset_id": "hud_portrait_rotwood_king",
+      "error": "TypeError: Object of type int64 is not JSON serializable"
+    }
+  ],
+  "missing": [],
+  "cost": {
+    "images_usd": 0.07,
+    "audio_usd": 0,
+    "models_usd": 0,
+    "total_usd": 0.07,
+    "ledger_committed_usd": 0.07,
+    "ledger_reserved_usd": 0.0,
+    "by_service": {
+      "openai": {
+        "entries": 1,
+        "committed_usd": 0.07,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 1,
+        "released_jobs": 0
+      }
+    },
+    "max_cost_usd": 5.0,
+    "remaining_usd": 4.93,
+    "note": "API returns no itemised price; amount computed from the operator-supplied ASSET_PRICE_JSON / credit / character price table (not invoice-verified)."
+  },
+  "finished_at": "2026-10-28T13:49:18+0900",
+  "manifest": {
+    "manifest": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\manifests\\assets.json",
+    "schema_version": 1,
+    "asset_count": 2,
+    "by_kind": {
+      "hud": 2
+    },
+    "by_stage": {
+      "raw": 1,
+      "processed": 1
+    },
+    "by_service": {
+      "openai": 1,
+      "local": 1
+    },
+    "total_actual_usd": 0.07,
+    "updated_at": "2026-10-28T04:49:18+00:00"
+  }
+}

@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any
 
 from . import SCHEMA_VERSION
+from .util import json_default
 
 __all__ = ["AssetManifest", "sha256_file", "utc_now"]
 
@@ -60,7 +61,9 @@ class AssetManifest:
     # ---------------------------------------------------------------- io
     def _atomic_write(self) -> None:
         self.directory.mkdir(parents=True, exist_ok=True)
-        payload = json.dumps(self.document, ensure_ascii=False, indent=2, sort_keys=False)
+        payload = json.dumps(
+            self.document, ensure_ascii=False, indent=2, sort_keys=False, default=json_default
+        )
         fd, tmp_name = tempfile.mkstemp(prefix=".assets-", suffix=".tmp", dir=self.directory)
         try:
             with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
