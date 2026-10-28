@@ -62,6 +62,83 @@ public class MourningCatacombPiece extends NocterraStructurePiece {
         buildStairs(level, chunkBB);
         connectStairsToRoom(level, chunkBB);
         decorate(level, chunkBB);
+        sealPassages(level, chunkBB);
+    }
+
+    /**
+     * 通路（階段・連絡路・墓所内部）の周囲を石で完全にシールする。
+     *
+     * <p>水没地（入口を seaLevel+1 まで持ち上げたケース）では、階段坑の真上が
+     * <b>湖の水</b>になる。ヘッドルームを 3 ブロック掘るだけだと天井が無く、
+     * ブロック更新が入った瞬間に水が流れ込む。そこで「開放セルの 6 近傍で、
+     * 通路でも固体でもないセル」をすべて石で埋めて防水シェルを作る。
+     * ドライな土地では地形がそのまま天井になるため、見た目はほぼ変わらない。</p>
+     */
+    private void sealPassages(WorldGenLevel level, BoundingBox chunkBB) {
+        java.util.Set<Long> open = new java.util.HashSet<>();
+        // 入口（北向き 3x3）
+        for (int lx = 1; lx <= 3; lx++) {
+            for (int relY = 1; relY <= 3; relY++) {
+                open.add(key(lx, relY, 0));
+            }
+        }
+        // 階段のヘッドルーム
+        for (int i = 1; i <= DEPTH; i++) {
+            for (int lx = 1; lx <= 3; lx++) {
+                for (int relY = -i + 1; relY <= -i + 3; relY++) {
+                    open.add(key(lx, relY, i));
+                }
+            }
+        }
+        // 階段→墓所の連絡路
+        for (int lx = 4; lx <= ROOM_MIN_X; lx++) {
+            for (int relY = ROOM_FLOOR + 1; relY <= ROOM_FLOOR + 3; relY++) {
+                open.add(key(lx, relY, 12));
+                open.add(key(lx, relY, 13));
+            }
+        }
+        // 墓所内部
+        for (int lx = ROOM_MIN_X + 1; lx < ROOM_MAX_X; lx++) {
+            for (int lz = ROOM_MIN_Z + 1; lz < ROOM_MAX_Z; lz++) {
+                for (int relY = ROOM_FLOOR + 1; relY < ROOM_CEILING; relY++) {
+                    open.add(key(lx, relY, lz));
+                }
+            }
+        }
+
+        BlockState seal = Blocks.DEEPSLATE_BRICKS.defaultBlockState();
+        for (long k : open) {
+            int lx = (int) (k & 0xFF);
+            int relY = (int) ((k >> 8) & 0xFF) - 64;
+            int lz = (int) ((k >> 16) & 0xFF);
+            for (BlockPos offset : NEIGHBOURS) {
+                int nx = lx + offset.getX();
+                int ny = relY + offset.getY();
+                int nz = lz + offset.getZ();
+                // ピースの外・通路の外へは張らない（入口の北側は「入口」なので開ける）
+                if (nx < 0 || nx >= SIZE || nz < 0 || nz >= SIZE || ny < -16 || ny > 5) {
+                    continue;
+                }
+                if (open.contains(key(nx, ny, nz))) {
+                    continue;
+                }
+                BlockState current = this.getAt(level, chunkBB, nx, ny, nz);
+                if (!current.isSolid()) {
+                    // 空気・水・溶岩・植物などをすべて石で置換して密閉する
+                    this.place(level, chunkBB, nx, ny, nz, seal);
+                }
+            }
+        }
+    }
+
+    private static final BlockPos[] NEIGHBOURS = {
+        new BlockPos(1, 0, 0), new BlockPos(-1, 0, 0),
+        new BlockPos(0, 1, 0), new BlockPos(0, -1, 0),
+        new BlockPos(0, 0, 1), new BlockPos(0, 0, -1),
+    };
+
+    private static long key(int lx, int relY, int lz) {
+        return (lx & 0xFFL) | (((relY + 64) & 0xFFL) << 8) | ((lz & 0xFFL) << 16);
     }
 
     /** 墓所の外殻（床・壁・天井）を必ず張る = 周囲が水/溶岩でも内部は乾く。 */
