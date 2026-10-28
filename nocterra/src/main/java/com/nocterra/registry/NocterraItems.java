@@ -55,6 +55,7 @@ public final class NocterraItems {
                         output.accept(com.nocterra.entity.NocterraEntityItems.MOURNING_WISP_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.BOG_GHOUL_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.ROTWOOD_KING_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.SORROW_SAINT_SPAWN_EGG.get());
                     })
                     .build());
 

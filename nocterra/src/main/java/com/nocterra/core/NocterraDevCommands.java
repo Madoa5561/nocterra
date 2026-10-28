@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.nocterra.boss.RotwoodKingEntity;
+import com.nocterra.boss.SorrowSaintEntity;
 import com.nocterra.entity.AshenWraithEntity;
 import com.nocterra.entity.BogGhoulEntity;
 import com.nocterra.entity.MourningWispEntity;
@@ -22,8 +23,8 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * 繧ｵ繝ｼ繝舌・蜊倅ｽ薙〒 AI繝ｻ迥ｶ諷矩・遘ｻ繧呈､懆ｨｼ縺吶ｋ縺溘ａ縺ｮ髢狗匱繧ｳ繝槭Φ繝峨よ園譛・ Lead縲・ *
- * <p>繧ｯ繝ｩ繧､繧｢繝ｳ繝医・繝槭え繧ｹ謫堺ｽ懊↑縺励〒縲√・繧ｹ縺ｮ繝輔ぉ繝ｼ繧ｺ遘ｻ陦後・莠亥・謾ｻ謦・・蜿ｬ蝟壹・ * 莠｡髴翫・繝悶Μ繝ｳ繧ｯ縲∽ｺ｡髴・繝ｯ繧､繧ｹ繝・縺ｮ鬲ょ精縺・∝ｱ埼ｬｼ縺ｮ遽・峇謾ｻ謦・ｒ逋ｺ轣ｫ縺ｧ縺阪ｋ縲・ * 繧ｨ繝ｳ繝・ぅ繝・ぅ蛛ｴ縺ｮ {@code debug*} 繝輔ャ繧ｯ・・ntity 諡・ｽ灘ｮ溯｣・ｼ峨ｒ蜻ｼ縺ｶ縺縺代・/p>
+ * 郢ｧ・ｵ郢晢ｽｼ郢晁・繝ｻ陷雁・ｽｽ阮吶・AI郢晢ｽｻ霑･・ｶ隲ｷ遏ｩ繝ｻ驕假ｽｻ郢ｧ蜻茨ｽ､諛・ｽｨ・ｼ邵ｺ蜷ｶ・狗ｸｺ貅假ｽ∫ｸｺ・ｮ鬮｢迢怜験郢ｧ・ｳ郢晄ｧｭﾎｦ郢晏ｳｨﾂ繧亥恍隴帙・ Lead邵ｲ繝ｻ *
+ * <p>郢ｧ・ｯ郢晢ｽｩ郢ｧ・､郢ｧ・｢郢晢ｽｳ郢晏現繝ｻ郢晄ｧｭ縺育ｹｧ・ｹ隰ｫ蝣ｺ・ｽ諛岩・邵ｺ蜉ｱ縲堤ｸｲ竏壹・郢ｧ・ｹ邵ｺ・ｮ郢晁ｼ斐♂郢晢ｽｼ郢ｧ・ｺ驕假ｽｻ髯ｦ蠕後・闔莠･繝ｻ隰ｾ・ｻ隰ｦ繝ｻ繝ｻ陷ｿ・ｬ陜溷｣ｹﾂ繝ｻ * 闔・｡鬮ｴ鄙ｫ繝ｻ郢晄じﾎ懃ｹ晢ｽｳ郢ｧ・ｯ邵ｲ竏ｽ・ｺ・｡鬮ｴ繝ｻ郢晢ｽｯ郢ｧ・､郢ｧ・ｹ郢昴・邵ｺ・ｮ鬯ｲ繧・ｲｾ邵ｺ繝ｻﾂ竏晢ｽｱ蝓ｼ・ｬ・ｼ邵ｺ・ｮ驕ｽ繝ｻ蟲・ｬｾ・ｻ隰ｦ繝ｻ・帝具ｽｺ霓｣・ｫ邵ｺ・ｧ邵ｺ髦ｪ・狗ｸｲ繝ｻ * 郢ｧ・ｨ郢晢ｽｳ郢昴・縺・ｹ昴・縺・屁・ｴ邵ｺ・ｮ {@code debug*} 郢晁ｼ斐Ε郢ｧ・ｯ繝ｻ繝ｻntity 隲｡繝ｻ・ｽ轣假ｽｮ貅ｯ・｣繝ｻ・ｼ蟲ｨ・定惱・ｼ邵ｺ・ｶ邵ｺ・ｰ邵ｺ莉｣ﾂ繝ｻ/p>
  */
 public final class NocterraDevCommands {
     private NocterraDevCommands() {}
@@ -62,6 +63,22 @@ public final class NocterraDevCommands {
                                                         IntegerArgumentType.getInteger(ctx, "ticks")))))
                                 .then(Commands.literal("status").executes(ctx -> statusOf(ctx,
                                         MourningWispEntity.class, MourningWispEntity::debugStatus))))
+                        .then(Commands.literal("saint")
+                                .then(Commands.literal("status").executes(NocterraDevCommands::saintStatus))
+                                .then(Commands.literal("unlock").executes(NocterraDevCommands::saintUnlock))
+                                .then(Commands.literal("summon").executes(NocterraDevCommands::saintSummon))
+                                .then(Commands.literal("phase")
+                                        .then(Commands.argument("phase", IntegerArgumentType.integer(1, 2))
+                                                .executes(ctx -> saintPhase(ctx,
+                                                        IntegerArgumentType.getInteger(ctx, "phase")))))
+                                .then(Commands.literal("attack")
+                                        .then(Commands.argument("variant", IntegerArgumentType.integer(0, 2))
+                                                .executes(ctx -> saintAttack(ctx,
+                                                        IntegerArgumentType.getInteger(ctx, "variant")))))
+                                .then(Commands.literal("windup")
+                                        .then(Commands.argument("ticks", IntegerArgumentType.integer(0, 200))
+                                                .executes(ctx -> saintWindup(ctx,
+                                                        IntegerArgumentType.getInteger(ctx, "ticks"))))))
                         .then(Commands.literal("ghoul")
                                 .then(Commands.literal("pound").executes(NocterraDevCommands::ghoulPound))
                                 .then(Commands.literal("windup")
@@ -232,6 +249,84 @@ public final class NocterraDevCommands {
         }
         ghoul.debugSetPoundWindup(ticks);
         source.sendSuccess(() -> Component.literal("ghoul windup set to " + ticks), false);
+        return 1;
+    }
+
+    // ------------------------------------------------------------------ saint
+
+    private static int saintStatus(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        SorrowSaintEntity saint = nearest(source, SorrowSaintEntity.class);
+        if (saint == null) {
+            source.sendFailure(Component.literal("no sorrow_saint nearby"));
+            return 0;
+        }
+        source.sendSuccess(() -> Component.literal("saint: " + saint.debugStatus()), false);
+        return 1;
+    }
+
+    private static int saintPhase(CommandContext<CommandSourceStack> context, int phase) {
+        CommandSourceStack source = context.getSource();
+        SorrowSaintEntity saint = nearest(source, SorrowSaintEntity.class);
+        if (saint == null) {
+            source.sendFailure(Component.literal("no sorrow_saint nearby"));
+            return 0;
+        }
+        boolean ok = saint.debugForcePhase(phase);
+        source.sendSuccess(() -> Component.literal("saint phase -> " + phase + " (" + ok + "): " + saint.debugStatus()), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int saintUnlock(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        SorrowSaintEntity saint = nearest(source, SorrowSaintEntity.class);
+        if (saint == null) {
+            source.sendFailure(Component.literal("no sorrow_saint nearby"));
+            return 0;
+        }
+        saint.debugReleasePhaseLock();
+        source.sendSuccess(() -> Component.literal("saint phase lock released: " + saint.debugStatus()), false);
+        return 1;
+    }
+
+    private static int saintSummon(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        SorrowSaintEntity saint = nearest(source, SorrowSaintEntity.class);
+        if (saint == null) {
+            source.sendFailure(Component.literal("no sorrow_saint nearby"));
+            return 0;
+        }
+        boolean ok = saint.debugSummonMinions();
+        source.sendSuccess(() -> Component.literal("saint summon -> " + ok), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int saintAttack(CommandContext<CommandSourceStack> context, int variant) {
+        CommandSourceStack source = context.getSource();
+        SorrowSaintEntity saint = nearest(source, SorrowSaintEntity.class);
+        if (saint == null) {
+            source.sendFailure(Component.literal("no sorrow_saint nearby"));
+            return 0;
+        }
+        ServerPlayer target = targetPlayer(source);
+        if (target == null) {
+            source.sendFailure(Component.literal("no player in this dimension"));
+            return 0;
+        }
+        boolean ok = saint.debugForceAttack(variant, target);
+        source.sendSuccess(() -> Component.literal("saint attack variant " + variant + " -> " + ok), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int saintWindup(CommandContext<CommandSourceStack> context, int ticks) {
+        CommandSourceStack source = context.getSource();
+        SorrowSaintEntity saint = nearest(source, SorrowSaintEntity.class);
+        if (saint == null) {
+            source.sendFailure(Component.literal("no sorrow_saint nearby"));
+            return 0;
+        }
+        saint.debugSetAttackWindup(ticks);
+        source.sendSuccess(() -> Component.literal("saint windup set to " + ticks), false);
         return 1;
     }
 

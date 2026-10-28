@@ -134,9 +134,14 @@ public class SorrowSaintEntity extends Monster implements GeoEntity {
         return navigation;
     }
 
+    /**
+     * 浮遊移動。{@code getSpeed()} は {@link FlyingMoveControl} が
+     * {@code FLYING_SPEED * speedModifier} で毎 tick 設定する（Allay と同じパターン）。
+     * 水中での移動速度は標準の 0.02（バニラ準拠）を維持する。
+     */
     @Override
     public void travel(Vec3 input) {
-        this.travelFlying(input, 0.02F);
+        this.travelFlying(input, this.getSpeed());
     }
 
     /**
@@ -284,12 +289,17 @@ public class SorrowSaintEntity extends Monster implements GeoEntity {
     // ------------------------------------------------------------------
 
     private void beginAttack(LivingEntity target) {
+        double distSq = this.distanceToSqr(target);
         int variant;
-        if (this.getPhase() >= 2) {
-            int roll = this.random.nextInt(5);
-            variant = roll < 2 ? 0 : (roll < 4 ? 1 : 2);
-        } else {
+        if (this.getPhase() >= 2 && distSq <= CHOIR_RADIUS * CHOIR_RADIUS && this.random.nextInt(3) == 0) {
+            // 至近距離のフェーズ2のみ「嘆きの合唱」
+            variant = 2;
+        } else if (distSq <= 25.0) {
+            // 近距離: 爪が主体、ときどき涙の弾
             variant = this.random.nextInt(3) < 2 ? 0 : 1;
+        } else {
+            // 中〜遠距離: 涙の弾
+            variant = 1;
         }
         this.startAttack(variant, target);
     }
