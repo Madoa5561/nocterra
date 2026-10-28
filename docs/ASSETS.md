@@ -1,67 +1,84 @@
 # ASSETS.md — アセットの来歴と生成方法
 
-> 本プロジェクトのアセットはすべて **本プロジェクト内で生成**したもの。
-> 有料 API（OpenAI / Tripo / Fish Audio）は **実課金 0 件**（`ASSET_DRY_RUN=true` / `ASSET_AUTO_SPEND=false` のまま）。
-> 現状のテクスチャ・モデルは **プレースホルダ**であり、本番品質への差し替えを前提としている。
+> 本プロジェクトのアセットは、**手続き生成**と**有料 API による本番生成**の 2 種類がある。
+> 有料 API は**ユーザー承認のうえ実行済み**（各サービス上限 $5/サービス、実績 **$2.67612**）。
+> ライセンス条件は各サービスとも `UNVERIFIED`（manifest に記録）。
 
-## 1. 生成方法の区分
+## 1. 本番生成（実課金・2026-10-28）
 
-| 種別 | 生成方法 | 生成スクリプト | 出力先 |
+| サービス | 件数 | 実額（ledger） | 内容 |
 |---|---|---|---|
-| ブロック/アイテムのテクスチャ（16×16） | Python + Pillow による**手続き生成**（ノイズ・レンガ・渦・ルーン） | `tools/dev/gen_placeholder_textures.py`、`tools/dev/gen_block_assets.py` | `assets/nocterra/textures/{block,item}/` |
-| 3D モデル（GeckoLib 形式） | **手書き JSON**（Blockbench GeckoLib 4/5 形式） | なし（手書き） | `assets/nocterra/geckolib/models/entity/` |
-| アニメーション | **手書き JSON**（keyframe） | なし（手書き） | `assets/nocterra/geckolib/animations/entity/` |
-| エンティティテクスチャ | Python + Pillow による手続き生成 | entity 担当 | `assets/nocterra/textures/entity/` |
-| スポーンエッグ | Python + Pillow（卵シルエット＋斑点） | Lead / entity 担当 | `assets/nocterra/textures/item/*_spawn_egg.png` |
-| 音声 | **未生成**（有料 API 未承認） | — | — |
+| OpenAI Images（`gpt-image-2.5-sunburst`） | 30 | **$1.4700** | ボス 12 体のポートレート、ボスバー枠、ブロック/アイテムテクスチャ |
+| Tripo3D（v3 text/image-to-model） | 2 | **$1.2000** | ボス 2 体の GLB（**残高 600→540 credits で実測**＝30 credits/タスク） |
+| Fish Audio（TTS） | 24 | **$0.00612** | ボス 12 体 × 2 セリフ（日本語・オリジナル声） |
+| **合計** | **56** | **$2.67612**（上限 $5） | 失敗 0 / 二重課金 0 |
 
-## 2. モデル・アニメーションの検証
+※ OpenAI / Fish の実額は**運営者単価表による推定**で、請求明細との突合は未実施。Tripo は残高で実測。
 
-entity 担当が GeckoLib 5.5.7 の実 jar を用いて、**`Geometry.GSON` → `Geometry.bake()`** と
-**`ActorAnimations.GSON` → bake** を通して検証済み（5 エンティティ）。
-JSON 構文だけでなく、GeckoLib の実ローダで解釈できることを確認している。
+### 生成物と配置
 
-| モデル | bones | cubes | アニメ数 |
-|---|---|---|---|
-| ashen_wraith | 12 | 12 | 5（idle/walk/attack/hurt/death） |
-| rotwood_king | 14 | 14 | 8 |
-| ash_crawler / mourning_wisp / bog_ghoul | （entity 担当検証済み） | — | 各 5 |
+| 種別 | 生成物 | 配置先（MOD リソース） |
+|---|---|---|
+| ボスポートレート | `generated_assets/processed/hud/boss_portrait/*.png`（128×128 RGBA） | `assets/nocterra/textures/gui/sprites/boss_portrait/` |
+| ボスバー枠 | `.../hud/boss_frame.png`（512×128, 9-slice 可） | **未使用**（描画はプリミティブ実装のため。差し替え候補） |
+| ボスバー塗り | `.../hud/boss_bar_fill.png`（256×32, ローカル生成 $0） | **未使用**（同上） |
+| ブロックテクスチャ | `.../textures/block/*.png`（8 種, 16×16, ashen_portal のみ 32×32） | `assets/nocterra/textures/block/` |
+| アイテムテクスチャ | `.../textures/item/*.png`（4 種, 16×16 透過） | `assets/nocterra/textures/item/` |
+| ボス音声 | `.../audio/boss/<boss_id>_<1|2>.ogg`（Ogg Vorbis, 3.2〜5.8s） | `assets/nocterra/sounds/boss/` + `assets/nocterra/sounds.json` |
+| Tripo GLB | `.../geckolib/*.glb`（11,931 / 11,934 tri） | **未使用**（参照用に保存） |
+| Tripo ボクセル | `.../geckolib/*.geo.json`（32 解像度, 1,847/1,859 cubes） | **未使用**（静的 1 ボーン・アニメなし） |
 
-## 3. AI 生成パイプライン（Phase 2 実装・未使用）
+### Tripo → GeckoLib 変換の結論
 
-`tools/asset_pipeline/` に生成パイプラインを実装済み。**実課金 0 件・DRY RUN のみ**。
+- GLB 取得と**ボクセル化 → `.geo.json` 生成自体は成功**（構造検証 PASS）。
+- ただし**スキニング/アニメーションは変換できない**（静的 1 ボーン）。
+  32 解像度で約 1,850 cubes は Minecraft のエンティティ描画には重すぎる。
+- → **ゲーム内では使用しない**（手書きの 13〜16 キューブモデルを採用）。成功と偽らず「制約あり」と記録。
 
-- 実装: 環境設定の読込（`.env`）、予算台帳（SQLite・送信前 reserve）、ジョブキュー（指数バックオフ・
-  リトライ上限・重複排除・中断復旧・レート制限）、OpenAI 画像 / Tripo / Fish のクライアント、
-  テクスチャ加工（16/32/64 最近傍リサイズ・背景除去・パレット量子化・タイル性スコア）、
-  GLB/PNG/音声/JSON の実体検証、来歴マニフェスト。
-- 検証: `python -m asset_pipeline.selftest` → **92 passed / 0 failed**。
-- **未検証**: 各 API の実レスポンス（課金テスト未実施）。料金体系も未確認のため、
-  Tripo / Fish は単価未設定のまま＝**実送信は予算ガードが拒否する設計**。
-- Tripo は現行 **v3**（`POST /v3/generation/text-to-model` など）であることを SDK 記載から確認。
-  v2 の `/user/balance` は実測で生存（残高 600 credits）。
+## 2. 音声の実装状況（重要・未完了）
 
-### 有料 API を使う場合の手順（未実施）
+- 24 本の OGG は **jar に同梱**、`sounds.json` も 24 イベント分を作成、`SoundEvent` も登録済み。
+- しかし**ゲーム内でサウンドイベントが解決されない**（クライアント起動時に
+  `Missing sound for event: nocterra:boss_<id>_voice<n>` が 24 件）。
+  `sounds.json` のパースエラーは出ておらず、原因を特定できていない（26.3 のサウンド解決仕様の再調査が必要）。
+- **再生は未検証**。ボス出現時に鳴らすコード（`NocterraBossVoice`）は入っているが、現状は無音。
 
-1. `.env` の `ASSET_DRY_RUN=false` / `ASSET_AUTO_SPEND=true` / `ASSET_MAX_COST_USD` を**ユーザー承認のうえ**変更
-2. `ASSET_PRICE_JSON` 等で実単価を設定
-3. `python -m asset_pipeline.run <job> --confirm-spend`
-4. 生成物は `generated_assets/`（raw は git 管理外）。来歴は `generated_assets/manifests/` に記録
-5. 加工後に `assets/nocterra/...` へ配置
+## 3. 手続き生成（$0・ローカル）
+
+| 種別 | スクリプト | 内容 |
+|---|---|---|
+| ブロック/アイテム（初期版） | `tools/dev/gen_placeholder_textures.py` | ノイズ・レンガ・渦・ルーン |
+| ブロック JSON（blockstates/models） | `tools/dev/gen_block_assets.py` | 26.3 の `items/<name>.json` 含む |
+| ボスポートレート（初期版） | `tools/dev/gen_boss_portraits.py` | シルエット＋モチーフ（本番版に置換済み） |
+| エンティティテクスチャ | entity 担当が手続き生成 | 128×128 ×16 |
+| 言語ファイル | `tools/dev/merge_lang.py` | fragments → en_us/ja_jp |
 
 ## 4. ライセンス・利用条件
 
 | 対象 | 条件 |
 |---|---|
-| GeckoLib（依存） | **MIT**。JAR には同梱せず、プレイヤーが別途導入する前提 |
-| 本プロジェクトの生成テクスチャ | 本プロジェクト内生成（第三者の権利を含まない） |
-| 本プロジェクトのモデル/アニメ JSON | 本プロジェクト内で作成 |
-| 将来 AI 生成するアセット | **未確認（UNVERIFIED）**。商用利用条件は各サービスの規約確認が必要 |
-| 音声 | 未生成。第三者の声のクローンは禁止（仕様書 10.3） |
+| GeckoLib（依存） | **MIT**。JAR には同梱せず別途導入 |
+| 手続き生成アセット | 本プロジェクト内生成（第三者の権利を含まない） |
+| **AI 生成アセット（OpenAI / Tripo / Fish）** | **UNVERIFIED**。各サービスの商用利用条件の確認が未実施。配布前に要確認 |
+| ボイス | 第三者の声のクローンは行っていない（Fish の既定声のみ） |
 
-## 5. 未実施・TODO
+## 5. 再現手順
 
-- [ ] 本番品質テクスチャ（現在は手続き生成のプレースホルダ）
-- [ ] 音声（NPC 会話・ボス咆哮）の生成と OGG 変換
-- [ ] Tripo による 3D モデル生成 → GeckoLib 形式への変換検証（**スキニング互換性は未検証**）
-- [ ] 生成物のライセンス確認と manifest への記録
+```powershell
+# 予算設定（.env）: ASSET_DRY_RUN=false / ASSET_AUTO_SPEND=true / 各 $5 上限
+$py="C:\Users\2674469\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe"
+cd tools
+& $py -m asset_pipeline status        # 設定確認（LIVE-SPEND-ENABLED 表示）
+& $py -m asset_pipeline cost          # 実額（ledger が正）
+& $py -m asset_pipeline.selftest      # 92 passed（強制ゲート閉で安全に実行）
+```
+
+成果の集計は `generated_assets/manifests/PRODUCTION_SUMMARY.json`、来歴は `assets.json`（83 アセット）。
+
+## 6. 未実施・TODO
+
+- [ ] 音声のゲーム内再生（サウンドイベント解決の原因調査）
+- [ ] 生成 AI アセットのライセンス確認
+- [ ] OpenAI / Fish の請求明細と ledger 推定の突合
+- [ ] ボスバー枠テクスチャ（`boss_frame.png`）の実装への適用（現在はプリミティブ描画）
+- [ ] Tripo モデルの実用化（リトポ＋リギング＋GeckoLib 変換の自動化は未解決）
