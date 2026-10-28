@@ -25,9 +25,15 @@ import org.slf4j.Logger;
  * この神殿は設定値を持たないので {@code MapCodec.unit} で足りる。</p>
  *
  * <p>生成は <b>乱数に依存しない決定的な配置</b>。座標から一意に決まるので、
- * チャンク生成順が変わっても、どのチャンクが先に生成されても結果は同じ。
- * 書き込み範囲は origin から最大 {@link #HALF} + 1 = 8 ブロックで、
- * FEATURES ステップの書き込み半径（1 チャンク = 16 ブロック）に収まる。</p>
+ * チャンク生成順が変わっても、どのチャンクが先に生成されても結果は同じ。</p>
+ *
+ * <p><b>書き込みは必ずこのチャンク内に閉じ込める</b>（重要）。26.3 の
+ * {@code WorldGenRegion} は、既に FULL まで生成済みの隣チャンクを
+ * {@code ImposterProtoChunk(allowWrites=false)} として公開するため、
+ * 隣チャンクへの {@code setBlock} は例外も出さず<b>黙って捨てられる</b>
+ * （{@code ChunkStatusTasks} が FULL 到達時に読み取り専用へ差し替える）。
+ * そのため神殿の中心をチャンク局所座標に固定し、15x15 + ポーチ 1 ブロックが
+ * すべて同一チャンクに収まるようにしている（中心 local 8 → 本体 local 1..15、ポーチ local 0）。</p>
  */
 public record AncientTempleFeature() implements Feature {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -69,27 +75,29 @@ public record AncientTempleFeature() implements Feature {
 
     @Override
     public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
-        int centerX = origin.getX();
-        int centerZ = origin.getZ();
         int minY = level.getMinY();
         int maxY = minY + level.getHeight() - 1;
 
+        // ---- 0. 生成位置を「いま生成中のチャンク内」に固定する ----------------------
+        // 隣チャンクへ書き込むと、そのチャンクが既に FULL の場合
+        // ImposterProtoChunk(allowWrites=false) により書き込みが黙って捨てられ、
+        // 神殿がチャンク境界で真っ二つになる。書き込みを完全にチャンク内へ閉じる。
+        int chunkStartX = origin.getX() & ~15;
+        int chunkStartZ = origin.getZ() & ~15;
+        int centerX = chunkStartX + 8; // 本体 local 1..15
+        int centerZ = chunkStartZ + 8; // ポーチ (centerZ - 8) が local 0 に収まる
+
         // ---- 1. 地面の高さを決める -------------------------------------------------
-        // WORLD_SURFACE_WG は葉や水面も拾ってしまうため、当たり判定を持つブロックだけを見る
-        // OCEAN_FLOOR の中央値を使う。中央値なら木の幹 1〜2 本に引きずられない。
-        //
-        // heightmap の種類は OCEAN_FLOOR（= FINAL_HEIGHTMAPS）を使う。理由:
-        //   - ワールド生成中の FEATURES ステップでは、依存する TERRAIN チャンクの
-        //     FINAL_HEIGHTMAPS が ChunkStatusTasks#buildTerrain で primed 済み。
-        //   - 稼働中の ServerLevel では *_WG の heightmap は LevelChunk 昇格時に破棄され
-        //     （ChunkStatus#FINAL_HEIGHTMAPS のみ保持）、/place feature で
-        //     "Unprimed heightmap" になる。OCEAN_FLOOR は両方で利用できる。
+        // MOTION_BLOCKING_NO_LEAVES は「葉を除いた」FINAL_HEIGHTMAPS の 1 つで、
+        //   - ワールド生成中: ChunkStatusTasks#buildTerrain が primed 済み
+        //   - 稼働中サーバー: LevelChunk が FINAL_HEIGHTMAPS を保持
+        // の両方で読める。葉を含む OCEAN_FLOOR だと「木の天蓋の上」に建ってしまう。
         int diameter = HALF * 2 + 1;
         int[] heights = new int[diameter * diameter];
         int index = 0;
         for (int dx = -HALF; dx <= HALF; dx++) {
             for (int dz = -HALF; dz <= HALF; dz++) {
-                heights[index++] = level.getHeight(Heightmap.Types.OCEAN_FLOOR, centerX + dx, centerZ + dz);
+                heights[index++] = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, centerX + dx, centerZ + dz);
             }
         }
         Arrays.sort(heights);
@@ -98,6 +106,22 @@ public record AncientTempleFeature() implements Feature {
         if (floorY - FOUNDATION_DEPTH < minY + 1 || floorY + 12 > maxY) {
             // 構築できない高度（奈落際・天井際）では何も置かずに false を返す。
             return false;
+        }
+
+        // ---- 1b. 水没・溶岩の場所は避ける -----------------------------------------
+        // 水の中に建てると、生成後に入口から水が流れ込んで内部が水浸しになる。
+        // 足元（本体 15x15 + ポーチ 2）の地表が流体なら、この場所には建てない。
+        for (int dx = -HALF; dx <= HALF; dx++) {
+            for (int dz = -HALF - 1; dz <= HALF; dz++) {
+                int h = level.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, centerX + dx, centerZ + dz);
+                if (h - 1 <= minY) {
+                    return false;
+                }
+                BlockPos probe = new BlockPos(centerX + dx, h - 1, centerZ + dz);
+                if (!level.getBlockState(probe).getFluidState().isEmpty()) {
+                    return false;
+                }
+            }
         }
 
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
@@ -130,10 +154,15 @@ public record AncientTempleFeature() implements Feature {
 
         // ---- 4. 屋根の上を空ける ---------------------------------------------------
         // 木の幹・葉、斜面の土を除去して神殿が埋もれないようにする（屋根はこの後に建てる）。
-        for (int dx = -HALF - 1; dx <= HALF + 1; dx++) {
-            for (int dz = -HALF - 1; dz <= HALF + 1; dz++) {
+        // 書き込みはチャンク内にクランプする（隣チャンクは読み取り専用の可能性がある）。
+        int clearMinX = Math.max(chunkStartX, centerX - HALF - 1);
+        int clearMaxX = Math.min(chunkStartX + 15, centerX + HALF + 1);
+        int clearMinZ = Math.max(chunkStartZ, centerZ - HALF - 1);
+        int clearMaxZ = Math.min(chunkStartZ + 15, centerZ + HALF + 1);
+        for (int x = clearMinX; x <= clearMaxX; x++) {
+            for (int z = clearMinZ; z <= clearMaxZ; z++) {
                 for (int y = floorY + WALL_HEIGHT + 1; y <= floorY + WALL_HEIGHT + CLEAR_HEIGHT; y++) {
-                    pos.set(centerX + dx, y, centerZ + dz);
+                    pos.set(x, y, z);
                     if (!level.getBlockState(pos).isAir()) {
                         level.setBlock(pos, AIR, 2);
                     }
@@ -186,7 +215,8 @@ public record AncientTempleFeature() implements Feature {
             int pz = centerZ - HALF - 1;
             pos.set(px, floorY, pz);
             level.setBlock(pos, FLOOR_A, 2);
-            for (int y = floorY + 1; y <= floorY + 2; y++) {
+            // 頭上を壁の高さまで空ける（このチャンクの step9 で生えていた木を確実に除去）
+            for (int y = floorY + 1; y <= floorY + WALL_HEIGHT; y++) {
                 pos.set(px, y, pz);
                 level.setBlock(pos, AIR, 2);
             }

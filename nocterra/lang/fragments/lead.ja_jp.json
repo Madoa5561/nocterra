@@ -31,5 +31,17 @@
   "block.nocterra.rotwood_altar": "腐朽の祭壇",
   "message.nocterra.rotwood_altar.awakened": "祭壇が応えた。腐朽の森王が目を覚ます。",
   "message.nocterra.rotwood_altar.dormant": "祭壇は沈黙している。",
-  "message.nocterra.rotwood_altar.already_awake": "王はすでにこの回廊を歩んでいる。"
+  "message.nocterra.rotwood_altar.already_awake": "王はすでにこの回廊を歩んでいる。",
+  "subtitles.nocterra.boss.rotwood_king": "腐朽の森王",
+  "subtitles.nocterra.boss.sorrow_saint": "悲嘆の聖女",
+  "subtitles.nocterra.boss.condemned_knight_lord": "断罪の騎士長",
+  "subtitles.nocterra.boss.sandglass_twin_kings": "砂時計の双王",
+  "subtitles.nocterra.boss.abyssal_sea_emperor": "深淵の海帝",
+  "subtitles.nocterra.boss.astel_fallen_star_dragon": "墜星竜アステル",
+  "subtitles.nocterra.boss.silver_executioner": "白銀の処刑者",
+  "subtitles.nocterra.boss.molten_steel_colossus": "灼鋼の巨神",
+  "subtitles.nocterra.boss.black_crowned_king": "黒冠の王",
+  "subtitles.nocterra.boss.ember_incarnation": "灯火の化身",
+  "subtitles.nocterra.boss.forgotten_knight": "忘却された騎士",
+  "subtitles.nocterra.boss.nameless_observer": "名もなき観測者"
 }

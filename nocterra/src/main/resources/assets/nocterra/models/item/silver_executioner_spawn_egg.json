@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nocterra:item/silver_executioner_spawn_egg"
+  }
+}

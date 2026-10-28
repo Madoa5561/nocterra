@@ -51,6 +51,28 @@ public final class NocterraDevCommands {
                                         .then(Commands.argument("ticks", IntegerArgumentType.integer(0, 200))
                                                 .executes(ctx -> bossWindup(ctx,
                                                         IntegerArgumentType.getInteger(ctx, "ticks"))))))
+                        // 汎用: NocterraBossEntity 基底を使う新ボス群（knight/emperor 等すべて対象）
+                        .then(Commands.literal("nboss")
+                                .then(Commands.literal("status").executes(NocterraDevCommands::nbossStatus))
+                                .then(Commands.literal("unlock").executes(NocterraDevCommands::nbossUnlock))
+                                .then(Commands.literal("summon").executes(NocterraDevCommands::nbossSummon))
+                                .then(Commands.literal("phase")
+                                        .then(Commands.argument("phase", IntegerArgumentType.integer(1, 3))
+                                                .executes(ctx -> nbossPhase(ctx,
+                                                        IntegerArgumentType.getInteger(ctx, "phase")))))
+                                .then(Commands.literal("attack")
+                                        .then(Commands.argument("variant", IntegerArgumentType.integer(0, 4))
+                                                .executes(ctx -> nbossAttack(ctx,
+                                                        IntegerArgumentType.getInteger(ctx, "variant")))))
+                                .then(Commands.literal("windup")
+                                        .then(Commands.argument("ticks", IntegerArgumentType.integer(0, 200))
+                                                .executes(ctx -> nbossWindup(ctx,
+                                                        IntegerArgumentType.getInteger(ctx, "ticks"))))))
+                        .then(Commands.literal("twin")
+                                .then(Commands.literal("enrage").executes(NocterraDevCommands::twinEnrage))
+                                .then(Commands.literal("status").executes(ctx -> statusOf(ctx,
+                                        com.nocterra.boss.SandglassTwinKingsEntity.class,
+                                        com.nocterra.boss.SandglassTwinKingsEntity::debugStatus))))
                         .then(Commands.literal("wraith")
                                 .then(Commands.literal("blink").executes(NocterraDevCommands::wraithBlink))
                                 .then(Commands.literal("status").executes(ctx -> statusOf(ctx,
@@ -327,6 +349,97 @@ public final class NocterraDevCommands {
         }
         saint.debugSetAttackWindup(ticks);
         source.sendSuccess(() -> Component.literal("saint windup set to " + ticks), false);
+        return 1;
+    }
+
+    // ------------------------------------------------------- generic bosses
+
+    private static int twinEnrage(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.SandglassTwinKingsEntity twin =
+                nearest(source, com.nocterra.boss.SandglassTwinKingsEntity.class);
+        if (twin == null) {
+            source.sendFailure(Component.literal("no sandglass_twin_kings nearby"));
+            return 0;
+        }
+        boolean ok = twin.debugForceTwinEnrage();
+        source.sendSuccess(() -> Component.literal("twin enrage -> " + ok + ": " + twin.debugStatus()), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int nbossStatus(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.NocterraBossEntity boss = nearest(source, com.nocterra.boss.NocterraBossEntity.class);
+        if (boss == null) {
+            source.sendFailure(Component.literal("no nocterra boss nearby (any of the NocterraBossEntity subclasses)"));
+            return 0;
+        }
+        source.sendSuccess(() -> Component.literal("boss: " + boss.debugStatus()), false);
+        return 1;
+    }
+
+    private static int nbossPhase(CommandContext<CommandSourceStack> context, int phase) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.NocterraBossEntity boss = nearest(source, com.nocterra.boss.NocterraBossEntity.class);
+        if (boss == null) {
+            source.sendFailure(Component.literal("no nocterra boss nearby"));
+            return 0;
+        }
+        boolean ok = boss.debugForcePhase(phase);
+        source.sendSuccess(() -> Component.literal("boss phase -> " + phase + " (" + ok + "): " + boss.debugStatus()), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int nbossUnlock(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.NocterraBossEntity boss = nearest(source, com.nocterra.boss.NocterraBossEntity.class);
+        if (boss == null) {
+            source.sendFailure(Component.literal("no nocterra boss nearby"));
+            return 0;
+        }
+        boss.debugReleasePhaseLock();
+        source.sendSuccess(() -> Component.literal("boss phase lock released: " + boss.debugStatus()), false);
+        return 1;
+    }
+
+    private static int nbossSummon(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.NocterraBossEntity boss = nearest(source, com.nocterra.boss.NocterraBossEntity.class);
+        if (boss == null) {
+            source.sendFailure(Component.literal("no nocterra boss nearby"));
+            return 0;
+        }
+        boolean ok = boss.debugSummonMinions();
+        source.sendSuccess(() -> Component.literal("boss summon -> " + ok), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int nbossAttack(CommandContext<CommandSourceStack> context, int variant) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.NocterraBossEntity boss = nearest(source, com.nocterra.boss.NocterraBossEntity.class);
+        if (boss == null) {
+            source.sendFailure(Component.literal("no nocterra boss nearby"));
+            return 0;
+        }
+        ServerPlayer target = targetPlayer(source);
+        if (target == null) {
+            source.sendFailure(Component.literal("no player in this dimension"));
+            return 0;
+        }
+        boolean ok = boss.debugForceAttack(variant, target);
+        source.sendSuccess(() -> Component.literal("boss attack variant " + variant + " -> " + ok), false);
+        return ok ? 1 : 0;
+    }
+
+    private static int nbossWindup(CommandContext<CommandSourceStack> context, int ticks) {
+        CommandSourceStack source = context.getSource();
+        com.nocterra.boss.NocterraBossEntity boss = nearest(source, com.nocterra.boss.NocterraBossEntity.class);
+        if (boss == null) {
+            source.sendFailure(Component.literal("no nocterra boss nearby"));
+            return 0;
+        }
+        boss.debugSetAttackWindup(ticks);
+        source.sendSuccess(() -> Component.literal("boss windup set to " + ticks), false);
         return 1;
     }
 

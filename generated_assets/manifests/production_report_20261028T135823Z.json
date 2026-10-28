@@ -1,0 +1,82 @@
+{
+  "started_at": "2026-10-28T13:58:18+0900",
+  "mode": "LIVE-SPEND-ENABLED",
+  "images": [],
+  "audio": [
+    {
+      "asset_id": "audio_boss_rotwood_king_1",
+      "boss": "rotwood_king",
+      "line": "我が根は、お前の骨まで喰らい尽くす",
+      "characters": 17,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\rotwood_king_1.ogg",
+      "estimated_usd": 0.000255,
+      "codec": "vorbis",
+      "duration_s": 3.251
+    },
+    {
+      "asset_id": "audio_boss_rotwood_king_2",
+      "boss": "rotwood_king",
+      "line": "この森に足を踏み入れたことを、永遠に悔やむがいい",
+      "characters": 24,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\rotwood_king_2.ogg",
+      "estimated_usd": 0.00036,
+      "codec": "vorbis",
+      "duration_s": 4.783
+    }
+  ],
+  "models": [],
+  "skipped": [],
+  "errors": [],
+  "missing": [],
+  "cost": {
+    "images_usd": 0,
+    "audio_usd": 0.0006,
+    "models_usd": 0,
+    "total_usd": 0.0006,
+    "ledger_committed_usd": 1.270615,
+    "ledger_reserved_usd": 0.0,
+    "by_service": {
+      "fish": {
+        "entries": 2,
+        "committed_usd": 0.000615,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 2,
+        "released_jobs": 0
+      },
+      "openai": {
+        "entries": 25,
+        "committed_usd": 1.27,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 25,
+        "released_jobs": 0
+      }
+    },
+    "max_cost_usd": 5.0,
+    "remaining_usd": 3.7294,
+    "note": "API returns no itemised price; amount computed from the operator-supplied ASSET_PRICE_JSON / credit / character price table (not invoice-verified)."
+  },
+  "finished_at": "2026-10-28T13:58:23+0900",
+  "manifest": {
+    "manifest": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\manifests\\assets.json",
+    "schema_version": 1,
+    "asset_count": 53,
+    "by_kind": {
+      "hud": 27,
+      "texture": 24,
+      "audio": 2
+    },
+    "by_stage": {
+      "raw": 25,
+      "processed": 28
+    },
+    "by_service": {
+      "openai": 25,
+      "local": 26,
+      "fish": 2
+    },
+    "total_actual_usd": 1.270615,
+    "updated_at": "2026-10-28T04:58:23+00:00"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nocterra:item/astel_fallen_star_dragon_spawn_egg"
+  }
+}

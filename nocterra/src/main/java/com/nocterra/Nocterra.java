@@ -33,6 +33,7 @@ public final class Nocterra {
         NocterraEntities.register(modBus);
         NocterraCombat.register(modBus);
         NocterraNetwork.register(modBus);
+        com.nocterra.registry.NocterraSounds.register(modBus);
 
         if (dist.isClient()) {
             NocterraClient.initialize(modBus);
@@ -41,6 +42,8 @@ public final class Nocterra {
         // ゲームバス（サーバー／クライアント共通）
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
                 com.nocterra.core.NocterraCommands::onRegisterCommands);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                com.nocterra.core.NocterraBossVoice::onEntityJoin);
 
         LOG.info("NOCTERRA bootstrap complete in {} ms (mod id={}, side={})",
                 (System.nanoTime() - startedAt) / 1_000_000, MOD_ID, dist);

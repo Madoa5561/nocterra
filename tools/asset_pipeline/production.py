@@ -49,6 +49,7 @@ from .texture import (
 from .tripo import TripoClient, TripoError
 from .util import atomic_write_json, human_usd
 from .validate import validate_audio, validate_glb, validate_png
+from .voxelize import VoxelizeError, glb_to_geckolib, validate_geckolib
 
 LICENSE_OPENAI = (
     "AI-generated with OpenAI Images for NOCTERRA. Provider terms / commercial-use "
@@ -163,13 +164,13 @@ VOICE_LINES: dict[str, dict[int, str]] = {
     "condemned_knight_lord": {1: "我が断罪の刃、その身で受けてみよ", 2: "騎士の誓いは破られた。ならば罰だけが残る"},
     "sandglass_twin_kings": {1: "時は既に、お前の側で尽きている", 2: "双子の王が紡ぐ砂は、二度と戻らぬ"},
     "abyssal_sea_emperor": {1: "深淵の底まで、その魂ごと沈めてやろう", 2: "海はすべてを呑み、沈黙だけを返す"},
-    "astel_fallen_star_dragon": {1: "堕ちた星の業火、味わうがいい", 2: "空を失った竜の怒りは、地をも焼く"},
-    "silver_executioner": {1: "裁きは下った。静かに首を差し出せ", 2: "白銀の刃に、一片の情けもない"},
+    "astel_fallen_star_dragon": {1: "堕ちた星の業火、その身で味わうがいい", 2: "空を失った竜の怒りは、地をも焼く"},
+    "silver_executioner": {1: "裁きは下った。静かに首を差し出せ", 2: "白銀の刃に、一片の情けもありはしない"},
     "molten_steel_colossus": {1: "熔けた鋼が、その身ごと呑み込む", 2: "我が装甲は熱く、心はもっと熱い"},
-    "black_crowned_king": {1: "王冠は黒い。ゆえに王は絶えぬ", 2: "跪け。ここは我が玉座の間だ"},
-    "ember_incarnation": {1: "残り火が、お前を巻いて最後の焔となる", 2: "灰になっても、この火は消えぬ"},
-    "forgotten_knight": {1: "誰も憶えておらぬ。だから斬る", 2: "名を忘れられても、剣は忘れぬ"},
-    "nameless_observer": {1: "観測している。お前の終わりを", 2: "名もなき者が、すべてを見届ける"},
+    "black_crowned_king": {1: "王冠は黒い。ゆえに王は絶えることがない", 2: "跪け。ここは我が玉座の間である"},
+    "ember_incarnation": {1: "残り火が、お前を巻いて最後の焔となる", 2: "灰になっても、この火は決して消えぬ"},
+    "forgotten_knight": {1: "誰も憶えておらぬ。だからこそ斬る", 2: "名を忘れられても、この剣は忘れぬ"},
+    "nameless_observer": {1: "観測している。お前の終わりを、ずっと", 2: "名もなき者が、すべてを見届ける"},
 }
 
 #: ``tileable`` blocks get seam correction + tiling verification; item icons are sprites.
@@ -233,9 +234,9 @@ TEXTURES: list[dict[str, Any]] = [
         "category": "block",
         "size": 16,
         "tileable": True,
-        "prompt": "Seamless tileable pixel-art texture of dark charred ashwood planks, horizontal "
-        "plank seams with wood grain and a few ember specks, Minecraft planks texture, flat "
-        "orthographic view, no text",
+        "prompt": "Seamless tileable pixel-art texture of charred ashwood planks, clearly visible "
+        "horizontal plank seams and warm dark brown wood grain, mid-tone contrast, a few pale ash "
+        "streaks across the boards, Minecraft planks texture, flat orthographic view, no text",
     },
     {
         "name": "rotwood_altar",
@@ -269,8 +270,9 @@ TEXTURES: list[dict[str, Any]] = [
         "category": "item",
         "size": 16,
         "tileable": False,
-        "prompt": "Pixel-art item icon of a grave greatsword, massive worn iron blade, "
-        "gravestone-shaped crossguard, faint violet runes, centred on a fully transparent "
+        "prompt": "Pixel-art item icon of a massive grave greatsword, bright worn silver blade with "
+        "a dark cutting edge, gravestone-shaped stone crossguard, violet rune inlay on the guard, "
+        "strong high-contrast silhouette readable at 16x16, centred on a fully transparent "
         "background, Minecraft item sprite, no text, no border",
     },
     {
@@ -278,9 +280,10 @@ TEXTURES: list[dict[str, Any]] = [
         "category": "item",
         "size": 16,
         "tileable": False,
-        "prompt": "Pixel-art item icon of a mourning scythe, blackened curved blade with a silver "
-        "edge, dark wooden haft, faint violet mist, centred on a fully transparent background, "
-        "Minecraft item sprite, no text, no border",
+        "prompt": "Pixel-art item icon of a mourning scythe, blackened curved blade with a bright "
+        "silver cutting edge, pale bone handle, violet spectral mist, strong high-contrast "
+        "silhouette readable at 16x16, centred on a fully transparent background, Minecraft item "
+        "sprite, no text, no border",
     },
 ]
 
@@ -539,36 +542,47 @@ class Studio:
     ) -> Path:
         image = open_rgba(raw_path)
         array = np.asarray(image)
-        corner_alpha = max(
-            int(array[0, 0, 3]),
-            int(array[0, -1, 3]),
-            int(array[-1, 0, 3]),
-            int(array[-1, -1, 3]),
-        )
-        bg_note = {"method": "none (model returned transparency)"}
-        if corner_alpha > 8:
-            removed, bg_note = remove_background(image, method="flood", tolerance=26)
-            image = removed
+        alpha = array[:, :, 3]
+        alpha_zero_fraction = float((alpha == 0).mean())
+        top_corners = [int(array[0, 0, 3]), int(array[0, -1, 3])]
+        bottom_corners = [int(array[-1, 0, 3]), int(array[-1, -1, 3])]
+        bg_note: dict[str, Any] = {
+            "method": "none (background alpha already present)",
+            "alpha_zero_fraction": round(alpha_zero_fraction, 4),
+        }
+        # Only remove a background when the model ignored the transparency request:
+        # a transparent *background* means the TOP corners are transparent; the bottom
+        # of a chest-up bust is legitimately opaque (the body reaches the frame edge).
+        if max(top_corners) > 8 and alpha_zero_fraction < 0.02:
+            image, removed_info = remove_background(image, method="flood", tolerance=30)
+            bg_note = {"method": "flood-fill from corners", **removed_info}
         trimmed = trim_alpha(image, padding_ratio=0.02)
         fitted = fit_square(trimmed, 128, resample=Image.Resampling.BILINEAR)
         fitted = apply_alpha_mode(fitted, "blend")
         target = self._save_processed(fitted, self._path("hud", "boss_portrait", f"{boss_id}.png"))
         validation = validate_png(target, expected_sizes=(128,), require_square=True)
-        out_corners = [
-            int(np.asarray(fitted)[0, 0, 3]),
-            int(np.asarray(fitted)[0, -1, 3]),
-            int(np.asarray(fitted)[-1, 0, 3]),
-            int(np.asarray(fitted)[-1, -1, 3]),
-        ]
+        final = np.asarray(fitted)
+        out_alpha_zero = float((final[:, :, 3] == 0).mean())
+        out_top = [int(final[0, 0, 3]), int(final[0, -1, 3])]
+        out_bottom = [int(final[-1, 0, 3]), int(final[-1, -1, 3])]
+        background_ok = max(out_top) == 0 and out_alpha_zero > 0.02
         details = {
             "operation": "trim-alpha + fit-square(bilinear) + alpha-blend",
             "source_size": list(Image.open(raw_path).size),
             "target_size": [128, 128],
             "background_handling": bg_note,
-            "corner_alpha_after": out_corners,
+            "alpha_zero_fraction": round(out_alpha_zero, 4),
+            "top_corner_alpha": out_top,
+            "bottom_corner_alpha": out_bottom,
+            "note": "top corners = background (must be transparent); bottom = bust body (may be opaque)",
             "sha256": sha256_file(target),
             "bytes": target.stat().st_size,
         }
+        warnings: list[str] = []
+        if not validation.ok:
+            warnings.append("png validation failed")
+        if not background_ok:
+            warnings.append("background is not fully transparent at the top corners")
         self.manifest.add_processed(
             asset_id=asset_id,
             path=target,
@@ -576,11 +590,11 @@ class Studio:
             operation="portrait-postprocess",
             parameters=details,
             validation=validation.as_dict(),
-            warnings=[] if validation.ok and out_corners == [0, 0, 0, 0] else ["alpha/format issue"],
+            warnings=warnings,
         )
         self.on_event(
             f"      -> {target.relative_to(self.cfg.repo_root)} "
-            f"alpha_corners={out_corners} ok={validation.ok}"
+            f"bg_ok={background_ok} top_alpha={out_top} alpha0={out_alpha_zero:.2f} ok={validation.ok}"
         )
         return target
 
@@ -615,12 +629,23 @@ class Studio:
             model="gpt-image-2.5-sunburst",
             label="frame/boss_frame",
         )
+        return self._post_frame(raw_path, raw_entry)
+
+    def _post_frame(self, raw_path: Path, raw_entry: dict[str, Any]) -> Path:
+        asset_id = "hud_boss_frame"
+        target = self._path("hud", "boss_frame.png")
         image = open_rgba(raw_path)
         array = np.asarray(image)
         if max(int(array[0, 0, 3]), int(array[0, -1, 3])) > 8:
             image, _ = remove_background(image, method="flood", tolerance=26)
         resized = resize_to(image, (512, 128), resample=Image.Resampling.BILINEAR)
-        resized = make_center_tileable(resized, corner=16, tile_width=16)
+        # The generated frame already has clean decorative caps and a calm centre.
+        # Only force a 16 px repeat when the measured centre seam is actually bad.
+        measured = nine_slice_report(resized, corner=16, center=16)
+        forced = False
+        if measured["center_ratio_x"] > 3.0:
+            resized = make_center_tileable(resized, corner=16, tile_width=16)
+            forced = True
         resized = apply_alpha_mode(resized, "blend")
         target = self._save_processed(resized, target)
         nine = nine_slice_report(resized, corner=16, center=16)
@@ -629,18 +654,25 @@ class Studio:
             asset_id=asset_id,
             path=target,
             source_asset_id=raw_entry["asset_id"],
-            operation="resize(512x128,bilinear) + 9slice-center-repeat(16px)",
-            parameters={"source_size": list(Image.open(raw_path).size), "nine_slice": nine,
-                        "size": [512, 128], "sha256": sha256_file(target)},
+            operation="resize(512x128,bilinear)"
+            + (" + forced 16px centre repeat" if forced else " + measured 9-slice (centre kept)"),
+            parameters={
+                "source_size": list(Image.open(raw_path).size),
+                "nine_slice": nine,
+                "centre_forced": forced,
+                "size": [512, 128],
+                "sha256": sha256_file(target),
+            },
             validation=validation.as_dict(),
             warnings=[] if nine["ok"] and validation.ok else ["9-slice contract not fully met"],
         )
         self.report["images"].append({"asset_id": asset_id, "processed": str(target), "nine_slice": nine})
         self.on_event(
             f"      -> hud/boss_frame.png 9slice_ok={nine['ok']} "
-            f"center_ratio_x={nine['center_ratio_x']} caps_decorated={nine['caps_decorated']}"
+            f"center_ratio_x={nine['center_ratio_x']} caps_decorated={nine['caps_decorated']} "
+            f"forced={forced}"
         )
-        self.on_event(f"[{self._seq:02d}] processed frame {target.name}")
+        return target
 
     # ---------------------------------------------------------- bar fill
     def produce_bar_fill(self) -> None:
@@ -999,6 +1031,7 @@ class Studio:
         self._guard(estimate.usd, f"model/{boss_id}", "tripo")
         self._progress(f"model/{boss_id} (image_to_model)", estimate.usd)
         self.queue.acquire_rate_slot("tripo", self.cfg.min_interval_s.get("tripo", 0.0))
+        balance_before = self._tripo_balance()
         job_id, created = self.queue.add_job(
             kind="model",
             service="tripo",
@@ -1032,12 +1065,30 @@ class Studio:
             validation = validate_glb(model_target, max_triangles=self.cfg.max_tripo_triangles)
             if not validation.ok:
                 raise TripoError("GLB validation failed: " + "; ".join(validation.errors))
+            # Measure the real credit consumption from the (non-billable) balance delta.
+            balance_after = self._tripo_balance()
+            measured_credits: float | None = None
+            if balance_before is not None and balance_after is not None:
+                delta = round(float(balance_before) - float(balance_after), 4)
+                if delta > 0:
+                    measured_credits = delta
+            credits_actual = measured_credits if measured_credits is not None else estimate.credits
+            usd_actual = (
+                round(float(credits_actual) * float(self.cfg.tripo_credit_usd), 6)
+                if (credits_actual is not None and self.cfg.tripo_credit_usd is not None)
+                else estimate.usd
+            )
             if reservation_id is not None:
                 self.ledger.commit(
                     reservation_id,
-                    actual_usd=estimate.usd,
-                    credits=estimate.credits,
-                    note="Tripo deducts credits from the frozen balance; USD price from operator table",
+                    actual_usd=usd_actual,
+                    credits=credits_actual,
+                    note=(
+                        f"measured credit delta {measured_credits} from /account/balance; "
+                        "USD from operator credit price"
+                        if measured_credits is not None
+                        else "balance delta unavailable; estimated credits used"
+                    ),
                 )
             entry = self.manifest.add(
                 asset_id=asset_id,
@@ -1054,12 +1105,15 @@ class Studio:
                     "triangle_estimate": validation.details.get("triangle_estimate"),
                     "has_uv": validation.details.get("has_uv"),
                     "sha256": sha256_file(model_target),
+                    "tripo_balance_before": balance_before,
+                    "tripo_balance_after": balance_after,
+                    "credits_measured": measured_credits,
                 },
                 stage="raw",
                 cost={
                     "estimated_usd": estimate.usd,
-                    "actual_usd": estimate.usd,
-                    "credits": estimate.credits,
+                    "actual_usd": usd_actual,
+                    "credits": credits_actual,
                     "note": PRICE_NOTE,
                 },
                 job_id=f"prod_{asset_id}",
@@ -1077,7 +1131,11 @@ class Studio:
                     "triangles": validation.details.get("triangle_estimate"),
                     "has_uv": validation.details.get("has_uv"),
                     "estimated_usd": estimate.usd,
-                    "credits": estimate.credits,
+                    "actual_usd": usd_actual,
+                    "credits": credits_actual,
+                    "credits_measured": measured_credits,
+                    "balance_before": balance_before,
+                    "balance_after": balance_after,
                     "validation": validation.as_dict(),
                 }
             )
@@ -1102,7 +1160,145 @@ class Studio:
             self.queue.mark_failed(job_id, error=f"{type(exc).__name__}: {exc}", retryable=False)
             raise
 
+    # ------------------------------------------------------- voxelize GLB
+    def produce_voxelize(self) -> None:
+        """GLB -> voxel -> GeckoLib geo.json; failure is recorded as failure."""
+        out_dir = self._path("geckolib")
+        out_dir.mkdir(parents=True, exist_ok=True)
+        preview_dir = self.cfg.state_dir / "previews"
+        preview_dir.mkdir(parents=True, exist_ok=True)
+        for boss_id in TRIPO_BOSSES:
+            source_asset = f"model_{boss_id}"
+            asset_id = f"geckolib_{boss_id}"
+            if not self._selected(boss_id, asset_id):
+                continue
+            geo_target = out_dir / f"{boss_id}.geo.json"
+            png_target = out_dir / f"{boss_id}.png"
+            source = self.manifest.find(source_asset)
+            if source is None:
+                self.report["missing"].append(
+                    {"asset_id": asset_id, "reason": f"{source_asset} has not been generated"}
+                )
+                self.on_event(f"[--] voxelize {boss_id}: no GLB available")
+                continue
+            if (
+                geo_target.is_file()
+                and png_target.is_file()
+                and self.manifest.find(asset_id)
+                and not self.force
+            ):
+                validation = validate_geckolib(geo_target, png_target)
+                self.report["models"].append(
+                    {"asset_id": asset_id, "status": "exists", "validation": validation}
+                )
+                self.on_event(
+                    f"[--] voxelize {boss_id}: exists "
+                    f"cubes={validation.get('details', {}).get('cubes')} ok={validation['ok']}"
+                )
+                continue
+            glb_path = self.cfg.repo_root / source["path"]
+            try:
+                result = glb_to_geckolib(
+                    glb_path,
+                    out_dir,
+                    boss_id,
+                    resolution=32,
+                    preview_path=preview_dir / f"voxel_{boss_id}.png",
+                )
+                validation = validate_geckolib(result["geo_path"], result["texture_path"])
+                if not validation["ok"]:
+                    raise VoxelizeError("geo.json validation failed: " + "; ".join(validation["errors"]))
+                caveats = [
+                    "static geometry only (single 'body' bone, no skeleton/animations)",
+                    "PBR/normal maps replaced by a flat palette atlas",
+                    "scale (40 px tall) and orientation are approximations - verify in-game",
+                    "details below one voxel are lost",
+                ]
+                self.manifest.add(
+                    asset_id=asset_id,
+                    kind="model",
+                    path=geo_target,
+                    service="local",
+                    model=None,
+                    prompt=None,
+                    parameters={
+                        "converter": "surface voxelizer + greedy X merge",
+                        "source_glb": source["path"],
+                        "resolution": result["stats"]["resolution"],
+                        "cubes": result["stats"]["cubes"],
+                        "palette_colors": result["stats"]["palette_colors"],
+                        "voxel_px": result["stats"]["voxel_px"],
+                        "height_px": result["stats"]["height_px"],
+                        "atlas": result["stats"]["atlas"],
+                        "attempts": result["attempts"],
+                        "caveats": caveats,
+                    },
+                    stage="processed",
+                    source_asset_id=source_asset,
+                    cost={"estimated_usd": 0.0, "actual_usd": 0.0, "note": "local conversion"},
+                    validation=validation,
+                    warnings=caveats,
+                    extra={"preview": str(preview_dir / f"voxel_{boss_id}.png")},
+                )
+                self.manifest.add(
+                    asset_id=f"{asset_id}_texture",
+                    kind="model",
+                    path=png_target,
+                    service="local",
+                    model=None,
+                    prompt=None,
+                    parameters={
+                        "role": "palette atlas for the voxel geometry",
+                        "atlas": result["stats"]["atlas"],
+                        "palette_colors": result["stats"]["palette_colors"],
+                    },
+                    stage="processed",
+                    source_asset_id=asset_id,
+                    cost={"estimated_usd": 0.0, "actual_usd": 0.0, "note": "local conversion"},
+                    validation={"ok": True, "kind": "png", "note": "palette atlas"},
+                )
+                self.report["models"].append(
+                    {
+                        "asset_id": asset_id,
+                        "status": "success",
+                        "geo_path": str(geo_target),
+                        "texture_path": str(png_target),
+                        "preview_path": result.get("preview_path"),
+                        "stats": result["stats"],
+                        "validation": validation,
+                    }
+                )
+                self.on_event(
+                    f"[++] voxelize {boss_id}: cubes={result['stats']['cubes']} "
+                    f"palette={result['stats']['palette_colors']} "
+                    f"atlas={validation['details']['texture_width']}x"
+                    f"{validation['details']['texture_height']} ok={validation['ok']}"
+                )
+            except Exception as exc:  # noqa: BLE001
+                self.report["models"].append(
+                    {
+                        "asset_id": asset_id,
+                        "status": "failed",
+                        "error": f"{type(exc).__name__}: {exc}",
+                    }
+                )
+                self.report["errors"].append(
+                    {"asset_id": asset_id, "error": f"{type(exc).__name__}: {exc}"}
+                )
+                self.on_event(f"[!!] voxelize {boss_id} FAILED: {type(exc).__name__}: {exc}")
+
     # ------------------------------------------------------------- report
+    def _tripo_balance(self) -> float | None:
+        """Non-billable balance probe used to measure real credit consumption."""
+        try:
+            payload = self.tripo.balance(api="v3")
+            data = payload.get("data") if isinstance(payload, dict) else None
+            if isinstance(data, dict) and data.get("balance") is not None:
+                return float(data["balance"])
+        except Exception:  # noqa: BLE001 - balance is best-effort observability
+            return None
+        return None
+
     def summary(self) -> dict[str, Any]:
         totals = self.ledger.totals()
         images_cost = sum(
@@ -1110,7 +1306,9 @@ class Studio:
         )
         audio_cost = sum(a.get("estimated_usd") or 0.0 for a in self.report["audio"])
         model_cost = sum(
-            m.get("estimated_usd") or 0.0 for m in self.report["models"] if m.get("status") == "success"
+            (m.get("actual_usd") if m.get("actual_usd") is not None else m.get("estimated_usd")) or 0.0
+            for m in self.report["models"]
+            if m.get("status") == "success"
         )
         self.report["cost"] = {
             "images_usd": round(images_cost, 4),
@@ -1157,6 +1355,7 @@ def run_group(
         "textures": [studio.produce_textures],
         "audio": [studio.produce_audio],
         "tripo": [studio.produce_tripo],
+        "voxelize": [studio.produce_voxelize],
         "all": [
             studio.produce_portraits,
             studio.produce_bar_fill,
@@ -1164,10 +1363,13 @@ def run_group(
             studio.produce_textures,
             studio.produce_audio,
             studio.produce_tripo,
+            studio.produce_voxelize,
         ],
     }
     if group not in order:
         raise ValueError(f"unknown group {group!r}; expected {sorted(order)}")
     for step in order[group]:
         step()
-    return studio.write_report()
+    report = studio.summary()
+    report["report_path"] = str(studio.write_report())
+    return report

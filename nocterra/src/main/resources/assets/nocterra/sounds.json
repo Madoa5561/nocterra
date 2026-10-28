@@ -1,0 +1,146 @@
+{
+  "boss_rotwood_king_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/rotwood_king_1"
+    ]
+  },
+  "boss_rotwood_king_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/rotwood_king_2"
+    ]
+  },
+  "boss_sorrow_saint_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/sorrow_saint_1"
+    ]
+  },
+  "boss_sorrow_saint_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/sorrow_saint_2"
+    ]
+  },
+  "boss_condemned_knight_lord_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/condemned_knight_lord_1"
+    ]
+  },
+  "boss_condemned_knight_lord_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/condemned_knight_lord_2"
+    ]
+  },
+  "boss_sandglass_twin_kings_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/sandglass_twin_kings_1"
+    ]
+  },
+  "boss_sandglass_twin_kings_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/sandglass_twin_kings_2"
+    ]
+  },
+  "boss_abyssal_sea_emperor_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/abyssal_sea_emperor_1"
+    ]
+  },
+  "boss_abyssal_sea_emperor_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/abyssal_sea_emperor_2"
+    ]
+  },
+  "boss_astel_fallen_star_dragon_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/astel_fallen_star_dragon_1"
+    ]
+  },
+  "boss_astel_fallen_star_dragon_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/astel_fallen_star_dragon_2"
+    ]
+  },
+  "boss_silver_executioner_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/silver_executioner_1"
+    ]
+  },
+  "boss_silver_executioner_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/silver_executioner_2"
+    ]
+  },
+  "boss_molten_steel_colossus_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/molten_steel_colossus_1"
+    ]
+  },
+  "boss_molten_steel_colossus_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/molten_steel_colossus_2"
+    ]
+  },
+  "boss_black_crowned_king_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/black_crowned_king_1"
+    ]
+  },
+  "boss_black_crowned_king_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/black_crowned_king_2"
+    ]
+  },
+  "boss_ember_incarnation_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/ember_incarnation_1"
+    ]
+  },
+  "boss_ember_incarnation_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/ember_incarnation_2"
+    ]
+  },
+  "boss_forgotten_knight_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/forgotten_knight_1"
+    ]
+  },
+  "boss_forgotten_knight_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/forgotten_knight_2"
+    ]
+  },
+  "boss_nameless_observer_voice1": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/nameless_observer_1"
+    ]
+  },
+  "boss_nameless_observer_voice2": {
+    "category": "hostile",
+    "sounds": [
+      "nocterra:boss/nameless_observer_2"
+    ]
+  }
+}

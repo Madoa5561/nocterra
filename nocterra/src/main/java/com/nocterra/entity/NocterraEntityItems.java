@@ -68,6 +68,46 @@ public final class NocterraEntityItems {
             SpawnEggItem::new,
             properties -> properties.spawnEgg(NocterraEntities.ABYSSAL_SEA_EMPEROR.get()));
 
+    public static final DeferredItem<Item> SANDGLASS_TWIN_KINGS_SPAWN_EGG = ITEMS.registerItem(
+            "sandglass_twin_kings_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.SANDGLASS_TWIN_KINGS.get()));
+
+    public static final DeferredItem<Item> ASTEL_FALLEN_STAR_DRAGON_SPAWN_EGG = ITEMS.registerItem(
+            "astel_fallen_star_dragon_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.ASTEL_FALLEN_STAR_DRAGON.get()));
+
+    public static final DeferredItem<Item> SILVER_EXECUTIONER_SPAWN_EGG = ITEMS.registerItem(
+            "silver_executioner_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.SILVER_EXECUTIONER.get()));
+
+    public static final DeferredItem<Item> MOLTEN_STEEL_COLOSSUS_SPAWN_EGG = ITEMS.registerItem(
+            "molten_steel_colossus_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.MOLTEN_STEEL_COLOSSUS.get()));
+
+    public static final DeferredItem<Item> BLACK_CROWNED_KING_SPAWN_EGG = ITEMS.registerItem(
+            "black_crowned_king_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.BLACK_CROWNED_KING.get()));
+
+    public static final DeferredItem<Item> EMBER_INCARNATION_SPAWN_EGG = ITEMS.registerItem(
+            "ember_incarnation_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.EMBER_INCARNATION.get()));
+
+    public static final DeferredItem<Item> FORGOTTEN_KNIGHT_SPAWN_EGG = ITEMS.registerItem(
+            "forgotten_knight_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.FORGOTTEN_KNIGHT.get()));
+
+    public static final DeferredItem<Item> NAMELESS_OBSERVER_SPAWN_EGG = ITEMS.registerItem(
+            "nameless_observer_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.NAMELESS_OBSERVER.get()));
+
     public static void register(IEventBus modBus) {
         ITEMS.register(modBus);
     }

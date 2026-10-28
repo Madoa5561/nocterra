@@ -752,7 +752,7 @@ def build_parser() -> argparse.ArgumentParser:
     produce = sub.add_parser(
         "produce", help="run the approved LIVE production batch (spends real money)"
     )
-    produce.add_argument("group", choices=["hud", "textures", "audio", "tripo", "all"])
+    produce.add_argument("group", choices=["hud", "textures", "audio", "tripo", "voxelize", "all"])
     produce.add_argument("--force", action="store_true", help="regenerate even if the asset exists")
     produce.add_argument(
         "--only", default="", help="comma-separated boss ids / asset names to process (smoke test)"

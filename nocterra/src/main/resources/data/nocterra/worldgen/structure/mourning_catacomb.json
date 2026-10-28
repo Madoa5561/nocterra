@@ -1,0 +1,7 @@
+{
+  "type": "nocterra:mourning_catacomb",
+  "biomes": "#nocterra:has_mourning_catacomb",
+  "spawn_overrides": {},
+  "step": "underground_structures",
+  "terrain_adaptation": "none"
+}

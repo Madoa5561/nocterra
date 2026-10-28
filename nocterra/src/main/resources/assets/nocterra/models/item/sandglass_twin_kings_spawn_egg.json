@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nocterra:item/sandglass_twin_kings_spawn_egg"
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "started_at": "2026-10-28T13:59:08+0900",
+  "mode": "LIVE-SPEND-ENABLED",
+  "images": [],
+  "audio": [
+    {
+      "asset_id": "audio_boss_astel_fallen_star_dragon_1",
+      "boss": "astel_fallen_star_dragon",
+      "line": "堕ちた星の業火、その身で味わうがいい",
+      "characters": 18,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\astel_fallen_star_dragon_1.ogg",
+      "estimated_usd": 0.00027,
+      "codec": "vorbis",
+      "duration_s": 5.016
+    },
+    {
+      "asset_id": "audio_boss_silver_executioner_2",
+      "boss": "silver_executioner",
+      "line": "白銀の刃に、一片の情けもありはしない",
+      "characters": 18,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\silver_executioner_2.ogg",
+      "estimated_usd": 0.00027,
+      "codec": "vorbis",
+      "duration_s": 3.251
+    },
+    {
+      "asset_id": "audio_boss_black_crowned_king_1",
+      "boss": "black_crowned_king",
+      "line": "王冠は黒い。ゆえに王は絶えることがない",
+      "characters": 19,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\black_crowned_king_1.ogg",
+      "estimated_usd": 0.000285,
+      "codec": "vorbis",
+      "duration_s": 3.901
+    },
+    {
+      "asset_id": "audio_boss_black_crowned_king_2",
+      "boss": "black_crowned_king",
+      "line": "跪け。ここは我が玉座の間である",
+      "characters": 15,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\black_crowned_king_2.ogg",
+      "estimated_usd": 0.000225,
+      "codec": "vorbis",
+      "duration_s": 3.251
+    },
+    {
+      "asset_id": "audio_boss_ember_incarnation_2",
+      "boss": "ember_incarnation",
+      "line": "灰になっても、この火は決して消えぬ",
+      "characters": 17,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\ember_incarnation_2.ogg",
+      "estimated_usd": 0.000255,
+      "codec": "vorbis",
+      "duration_s": 3.529
+    },
+    {
+      "asset_id": "audio_boss_forgotten_knight_1",
+      "boss": "forgotten_knight",
+      "line": "誰も憶えておらぬ。だからこそ斬る",
+      "characters": 16,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\forgotten_knight_1.ogg",
+      "estimated_usd": 0.00024,
+      "codec": "vorbis",
+      "duration_s": 3.204
+    },
+    {
+      "asset_id": "audio_boss_forgotten_knight_2",
+      "boss": "forgotten_knight",
+      "line": "名を忘れられても、この剣は忘れぬ",
+      "characters": 16,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\forgotten_knight_2.ogg",
+      "estimated_usd": 0.00024,
+      "codec": "vorbis",
+      "duration_s": 3.158
+    },
+    {
+      "asset_id": "audio_boss_nameless_observer_1",
+      "boss": "nameless_observer",
+      "line": "観測している。お前の終わりを、ずっと",
+      "characters": 18,
+      "path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\audio\\boss\\nameless_observer_1.ogg",
+      "estimated_usd": 0.00027,
+      "codec": "vorbis",
+      "duration_s": 3.622
+    }
+  ],
+  "models": [],
+  "skipped": [
+    {
+      "asset_id": "audio_boss_rotwood_king_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_rotwood_king_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_sorrow_saint_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_sorrow_saint_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_condemned_knight_lord_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_condemned_knight_lord_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_sandglass_twin_kings_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_sandglass_twin_kings_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_abyssal_sea_emperor_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_abyssal_sea_emperor_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_astel_fallen_star_dragon_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_silver_executioner_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_molten_steel_colossus_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_molten_steel_colossus_2",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_ember_incarnation_1",
+      "reason": "voice exists"
+    },
+    {
+      "asset_id": "audio_boss_nameless_observer_2",
+      "reason": "voice exists"
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "cost": {
+    "images_usd": 0,
+    "audio_usd": 0.0021,
+    "models_usd": 0,
+    "total_usd": 0.0021,
+    "ledger_committed_usd": 1.27612,
+    "ledger_reserved_usd": 0.0,
+    "by_service": {
+      "fish": {
+        "entries": 24,
+        "committed_usd": 0.00612,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 24,
+        "released_jobs": 0
+      },
+      "openai": {
+        "entries": 25,
+        "committed_usd": 1.27,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 25,
+        "released_jobs": 0
+      }
+    },
+    "max_cost_usd": 5.0,
+    "remaining_usd": 3.7239,
+    "note": "API returns no itemised price; amount computed from the operator-supplied ASSET_PRICE_JSON / credit / character price table (not invoice-verified)."
+  },
+  "finished_at": "2026-10-28T13:59:24+0900",
+  "manifest": {
+    "manifest": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\manifests\\assets.json",
+    "schema_version": 1,
+    "asset_count": 75,
+    "by_kind": {
+      "hud": 27,
+      "texture": 24,
+      "audio": 24
+    },
+    "by_stage": {
+      "raw": 25,
+      "processed": 50
+    },
+    "by_service": {
+      "openai": 25,
+      "local": 26,
+      "fish": 24
+    },
+    "total_actual_usd": 1.27612,
+    "updated_at": "2026-10-28T04:59:24+00:00"
+  }
+}

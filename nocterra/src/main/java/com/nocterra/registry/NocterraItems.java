@@ -56,6 +56,16 @@ public final class NocterraItems {
                         output.accept(com.nocterra.entity.NocterraEntityItems.BOG_GHOUL_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.ROTWOOD_KING_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.SORROW_SAINT_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.CONDEMNED_KNIGHT_LORD_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.ABYSSAL_SEA_EMPEROR_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.SANDGLASS_TWIN_KINGS_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.ASTEL_FALLEN_STAR_DRAGON_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.SILVER_EXECUTIONER_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.MOLTEN_STEEL_COLOSSUS_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.BLACK_CROWNED_KING_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.EMBER_INCARNATION_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.FORGOTTEN_KNIGHT_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.NAMELESS_OBSERVER_SPAWN_EGG.get());
                     })
                     .build());
 

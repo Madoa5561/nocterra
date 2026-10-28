@@ -1,0 +1,347 @@
+{
+  "started_at": "2026-10-28T13:50:56+0900",
+  "mode": "LIVE-SPEND-ENABLED",
+  "images": [
+    {
+      "asset_id": "hud_portrait_sorrow_saint",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\409b393ad25a4fcf46a8ee8a8b15d01594699a80886036b2b77bef06662e6f72.png",
+      "prompt": "a weeping saint wearing a cracked porcelain mask, tears of black ichor, hooded ash-white robes stained grey, broken glass halo, expression of endless sorrow. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a weeping saint wearing a cracked porcelain mask, tears of black ichor, hooded ash-white robes stained grey, broken glass halo, expression of endless sorrow. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "409b393ad25a4fcf46a8ee8a8b15d01594699a80886036b2b77bef06662e6f72"
+    },
+    {
+      "asset_id": "hud_portrait_sorrow_saint",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\sorrow_saint.png",
+      "boss": "sorrow_saint"
+    },
+    {
+      "asset_id": "hud_portrait_condemned_knight_lord",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\5abcbb922f4a900cb59b3176b8cf39243daaac710758dc1c5e04bcf0d986be10.png",
+      "prompt": "a condemned knight lord, rusted black plate armour bound in violet rune chains, horned great helm with a shattered visor, tattered crimson tabard, executioner aura. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a condemned knight lord, rusted black plate armour bound in violet rune chains, horned great helm with a shattered visor, tattered crimson tabard, executioner aura. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "5abcbb922f4a900cb59b3176b8cf39243daaac710758dc1c5e04bcf0d986be10"
+    },
+    {
+      "asset_id": "hud_portrait_condemned_knight_lord",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\condemned_knight_lord.png",
+      "boss": "condemned_knight_lord"
+    },
+    {
+      "asset_id": "hud_portrait_sandglass_twin_kings",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\7e64c44ff10ceb0236d1cc042144353cb90562183ad2244b61bf6804c28dd28e.png",
+      "prompt": "twin kings fused at the shoulders, one young and one withered, hourglass crowns filled with falling sand, cracked gilded armour, violet dust drifting. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "twin kings fused at the shoulders, one young and one withered, hourglass crowns filled with falling sand, cracked gilded armour, violet dust drifting. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "7e64c44ff10ceb0236d1cc042144353cb90562183ad2244b61bf6804c28dd28e"
+    },
+    {
+      "asset_id": "hud_portrait_sandglass_twin_kings",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\sandglass_twin_kings.png",
+      "boss": "sandglass_twin_kings"
+    },
+    {
+      "asset_id": "hud_portrait_abyssal_sea_emperor",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\4c0e4ec3c2f49f91a1542280e81a8d9479d169667fb7bb4f671771791f762ce4.png",
+      "prompt": "an abyssal sea emperor, pressure armour of barnacled black coral, bioluminescent violet eyes, crown of drowned shells, shadowy tendrils rising behind the shoulders. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "an abyssal sea emperor, pressure armour of barnacled black coral, bioluminescent violet eyes, crown of drowned shells, shadowy tendrils rising behind the shoulders. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "4c0e4ec3c2f49f91a1542280e81a8d9479d169667fb7bb4f671771791f762ce4"
+    },
+    {
+      "asset_id": "hud_portrait_abyssal_sea_emperor",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\abyssal_sea_emperor.png",
+      "boss": "abyssal_sea_emperor"
+    },
+    {
+      "asset_id": "hud_portrait_astel_fallen_star_dragon",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\c778b20fdda46beabc5b11059d72b303ce86e64e517cf820b00abef37d751847.png",
+      "prompt": "a fallen star dragon in humanoid form, cracked obsidian scales with molten violet seams, draconic horned head, broken halo of cold starlight, cosmic ash. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a fallen star dragon in humanoid form, cracked obsidian scales with molten violet seams, draconic horned head, broken halo of cold starlight, cosmic ash. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "c778b20fdda46beabc5b11059d72b303ce86e64e517cf820b00abef37d751847"
+    },
+    {
+      "asset_id": "hud_portrait_astel_fallen_star_dragon",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\astel_fallen_star_dragon.png",
+      "boss": "astel_fallen_star_dragon"
+    },
+    {
+      "asset_id": "hud_portrait_silver_executioner",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\33dfe4e1fe9fb43a00ccd041b508551f7908a906de85cb7ecd499800c997420c.png",
+      "prompt": "a silver executioner, mirror-polished mask with no eyes, heavy white-grey plate armour, silver chains over the shoulders, cold violet glow, immense cleaver silhouette behind. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a silver executioner, mirror-polished mask with no eyes, heavy white-grey plate armour, silver chains over the shoulders, cold violet glow, immense cleaver silhouette behind. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "33dfe4e1fe9fb43a00ccd041b508551f7908a906de85cb7ecd499800c997420c"
+    },
+    {
+      "asset_id": "hud_portrait_silver_executioner",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\silver_executioner.png",
+      "boss": "silver_executioner"
+    },
+    {
+      "asset_id": "hud_portrait_molten_steel_colossus",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\346b35aeb9ca6d945f5e259653ee11155accac2e8f78955253e732b4ef1e4a9d.png",
+      "prompt": "a molten steel colossus, riveted dark iron plates, glowing orange-white seams and furnace vents, grill-like face, ember plumes and smoke, massive shoulders. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a molten steel colossus, riveted dark iron plates, glowing orange-white seams and furnace vents, grill-like face, ember plumes and smoke, massive shoulders. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "346b35aeb9ca6d945f5e259653ee11155accac2e8f78955253e732b4ef1e4a9d"
+    },
+    {
+      "asset_id": "hud_portrait_molten_steel_colossus",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\molten_steel_colossus.png",
+      "boss": "molten_steel_colossus"
+    },
+    {
+      "asset_id": "hud_portrait_black_crowned_king",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\cd0d96df430c223324ed231796b65b7dabd6ea1489f3eeed704f46f141294c43.png",
+      "prompt": "a black-crowned king, tall iron crown set with black gems, pale gaunt face, void-black regal robes with violet lining, rings of dark authority, cold commanding stare. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a black-crowned king, tall iron crown set with black gems, pale gaunt face, void-black regal robes with violet lining, rings of dark authority, cold commanding stare. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "cd0d96df430c223324ed231796b65b7dabd6ea1489f3eeed704f46f141294c43"
+    },
+    {
+      "asset_id": "hud_portrait_black_crowned_king",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\black_crowned_king.png",
+      "boss": "black_crowned_king"
+    },
+    {
+      "asset_id": "hud_portrait_ember_incarnation",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\3b13cc8a950746f8aad12480d9d2428d1978130ebb7e3f3eb075a204e33cd427.png",
+      "prompt": "an incarnation of embers, humanoid form of cooling slag and living charcoal, cracks of orange and violet fire, crown of embers, halo of drifting ash. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "an incarnation of embers, humanoid form of cooling slag and living charcoal, cracks of orange and violet fire, crown of embers, halo of drifting ash. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "3b13cc8a950746f8aad12480d9d2428d1978130ebb7e3f3eb075a204e33cd427"
+    },
+    {
+      "asset_id": "hud_portrait_ember_incarnation",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\ember_incarnation.png",
+      "boss": "ember_incarnation"
+    },
+    {
+      "asset_id": "hud_portrait_forgotten_knight",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\4de1cc1aef2c10588b134e5e9758ee292bbaf1ed0f2b3043e388466769872381.png",
+      "prompt": "a forgotten knight, empty great helm with a faint violet light inside, moss-covered grey armour, broken sword resting at the shoulder, dust and cobwebs. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a forgotten knight, empty great helm with a faint violet light inside, moss-covered grey armour, broken sword resting at the shoulder, dust and cobwebs. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "4de1cc1aef2c10588b134e5e9758ee292bbaf1ed0f2b3043e388466769872381"
+    },
+    {
+      "asset_id": "hud_portrait_forgotten_knight",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\forgotten_knight.png",
+      "boss": "forgotten_knight"
+    },
+    {
+      "asset_id": "hud_portrait_nameless_observer",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\836115e6507f957550b721375cb67abdcae620376d15bf14c6ef704d824b03df.png",
+      "prompt": "a nameless observer, faceless hooded figure with a smooth dark mask, many small violet eyes floating around the head, ornate tattered robes, ink-black tendrils. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "a nameless observer, faceless hooded figure with a smooth dark mask, many small violet eyes floating around the head, ornate tattered robes, ink-black tendrils. Dark fantasy boss portrait, bust shot from the chest up, centered, facing the viewer, symmetric framing, painterly digital illustration, dramatic violet rim light, ash and obsidian colour palette, highly detailed, isolated on a fully transparent background (alpha channel), no background scene, no text, no border, no frame, square composition",
+        "n": 1,
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.07,
+      "sha256": "836115e6507f957550b721375cb67abdcae620376d15bf14c6ef704d824b03df"
+    },
+    {
+      "asset_id": "hud_portrait_nameless_observer",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_portrait\\nameless_observer.png",
+      "boss": "nameless_observer"
+    },
+    {
+      "asset_id": "hud_boss_bar_fill",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_bar_fill.png",
+      "cost_usd": 0.0
+    },
+    {
+      "asset_id": "hud_boss_frame",
+      "raw_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\raw\\openai\\61d19619ffc8c6bab812e5ece46ae88193977323e83ba7db36fb98961745c9e7.png",
+      "prompt": "Ornate horizontal boss health-bar frame for a dark fantasy game HUD, made of blackened iron and obsidian with silver filigree, sharp decorative caps at the left and right ends, a calm repeatable dark metal centre band, violet magical aura trim, isolated on a fully transparent background (alpha), 9-slice friendly: the centre region is a simple horizontal metal strip without focal elements, the two end caps contain the decoration, no text, no letters, no numbers, wide aspect ratio",
+      "request": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "Ornate horizontal boss health-bar frame for a dark fantasy game HUD, made of blackened iron and obsidian with silver filigree, sharp decorative caps at the left and right ends, a calm repeatable dark metal centre band, violet magical aura trim, isolated on a fully transparent background (alpha), 9-slice friendly: the centre region is a simple horizontal metal strip without focal elements, the two end caps contain the decoration, no text, no letters, no numbers, wide aspect ratio",
+        "n": 1,
+        "quality": "high",
+        "size": "1536x512",
+        "output_format": "png",
+        "background": "transparent",
+        "moderation": "auto"
+      },
+      "estimated_usd": 0.19,
+      "sha256": "61d19619ffc8c6bab812e5ece46ae88193977323e83ba7db36fb98961745c9e7"
+    },
+    {
+      "asset_id": "hud_boss_frame",
+      "processed": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\hud\\boss_frame.png",
+      "nine_slice": {
+        "size": [
+          512,
+          128
+        ],
+        "multiple_of_16": true,
+        "corner_px": 16,
+        "center_repeat_px": 16,
+        "center_region_width": 480,
+        "center_ratio_x": 0.0189,
+        "center_ratio_y": 0.0,
+        "center_verdict": "non-tiling (transparent edges)",
+        "center_repeatable": true,
+        "caps_contrast": 24.128,
+        "caps_decorated": true,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "ok": true
+      }
+    }
+  ],
+  "audio": [],
+  "models": [],
+  "skipped": [
+    {
+      "asset_id": "hud_portrait_rotwood_king",
+      "reason": "portrait exists"
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "cost": {
+    "images_usd": 0.96,
+    "audio_usd": 0,
+    "models_usd": 0,
+    "total_usd": 0.96,
+    "ledger_committed_usd": 1.03,
+    "ledger_reserved_usd": 0.0,
+    "by_service": {
+      "openai": {
+        "entries": 13,
+        "committed_usd": 1.03,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 13,
+        "released_jobs": 0
+      }
+    },
+    "max_cost_usd": 5.0,
+    "remaining_usd": 3.97,
+    "note": "API returns no itemised price; amount computed from the operator-supplied ASSET_PRICE_JSON / credit / character price table (not invoice-verified)."
+  },
+  "finished_at": "2026-10-28T13:55:29+0900",
+  "manifest": {
+    "manifest": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\manifests\\assets.json",
+    "schema_version": 1,
+    "asset_count": 27,
+    "by_kind": {
+      "hud": 27
+    },
+    "by_stage": {
+      "raw": 13,
+      "processed": 14
+    },
+    "by_service": {
+      "openai": 13,
+      "local": 14
+    },
+    "total_actual_usd": 1.03,
+    "updated_at": "2026-10-28T04:55:29+00:00"
+  }
+}

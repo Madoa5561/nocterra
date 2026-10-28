@@ -3,10 +3,18 @@ package com.nocterra.client;
 import com.nocterra.client.render.AbyssalSeaEmperorRenderer;
 import com.nocterra.client.render.AshCrawlerRenderer;
 import com.nocterra.client.render.AshenWraithRenderer;
+import com.nocterra.client.render.AstelFallenStarDragonRenderer;
+import com.nocterra.client.render.BlackCrownedKingRenderer;
 import com.nocterra.client.render.BogGhoulRenderer;
 import com.nocterra.client.render.CondemnedKnightLordRenderer;
+import com.nocterra.client.render.EmberIncarnationRenderer;
+import com.nocterra.client.render.ForgottenKnightRenderer;
+import com.nocterra.client.render.MoltenSteelColossusRenderer;
 import com.nocterra.client.render.MourningWispRenderer;
+import com.nocterra.client.render.NamelessObserverRenderer;
 import com.nocterra.client.render.RotwoodKingRenderer;
+import com.nocterra.client.render.SandglassTwinKingsRenderer;
+import com.nocterra.client.render.SilverExecutionerRenderer;
 import com.nocterra.client.render.SorrowSaintRenderer;
 import com.nocterra.entity.NocterraEntities;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -37,5 +45,21 @@ public final class NocterraClientRenderers {
                 context -> new CondemnedKnightLordRenderer(context));
         event.registerEntityRenderer(NocterraEntities.ABYSSAL_SEA_EMPEROR.get(),
                 context -> new AbyssalSeaEmperorRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.SANDGLASS_TWIN_KINGS.get(),
+                context -> new SandglassTwinKingsRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.ASTEL_FALLEN_STAR_DRAGON.get(),
+                context -> new AstelFallenStarDragonRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.SILVER_EXECUTIONER.get(),
+                context -> new SilverExecutionerRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.MOLTEN_STEEL_COLOSSUS.get(),
+                context -> new MoltenSteelColossusRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.BLACK_CROWNED_KING.get(),
+                context -> new BlackCrownedKingRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.EMBER_INCARNATION.get(),
+                context -> new EmberIncarnationRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.FORGOTTEN_KNIGHT.get(),
+                context -> new ForgottenKnightRenderer(context));
+        event.registerEntityRenderer(NocterraEntities.NAMELESS_OBSERVER.get(),
+                context -> new NamelessObserverRenderer(context));
     }
 }

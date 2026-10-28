@@ -1,0 +1,188 @@
+{
+  "started_at": "2026-10-28T14:07:44+0900",
+  "mode": "LIVE-SPEND-ENABLED",
+  "images": [],
+  "audio": [],
+  "models": [
+    {
+      "asset_id": "geckolib_rotwood_king",
+      "status": "success",
+      "geo_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\geckolib\\rotwood_king.geo.json",
+      "texture_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\geckolib\\rotwood_king.png",
+      "preview_path": "C:\\Users\\2674469\\Desktop\\mcmod\\tools\\asset_pipeline\\state\\previews\\voxel_rotwood_king.png",
+      "stats": {
+        "resolution": 32,
+        "surface_voxels": 1970,
+        "samples": 106957,
+        "triangles": 11931,
+        "extent": [
+          0.3103,
+          0.99739,
+          0.5385
+        ],
+        "scale": 32.08365,
+        "cubes": 1847,
+        "palette_colors": 129,
+        "voxel_px": 1.29,
+        "height_px": 40.0,
+        "max_run_voxels": 3,
+        "atlas": {
+          "width": 256,
+          "height": 136,
+          "block_w": 32,
+          "block_h": 8,
+          "columns": 8
+        },
+        "uv_footprint_px": {
+          "width": 10.32,
+          "height": 2.58
+        }
+      },
+      "validation": {
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "details": {
+          "format_version": "1.12.0",
+          "identifier": "geometry.nocterra.rotwood_king",
+          "texture_width": 256,
+          "texture_height": 136,
+          "bones": 1,
+          "cubes": 1847,
+          "uv_range": [
+            [
+              0,
+              0
+            ],
+            [
+              224,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "asset_id": "geckolib_black_crowned_king",
+      "status": "success",
+      "geo_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\geckolib\\black_crowned_king.geo.json",
+      "texture_path": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\geckolib\\black_crowned_king.png",
+      "preview_path": "C:\\Users\\2674469\\Desktop\\mcmod\\tools\\asset_pipeline\\state\\previews\\voxel_black_crowned_king.png",
+      "stats": {
+        "resolution": 32,
+        "surface_voxels": 2152,
+        "samples": 141693,
+        "triangles": 11934,
+        "extent": [
+          0.37802,
+          1.0063,
+          0.7425
+        ],
+        "scale": 31.79982,
+        "cubes": 1859,
+        "palette_colors": 92,
+        "voxel_px": 1.29,
+        "height_px": 40.0,
+        "max_run_voxels": 4,
+        "atlas": {
+          "width": 256,
+          "height": 96,
+          "block_w": 32,
+          "block_h": 8,
+          "columns": 8
+        },
+        "uv_footprint_px": {
+          "width": 12.9,
+          "height": 2.58
+        }
+      },
+      "validation": {
+        "ok": true,
+        "errors": [],
+        "warnings": [],
+        "details": {
+          "format_version": "1.12.0",
+          "identifier": "geometry.nocterra.black_crowned_king",
+          "texture_width": 256,
+          "texture_height": 96,
+          "bones": 1,
+          "cubes": 1859,
+          "uv_range": [
+            [
+              0,
+              0
+            ],
+            [
+              224,
+              88
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "errors": [],
+  "missing": [],
+  "cost": {
+    "images_usd": 0,
+    "audio_usd": 0,
+    "models_usd": 0.0,
+    "total_usd": 0.0,
+    "ledger_committed_usd": 2.67612,
+    "ledger_reserved_usd": 0.0,
+    "by_service": {
+      "fish": {
+        "entries": 24,
+        "committed_usd": 0.00612,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 24,
+        "released_jobs": 0
+      },
+      "openai": {
+        "entries": 30,
+        "committed_usd": 1.47,
+        "reserved_usd": 0.0,
+        "credits": 0.0,
+        "committed_jobs": 30,
+        "released_jobs": 0
+      },
+      "tripo": {
+        "entries": 2,
+        "committed_usd": 1.2,
+        "reserved_usd": 0.0,
+        "credits": 60.0,
+        "committed_jobs": 2,
+        "released_jobs": 0
+      }
+    },
+    "max_cost_usd": 5.0,
+    "remaining_usd": 2.3239,
+    "note": "API returns no itemised price; amount computed from the operator-supplied ASSET_PRICE_JSON / credit / character price table (not invoice-verified)."
+  },
+  "finished_at": "2026-10-28T14:07:56+0900",
+  "manifest": {
+    "manifest": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\manifests\\assets.json",
+    "schema_version": 1,
+    "asset_count": 83,
+    "by_kind": {
+      "hud": 27,
+      "texture": 26,
+      "audio": 24,
+      "model": 6
+    },
+    "by_stage": {
+      "raw": 29,
+      "processed": 54
+    },
+    "by_service": {
+      "openai": 27,
+      "local": 30,
+      "fish": 24,
+      "tripo": 2
+    },
+    "total_actual_usd": 2.61612,
+    "updated_at": "2026-10-28T05:07:56+00:00"
+  }
+}
