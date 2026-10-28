@@ -257,5 +257,10 @@
   "lore.nocterra.child_crown": "The child remembers a cold crown, singing. They hid under the throne.",
   "lore.nocterra.child_origin": "A road, a big gate, a song that put the castle to sleep. One child didn't sleep.",
   "lore.nocterra.child_in_ash": "The last echo of the royal line, hiding in the one place the crown never looked.",
-  "journal.nocterra.close": "Esc: close"
+  "journal.nocterra.close": "Esc: close",
+  "block.nocterra.region_boss_altar": "Region Altar",
+  "message.nocterra.region_altar.none": "This land has no crowned one.",
+  "message.nocterra.region_altar.missing": "The altar cannot reach %s.",
+  "message.nocterra.region_altar.already": "Its crowned one already walks here.",
+  "message.nocterra.region_altar.awakened": "%s answers the altar."
 }

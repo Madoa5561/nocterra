@@ -123,18 +123,19 @@
     ],
     [
       "minecraft:glow_lichen",
-      "nocterra:ashwood_dead_tree",
       "minecraft:patch_dead_bush",
-      "minecraft:patch_grass_forest",
-      "minecraft:brown_mushroom_normal",
+      "minecraft:patch_pumpkin",
       "minecraft:red_mushroom_normal",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:patch_grass_forest",
       "minecraft:patch_leaf_litter",
-      "minecraft:patch_pumpkin"
+      "nocterra:ashwood_dead_tree"
     ],
     [
       "minecraft:freeze_top_layer"
     ],
     [
+      "nocterra:region_altar",
       "nocterra:ancient_temple"
     ]
   ],

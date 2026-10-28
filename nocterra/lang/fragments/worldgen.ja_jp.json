@@ -5,5 +5,11 @@
   "message.nocterra.rotwood_altar.already_awake": "王はすでにこの回廊を歩んでいる。",
   "block.nocterra.black_crown_throne": "黒冠の玉座",
   "biome.nocterra.black_crown_ruins": "黒冠の遺跡帯",
-  "structure.nocterra.black_crown_castle": "黒冠城"
+  "structure.nocterra.black_crown_castle": "黒冠城",
+  "biome.nocterra.citadel_wastes": "亡国の城塞跡",
+  "biome.nocterra.crimson_dunes": "紅砂の荒野",
+  "biome.nocterra.abyssal_deeps": "深淵の海",
+  "biome.nocterra.starfall_isles": "星骸の浮島",
+  "biome.nocterra.eternal_frost": "永劫の氷原",
+  "biome.nocterra.molten_volcano": "黒鉄の火山"
 }

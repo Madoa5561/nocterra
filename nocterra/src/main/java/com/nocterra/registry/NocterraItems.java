@@ -37,6 +37,7 @@ public final class NocterraItems {
     public static final DeferredItem<BlockItem> ASH_COAL_ORE = ITEMS.registerSimpleBlockItem(NocterraBlocks.ASH_COAL_ORE);
     public static final DeferredItem<BlockItem> ROTWOOD_ALTAR = ITEMS.registerSimpleBlockItem(NocterraBlocks.ROTWOOD_ALTAR);
     public static final DeferredItem<BlockItem> BLACK_CROWN_THRONE = ITEMS.registerSimpleBlockItem(NocterraBlocks.BLACK_CROWN_THRONE);
+    public static final DeferredItem<BlockItem> REGION_BOSS_ALTAR = ITEMS.registerSimpleBlockItem(NocterraBlocks.REGION_BOSS_ALTAR);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NOCTERRA_TAB = CREATIVE_TABS.register(
             "nocterra",
@@ -77,6 +78,7 @@ public final class NocterraItems {
                         output.accept(com.nocterra.registry.NocterraStoryItems.GATE_KEEPER_SPAWN_EGG.get());
                         output.accept(com.nocterra.registry.NocterraStoryItems.ASHEN_MERCHANT_SPAWN_EGG.get());
                         output.accept(com.nocterra.registry.NocterraStoryItems.EXPLORER_JOURNAL.get());
+                        output.accept(REGION_BOSS_ALTAR.get());
                         output.accept(BLACK_CROWN_THRONE.get());
                     })
                     .build());

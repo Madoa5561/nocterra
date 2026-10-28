@@ -257,5 +257,10 @@
   "lore.nocterra.child_crown": "子供は冷たい冠の歌を覚えている。玉座の下に隠れていた。",
   "lore.nocterra.child_origin": "道、大きな門、城を眠らせる歌。一人だけ眠らなかった子供。",
   "lore.nocterra.child_in_ash": "王家の最後の残響。冠が決して見なかった場所に隠れている。",
-  "journal.nocterra.close": "Esc: 閉じる"
+  "journal.nocterra.close": "Esc: 閉じる",
+  "block.nocterra.region_boss_altar": "地域の祭壇",
+  "message.nocterra.region_altar.none": "この地に冠の者は居ない。",
+  "message.nocterra.region_altar.missing": "祭壇は %s に届かない。",
+  "message.nocterra.region_altar.already": "冠の者はすでにこの地を歩いている。",
+  "message.nocterra.region_altar.awakened": "%s が祭壇に応えた。"
 }

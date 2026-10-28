@@ -101,8 +101,8 @@
       "minecraft:ore_lapis_buried",
       "minecraft:ore_copper",
       "minecraft:underwater_magma",
-      "minecraft:disk_sand",
       "minecraft:disk_clay",
+      "minecraft:disk_sand",
       "minecraft:disk_gravel"
     ],
     [],
@@ -112,21 +112,23 @@
     ],
     [
       "minecraft:glow_lichen",
+      "minecraft:patch_pumpkin",
+      "minecraft:red_mushroom_normal",
+      "minecraft:brown_mushroom_normal",
       "minecraft:dark_forest_vegetation",
       "minecraft:forest_flowers",
       "minecraft:flower_default",
       "minecraft:patch_grass_forest",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
       "minecraft:patch_leaf_litter",
-      "minecraft:patch_pumpkin",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_firefly_bush_near_water"
     ],
     [
       "minecraft:freeze_top_layer"
     ],
-    "#nocterra:ashen_forest_features"
+    [
+      "#nocterra:ashen_forest_features"
+    ]
   ],
   "has_precipitation": true,
   "temperature": 0.35

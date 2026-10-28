@@ -4,6 +4,36 @@
 
 > 表記: ✅実施して確認済み / ⚠️一部のみ / ⬜未実施（成功扱いしない）
 
+
+## 第5ラウンド: 9 地域化と地域ボス召喚（ユーザー要望「完成まで」）
+
+| 要素 | 状態 |
+|---|---|
+| 新バイオーム 6 種（亡国の城塞跡／紅砂の荒野／深淵の海／星骸の浮島／永劫の氷原／黒鉄の火山） | ✅ 実装・ビルド通過 |
+| バイオームの気候パラメータ 3×3 分割（9 セル） | ✅ 実装・/locate biome で 9 種すべて存在確認 |
+| 地域の祭壇 
+octerra:region_boss_altar（バイオーム→ボス対応） | ✅ 実装・9 地域すべて召喚確認 |
+| 9 バイオームへの祭壇配線（RegionAltarFeature） | ✅ 実装（JSON 参照切れ 0・ビルド通過） |
+| 装飾 Feature 6 種（瓦礫／砂岩露頭／氷柱／マグマ噴気孔／星屑結晶／水中サンゴ） | ✅ 実装（/place feature 成功） |
+| **Feature order cycle の修正** | ✅ 原因 2 件（タグ参照が裸の文字列／バイオーム間の相対順序の逆転）を修正し、全バイオームの feature 順序を正規順に統一。チャンク生成エラー 0 を確認 |
+
+### 実機検証（9 地域すべて）
+
+| バイオーム | 召喚される冠の者 | 結果 |
+|---|---|---|
+| ashen_forest | rotwood_king | ✅ |
+| mourning_marsh | sorrow_saint | ✅ |
+| black_crown_ruins | black_crowned_king | ✅ |
+| citadel_wastes | condemned_knight_lord | ✅ |
+| crimson_dunes | sandglass_twin_kings | ✅ |
+| abyssal_deeps | abyssal_sea_emperor | ✅ |
+| starfall_isles | astel_fallen_star_dragon | ✅ |
+| eternal_frost | silver_executioner | ✅ |
+| molten_volcano | molten_steel_colossus | ✅ |
+
+> 注意: 既存ワールドの**既生成チャンクは旧 3 バイオームのまま**（バイオームは生成時に焼き込まれる）。
+> 新パラメータは**未生成チャンク**に適用される。検証は新規生成地域（-4088,-4088 付近）で実施した。
+
 ## 第4ラウンド: ストーリー層（ユーザー要望「ストーリー性をつけてしっかり」「完成まで」）
 
 | 要素 | 状態 |

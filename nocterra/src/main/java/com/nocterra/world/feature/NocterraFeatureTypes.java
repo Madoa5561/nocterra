@@ -32,6 +32,13 @@ public final class NocterraFeatureTypes {
     public static final Identifier ASHWOOD_DEAD_TREE = id("ashwood_dead_tree");
     public static final Identifier MOURNING_REED = id("mourning_reed");
     public static final Identifier ASH_SANCTUARY = id("ash_sanctuary");
+    public static final Identifier REGION_ALTAR = id("region_altar");
+    public static final Identifier CITADEL_RUBBLE = id("citadel_rubble");
+    public static final Identifier CRIMSON_DUNE_ROCK = id("crimson_dune_rock");
+    public static final Identifier FROST_SPIKE = id("frost_spike");
+    public static final Identifier MOLTEN_VENT = id("molten_vent");
+    public static final Identifier STARFALL_SHARD = id("starfall_shard");
+    public static final Identifier ABYSSAL_CORAL = id("abyssal_coral");
 
     /** 二重登録防止。{@link #onRegister} はレジストリごとに何度も呼ばれるので、FEATURE_TYPE のときだけ 1 回実行する。 */
     private static final AtomicBoolean TYPES_REGISTERED = new AtomicBoolean(false);
@@ -61,5 +68,12 @@ public final class NocterraFeatureTypes {
         event.register(Registries.FEATURE_TYPE, ASHWOOD_DEAD_TREE, () -> AshwoodDeadTreeFeature.CODEC);
         event.register(Registries.FEATURE_TYPE, MOURNING_REED, () -> MourningReedFeature.CODEC);
         event.register(Registries.FEATURE_TYPE, ASH_SANCTUARY, () -> AshSanctuaryFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, REGION_ALTAR, () -> RegionAltarFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, CITADEL_RUBBLE, () -> CitadelRubbleFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, CRIMSON_DUNE_ROCK, () -> CrimsonDuneRockFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, FROST_SPIKE, () -> FrostSpikeFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, MOLTEN_VENT, () -> MoltenVentFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, STARFALL_SHARD, () -> StarfallShardFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, ABYSSAL_CORAL, () -> AbyssalCoralFeature.CODEC);
     }
 }

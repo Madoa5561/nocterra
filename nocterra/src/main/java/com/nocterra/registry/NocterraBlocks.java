@@ -96,6 +96,18 @@ public final class NocterraBlocks {
                             .sound(SoundType.DEEPSLATE_BRICKS)
                             .requiresCorrectToolForDrops());
 
+    /** 地域の祭壇（バイオームに応じた冠の者を召喚）。 */
+    public static final DeferredBlock<com.nocterra.world.structure.RegionBossAltar> REGION_BOSS_ALTAR =
+            BLOCKS.registerBlock(
+                    "region_boss_altar",
+                    com.nocterra.world.structure.RegionBossAltar::new,
+                    () -> BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_BLACK)
+                            .strength(4.0F, 9.0F)
+                            .lightLevel(state -> 5)
+                            .sound(SoundType.DEEPSLATE_BRICKS)
+                            .requiresCorrectToolForDrops());
+
     public static void register(IEventBus modBus) {
         BLOCKS.register(modBus);
     }

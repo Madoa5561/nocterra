@@ -1,0 +1,118 @@
+{
+  "attributes": {
+    "minecraft:gameplay/natural_mob_spawns": {
+      "argument": {
+        "spawn_costs": {},
+        "spawns_by_category": {
+          "ambient": [
+            {
+              "type": "minecraft:bat",
+              "count": 4,
+              "weight": 10
+            }
+          ],
+          "monster": [
+            {
+              "type": "nocterra:mourning_wisp",
+              "count": 1,
+              "weight": 50
+            },
+            {
+              "type": "nocterra:ashen_wraith",
+              "count": 1,
+              "weight": 40
+            },
+            {
+              "type": "minecraft:skeleton",
+              "count": 4,
+              "weight": 70
+            },
+            {
+              "type": "minecraft:zombie",
+              "count": 4,
+              "weight": 60
+            }
+          ]
+        }
+      },
+      "modifier": "overlay"
+    },
+    "minecraft:visual/sky_color": "#2a1a3e",
+    "minecraft:visual/water_fog_color": "#1a0e2a",
+    "minecraft:visual/water_fog_end_distance": {
+      "argument": 0.7,
+      "modifier": "multiply"
+    }
+  },
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave_extra_underground"
+  ],
+  "downfall": 0.1,
+  "effects": {
+    "water_color": "#3a2a5a",
+    "foliage_color": "#4a3a6a",
+    "dry_foliage_color": "#5a4a6a",
+    "grass_color": "#4a3a66",
+    "grass_color_modifier": "none"
+  },
+  "features": [
+    [],
+    [
+      "minecraft:lake_lava_underground"
+    ],
+    [
+      "minecraft:amethyst_geode"
+    ],
+    [
+      "minecraft:monster_room",
+      "minecraft:monster_room_deep"
+    ],
+    [],
+    [],
+    [
+      "minecraft:ore_dirt",
+      "minecraft:ore_gravel",
+      "minecraft:ore_granite_upper",
+      "minecraft:ore_granite_lower",
+      "minecraft:ore_diorite_upper",
+      "minecraft:ore_diorite_lower",
+      "minecraft:ore_andesite_upper",
+      "minecraft:ore_andesite_lower",
+      "minecraft:ore_tuff",
+      "minecraft:ore_coal_upper",
+      "minecraft:ore_coal_lower",
+      "minecraft:ore_iron_upper",
+      "minecraft:ore_iron_middle",
+      "minecraft:ore_iron_small",
+      "minecraft:ore_gold",
+      "minecraft:ore_gold_lower",
+      "minecraft:ore_redstone",
+      "minecraft:ore_redstone_lower",
+      "minecraft:ore_diamond",
+      "minecraft:ore_diamond_medium",
+      "minecraft:ore_diamond_large",
+      "minecraft:ore_diamond_buried",
+      "minecraft:ore_lapis",
+      "minecraft:ore_lapis_buried",
+      "minecraft:ore_copper",
+      "minecraft:disk_gravel"
+    ],
+    [],
+    [
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
+    ],
+    [
+      "minecraft:glow_lichen",
+      "minecraft:patch_leaf_litter"
+    ],
+    [],
+    [
+      "nocterra:region_altar",
+      "nocterra:starfall_shard"
+    ]
+  ],
+  "has_precipitation": false,
+  "temperature": 0.5
+}

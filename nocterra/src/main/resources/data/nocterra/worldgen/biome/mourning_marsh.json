@@ -77,10 +77,10 @@
       "minecraft:amethyst_geode"
     ],
     [
-      "minecraft:fossil_upper",
-      "minecraft:fossil_lower",
       "minecraft:monster_room",
-      "minecraft:monster_room_deep"
+      "minecraft:monster_room_deep",
+      "minecraft:fossil_lower",
+      "minecraft:fossil_upper"
     ],
     [],
     [],
@@ -124,21 +124,23 @@
       "minecraft:flower_swamp",
       "minecraft:patch_grass_normal",
       "minecraft:patch_dead_bush",
-      "minecraft:patch_waterlily",
+      "minecraft:seagrass_swamp",
       "minecraft:brown_mushroom_swamp",
       "minecraft:red_mushroom_swamp",
-      "minecraft:brown_mushroom_normal",
+      "minecraft:patch_pumpkin",
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane_swamp",
-      "minecraft:patch_pumpkin",
+      "minecraft:brown_mushroom_normal",
       "minecraft:patch_firefly_bush_swamp",
       "minecraft:patch_firefly_bush_near_water_swamp",
-      "minecraft:seagrass_swamp"
+      "minecraft:patch_waterlily"
     ],
     [
       "minecraft:freeze_top_layer"
     ],
-    "#nocterra:mourning_marsh_features"
+    [
+      "#nocterra:mourning_marsh_features"
+    ]
   ],
   "has_precipitation": true,
   "temperature": 0.55

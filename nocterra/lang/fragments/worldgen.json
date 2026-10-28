@@ -5,5 +5,11 @@
   "message.nocterra.rotwood_altar.already_awake": "The king already walks these halls.",
   "block.nocterra.black_crown_throne": "Black Crown Throne",
   "biome.nocterra.black_crown_ruins": "Black Crown Ruins",
-  "structure.nocterra.black_crown_castle": "Black Crown Castle"
+  "structure.nocterra.black_crown_castle": "Black Crown Castle",
+  "biome.nocterra.citadel_wastes": "Citadel Wastes",
+  "biome.nocterra.crimson_dunes": "Crimson Dunes",
+  "biome.nocterra.abyssal_deeps": "Abyssal Deeps",
+  "biome.nocterra.starfall_isles": "Starfall Isles",
+  "biome.nocterra.eternal_frost": "Eternal Frost",
+  "biome.nocterra.molten_volcano": "Molten Volcano"
 }

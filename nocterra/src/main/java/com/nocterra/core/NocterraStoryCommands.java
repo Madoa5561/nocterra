@@ -33,6 +33,7 @@ public final class NocterraStoryCommands {
                         .then(Commands.literal("clear").executes(NocterraStoryCommands::clearSigils))
                         .then(Commands.literal("status").executes(NocterraStoryCommands::status))
                         .then(Commands.literal("journal").executes(NocterraStoryCommands::useJournal))
+                        .then(Commands.literal("altar").executes(NocterraStoryCommands::testAltar))
                         .then(Commands.literal("ending")
                                 .then(Commands.argument("kind", StringArgumentType.word())
                                         .executes(ctx -> ending(ctx, StringArgumentType.getString(ctx, "kind")))))));
@@ -91,6 +92,26 @@ public final class NocterraStoryCommands {
                 player.level(), player, net.minecraft.world.InteractionHand.MAIN_HAND);
         source.sendSuccess(() -> Component.literal("journal used: " + result), false);
         return 1;
+    }
+
+    /** 現在地のバイオームで地域祭壇の召喚ロジックを実行（検証用）。 */
+    private static int testAltar(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        ServerPlayer player = player(context);
+        if (player == null) {
+            source.sendFailure(Component.literal("no player in this dimension"));
+            return 0;
+        }
+        if (!(player.level() instanceof net.minecraft.server.level.ServerLevel serverLevel)) {
+            source.sendFailure(Component.literal("not a server level"));
+            return 0;
+        }
+        String biome = com.nocterra.progression.RegionBosses.biomeAt(serverLevel, player.blockPosition());
+        String boss = com.nocterra.progression.RegionBosses.bossAt(serverLevel, player.blockPosition());
+        boolean ok = com.nocterra.progression.RegionBosses.summonAt(
+                serverLevel, player.blockPosition(), player);
+        source.sendSuccess(() -> Component.literal("altar test: biome=" + biome + " boss=" + boss + " summoned=" + ok), false);
+        return ok ? 1 : 0;
     }
 
     private static int status(CommandContext<CommandSourceStack> context) {
