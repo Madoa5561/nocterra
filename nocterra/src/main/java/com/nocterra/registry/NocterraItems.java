@@ -36,6 +36,7 @@ public final class NocterraItems {
     public static final DeferredItem<BlockItem> ASHSTONE = ITEMS.registerSimpleBlockItem(NocterraBlocks.ASHSTONE);
     public static final DeferredItem<BlockItem> ASH_COAL_ORE = ITEMS.registerSimpleBlockItem(NocterraBlocks.ASH_COAL_ORE);
     public static final DeferredItem<BlockItem> ROTWOOD_ALTAR = ITEMS.registerSimpleBlockItem(NocterraBlocks.ROTWOOD_ALTAR);
+    public static final DeferredItem<BlockItem> BLACK_CROWN_THRONE = ITEMS.registerSimpleBlockItem(NocterraBlocks.BLACK_CROWN_THRONE);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NOCTERRA_TAB = CREATIVE_TABS.register(
             "nocterra",
@@ -66,6 +67,12 @@ public final class NocterraItems {
                         output.accept(com.nocterra.entity.NocterraEntityItems.EMBER_INCARNATION_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.FORGOTTEN_KNIGHT_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.NAMELESS_OBSERVER_SPAWN_EGG.get());
+                        // 物語アイテム（刻印 8 種・探索手帳・黒冠の玉座）
+                        for (com.nocterra.progression.SigilType type : com.nocterra.progression.SigilType.values()) {
+                            output.accept(com.nocterra.registry.NocterraStoryItems.sigilItem(type));
+                        }
+                        output.accept(com.nocterra.registry.NocterraStoryItems.EXPLORER_JOURNAL.get());
+                        output.accept(BLACK_CROWN_THRONE.get());
                     })
                     .build());
 

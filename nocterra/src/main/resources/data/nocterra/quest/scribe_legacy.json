@@ -1,0 +1,17 @@
+{
+  "title": "quest.nocterra.scribe_legacy.title",
+  "description": "quest.nocterra.scribe_legacy.description",
+  "type": "COLLECT_ITEM",
+  "target": "nocterra:ember_shard",
+  "count": 8,
+  "giver": "blind_scribe",
+  "requires": [
+    { "type": "quest", "quest": "ash_first_light", "state": "completed" }
+  ],
+  "reward": {
+    "xp": 180,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 6 }
+    ]
+  }
+}

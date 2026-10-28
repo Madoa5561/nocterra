@@ -1,0 +1,18 @@
+{
+  "title": "quest.nocterra.saint_requiem.title",
+  "description": "quest.nocterra.saint_requiem.description",
+  "type": "DEFEAT_BOSS",
+  "target": "sorrow_saint",
+  "count": 1,
+  "giver": "marsh_widow",
+  "requires": [
+    { "type": "quest", "quest": "marsh_lament", "state": "completed" }
+  ],
+  "reward": {
+    "xp": 350,
+    "items": [
+      { "item": "nocterra:mourning_scythe", "count": 1 },
+      { "item": "nocterra:ember_shard", "count": 6 }
+    ]
+  }
+}

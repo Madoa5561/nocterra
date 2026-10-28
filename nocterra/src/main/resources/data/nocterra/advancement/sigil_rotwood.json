@@ -1,0 +1,33 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "got": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_rotwood"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nocterra.sigil_rotwood.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "nocterra:sigil_rotwood"
+    },
+    "title": {
+      "translate": "advancements.nocterra.sigil_rotwood.title"
+    }
+  },
+  "requirements": [
+    [
+      "got"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

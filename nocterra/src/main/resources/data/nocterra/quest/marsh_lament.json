@@ -1,0 +1,15 @@
+{
+  "title": "quest.nocterra.marsh_lament.title",
+  "description": "quest.nocterra.marsh_lament.description",
+  "type": "VISIT_BIOME",
+  "target": "nocterra:mourning_marsh",
+  "count": 1,
+  "giver": "marsh_widow",
+  "requires": [],
+  "reward": {
+    "xp": 120,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 5 }
+    ]
+  }
+}

@@ -47,6 +47,15 @@
           "name": "minecraft:diamond"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_silver"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/silver_executioner"

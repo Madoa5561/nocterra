@@ -84,6 +84,18 @@ public final class NocterraBlocks {
                             .sound(SoundType.DEEPSLATE_BRICKS)
                             .requiresCorrectToolForDrops());
 
+    /** 黒冠の玉座（黒冠城の最深部）。刻印 5 個で通常ED、8 個で真ED。 */
+    public static final DeferredBlock<com.nocterra.world.structure.BlackCrownThrone> BLACK_CROWN_THRONE =
+            BLOCKS.registerBlock(
+                    "black_crown_throne",
+                    com.nocterra.world.structure.BlackCrownThrone::new,
+                    () -> BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.COLOR_BLACK)
+                            .strength(50.0F, 1200.0F)
+                            .lightLevel(state -> 7)
+                            .sound(SoundType.DEEPSLATE_BRICKS)
+                            .requiresCorrectToolForDrops());
+
     public static void register(IEventBus modBus) {
         BLOCKS.register(modBus);
     }

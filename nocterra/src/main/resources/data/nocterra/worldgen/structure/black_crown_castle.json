@@ -1,0 +1,7 @@
+{
+  "type": "nocterra:black_crown_castle",
+  "biomes": "#nocterra:has_black_crown_castle",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "none"
+}

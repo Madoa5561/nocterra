@@ -1,0 +1,33 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "got": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_astel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nocterra.sigil_astel.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "nocterra:sigil_astel"
+    },
+    "title": {
+      "translate": "advancements.nocterra.sigil_astel.title"
+    }
+  },
+  "requirements": [
+    [
+      "got"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

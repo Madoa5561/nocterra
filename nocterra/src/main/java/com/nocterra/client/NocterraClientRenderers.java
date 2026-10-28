@@ -12,11 +12,13 @@ import com.nocterra.client.render.ForgottenKnightRenderer;
 import com.nocterra.client.render.MoltenSteelColossusRenderer;
 import com.nocterra.client.render.MourningWispRenderer;
 import com.nocterra.client.render.NamelessObserverRenderer;
+import com.nocterra.client.render.NpcRenderer;
 import com.nocterra.client.render.RotwoodKingRenderer;
 import com.nocterra.client.render.SandglassTwinKingsRenderer;
 import com.nocterra.client.render.SilverExecutionerRenderer;
 import com.nocterra.client.render.SorrowSaintRenderer;
 import com.nocterra.entity.NocterraEntities;
+import com.nocterra.npc.NocterraNpcs;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 /**
@@ -61,5 +63,19 @@ public final class NocterraClientRenderers {
                 context -> new ForgottenKnightRenderer(context));
         event.registerEntityRenderer(NocterraEntities.NAMELESS_OBSERVER.get(),
                 context -> new NamelessObserverRenderer(context));
+
+        // ---- NPC（story 担当） ----
+        event.registerEntityRenderer(NocterraNpcs.WARDEN_OF_ASH.get(),
+                context -> new NpcRenderer(context, "warden_of_ash"));
+        event.registerEntityRenderer(NocterraNpcs.MARSH_WIDOW.get(),
+                context -> new NpcRenderer(context, "marsh_widow"));
+        event.registerEntityRenderer(NocterraNpcs.BLIND_SCRIBE.get(),
+                context -> new NpcRenderer(context, "blind_scribe"));
+        event.registerEntityRenderer(NocterraNpcs.GATE_KEEPER.get(),
+                context -> new NpcRenderer(context, "gate_keeper"));
+        event.registerEntityRenderer(NocterraNpcs.ASHEN_MERCHANT.get(),
+                context -> new NpcRenderer(context, "ashen_merchant"));
+        event.registerEntityRenderer(NocterraNpcs.LOST_CHILD.get(),
+                context -> new NpcRenderer(context, "lost_child"));
     }
 }

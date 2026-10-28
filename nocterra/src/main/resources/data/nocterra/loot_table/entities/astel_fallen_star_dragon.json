@@ -57,6 +57,15 @@
           ]
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_astel"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/astel_fallen_star_dragon"

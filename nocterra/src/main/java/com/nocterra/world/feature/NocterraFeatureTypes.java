@@ -31,6 +31,7 @@ public final class NocterraFeatureTypes {
     public static final Identifier ANCIENT_TEMPLE = id("ancient_temple");
     public static final Identifier ASHWOOD_DEAD_TREE = id("ashwood_dead_tree");
     public static final Identifier MOURNING_REED = id("mourning_reed");
+    public static final Identifier ASH_SANCTUARY = id("ash_sanctuary");
 
     /** 二重登録防止。{@link #onRegister} はレジストリごとに何度も呼ばれるので、FEATURE_TYPE のときだけ 1 回実行する。 */
     private static final AtomicBoolean TYPES_REGISTERED = new AtomicBoolean(false);
@@ -59,5 +60,6 @@ public final class NocterraFeatureTypes {
         event.register(Registries.FEATURE_TYPE, ANCIENT_TEMPLE, () -> AncientTempleFeature.CODEC);
         event.register(Registries.FEATURE_TYPE, ASHWOOD_DEAD_TREE, () -> AshwoodDeadTreeFeature.CODEC);
         event.register(Registries.FEATURE_TYPE, MOURNING_REED, () -> MourningReedFeature.CODEC);
+        event.register(Registries.FEATURE_TYPE, ASH_SANCTUARY, () -> AshSanctuaryFeature.CODEC);
     }
 }

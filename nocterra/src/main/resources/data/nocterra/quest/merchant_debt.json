@@ -1,0 +1,15 @@
+{
+  "title": "quest.nocterra.merchant_debt.title",
+  "description": "quest.nocterra.merchant_debt.description",
+  "type": "COLLECT_ITEM",
+  "target": "nocterra:ashwood_planks",
+  "count": 8,
+  "giver": "ashen_merchant",
+  "requires": [],
+  "reward": {
+    "xp": 100,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 6 }
+    ]
+  }
+}

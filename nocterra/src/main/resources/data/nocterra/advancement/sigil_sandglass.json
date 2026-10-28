@@ -1,0 +1,33 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "got": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_sandglass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nocterra.sigil_sandglass.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "nocterra:sigil_sandglass"
+    },
+    "title": {
+      "translate": "advancements.nocterra.sigil_sandglass.title"
+    }
+  },
+  "requirements": [
+    [
+      "got"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

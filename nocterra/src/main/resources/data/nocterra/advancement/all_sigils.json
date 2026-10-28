@@ -1,0 +1,124 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "rotwood": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_rotwood"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sorrow": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_sorrow"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "condemned": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_condemned"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sandglass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_sandglass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "abyssal": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_abyssal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "astel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_astel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "silver": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_silver"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "molten": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_molten"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nocterra.all_sigils.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "nocterra:sigil_molten"
+    },
+    "title": {
+      "translate": "advancements.nocterra.all_sigils.title"
+    }
+  },
+  "requirements": [
+    [
+      "rotwood"
+    ],
+    [
+      "sorrow"
+    ],
+    [
+      "condemned"
+    ],
+    [
+      "sandglass"
+    ],
+    [
+      "abyssal"
+    ],
+    [
+      "astel"
+    ],
+    [
+      "silver"
+    ],
+    [
+      "molten"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

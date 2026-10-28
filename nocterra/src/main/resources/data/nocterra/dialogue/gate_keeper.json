@@ -1,0 +1,116 @@
+{
+  "npc": "gate_keeper",
+  "entries": [
+    { "node": "crown_done", "conditions": [ { "type": "quest", "quest": "crown_fall", "state": "completed" } ] },
+    { "node": "gate_open", "conditions": [ { "type": "flag", "flag": "black_crown_gate_open" } ] },
+    { "node": "seals_enough", "conditions": [ { "type": "seals", "min": 5 } ] },
+    { "node": "first", "conditions": [ { "type": "first_meet" } ] },
+    { "node": "root" }
+  ],
+  "nodes": {
+    "first": {
+      "text": "dialogue.nocterra.gate_keeper.first",
+      "choices": [
+        { "text": "dialogue.nocterra.gate_keeper.choice.rules", "next": "gate_rules" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.who", "next": "keeper_who" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.five", "next": "seals_enough",
+          "conditions": [ { "type": "seals", "min": 5 } ] },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "root": {
+      "text": "dialogue.nocterra.gate_keeper.root",
+      "choices": [
+        { "text": "dialogue.nocterra.gate_keeper.choice.rules", "next": "gate_rules" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.who", "next": "keeper_who" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.crown", "next": "keeper_crown" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.five", "next": "seals_enough",
+          "conditions": [ { "type": "seals", "min": 5 } ] },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "keeper_who": {
+      "text": "dialogue.nocterra.gate_keeper.keeper_who",
+      "onEnter": [ { "type": "lore_unlock", "lore": "gate_keeper_oath" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "keeper_crown": {
+      "text": "dialogue.nocterra.gate_keeper.keeper_crown",
+      "onEnter": [ { "type": "lore_unlock", "lore": "gate_keeper_crown" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "gate_rules": {
+      "text": "dialogue.nocterra.gate_keeper.gate_rules",
+      "onEnter": [ { "type": "lore_unlock", "lore": "black_gate_rumor" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.gate_keeper.choice.more", "next": "gate_rules_more" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.five", "next": "seals_enough",
+          "conditions": [ { "type": "seals", "min": 5 } ] },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "gate_rules_more": {
+      "text": "dialogue.nocterra.gate_keeper.gate_rules_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "seals_enough": {
+      "text": "dialogue.nocterra.gate_keeper.seals_enough",
+      "choices": [
+        { "text": "dialogue.nocterra.gate_keeper.choice.open", "next": "gate_opened",
+          "action": { "type": "npc_action", "action": "open_black_gate" } },
+        { "text": "dialogue.nocterra.gate_keeper.choice.beyond", "next": "beyond" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.trial", "next": "gate_trial_detail",
+          "conditions": [ { "type": "quest", "quest": "gate_trial", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "gate_trial" } },
+        { "text": "dialogue.nocterra.gate_keeper.choice.not_yet", "next": "root" }
+      ]
+    },
+    "gate_opened": {
+      "text": "dialogue.nocterra.gate_keeper.gate_opened",
+      "onEnter": [ { "type": "quest_offer", "quest": "crown_fall" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.gate_keeper.choice.beyond", "next": "beyond" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "gate_trial_detail": {
+      "text": "dialogue.nocterra.gate_keeper.gate_trial_detail",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "beyond": {
+      "text": "dialogue.nocterra.gate_keeper.beyond",
+      "onEnter": [ { "type": "lore_unlock", "lore": "castle_beyond" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "gate_open": {
+      "text": "dialogue.nocterra.gate_keeper.gate_open",
+      "choices": [
+        { "text": "dialogue.nocterra.gate_keeper.choice.beyond", "next": "beyond" },
+        { "text": "dialogue.nocterra.gate_keeper.choice.crown_task", "next": "beyond",
+          "conditions": [ { "type": "quest", "quest": "crown_fall", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "crown_fall" } },
+        { "text": "dialogue.nocterra.gate_keeper.choice.trial", "next": "gate_trial_detail",
+          "conditions": [ { "type": "quest", "quest": "gate_trial", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "gate_trial" } },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "crown_done": {
+      "text": "dialogue.nocterra.gate_keeper.crown_done",
+      "onEnter": [ { "type": "lore_unlock", "lore": "king_fallen" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    }
+  }
+}

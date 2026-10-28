@@ -1,0 +1,17 @@
+{
+  "title": "quest.nocterra.crown_fall.title",
+  "description": "quest.nocterra.crown_fall.description",
+  "type": "DEFEAT_BOSS",
+  "target": "black_crowned_king",
+  "count": 1,
+  "giver": "gate_keeper",
+  "requires": [
+    { "type": "flag", "flag": "black_crown_gate_open" }
+  ],
+  "reward": {
+    "xp": 800,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 16 }
+    ]
+  }
+}

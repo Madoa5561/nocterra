@@ -1,0 +1,33 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "got": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_abyssal"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nocterra.sigil_abyssal.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "nocterra:sigil_abyssal"
+    },
+    "title": {
+      "translate": "advancements.nocterra.sigil_abyssal.title"
+    }
+  },
+  "requirements": [
+    [
+      "got"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

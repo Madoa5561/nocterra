@@ -2,5 +2,8 @@
   "block.nocterra.rotwood_altar": "Rotwood Altar",
   "message.nocterra.rotwood_altar.awakened": "The altar answers. The Rotwood King awakens.",
   "message.nocterra.rotwood_altar.dormant": "The altar is silent.",
-  "message.nocterra.rotwood_altar.already_awake": "The king already walks these halls."
+  "message.nocterra.rotwood_altar.already_awake": "The king already walks these halls.",
+  "block.nocterra.black_crown_throne": "Black Crown Throne",
+  "biome.nocterra.black_crown_ruins": "Black Crown Ruins",
+  "structure.nocterra.black_crown_castle": "Black Crown Castle"
 }

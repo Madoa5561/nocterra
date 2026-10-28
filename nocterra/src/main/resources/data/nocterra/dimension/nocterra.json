@@ -8,24 +8,81 @@
         {
           "biome": "nocterra:ashen_forest",
           "parameters": {
-            "temperature": { "min": -1.0, "max": 0.2 },
-            "humidity": { "min": -1.0, "max": 0.35 },
-            "continentalness": { "min": -1.0, "max": 1.0 },
-            "erosion": { "min": -1.0, "max": 1.0 },
+            "temperature": {
+              "min": -1.0,
+              "max": 0.1
+            },
+            "humidity": {
+              "min": -1.0,
+              "max": 0.0
+            },
+            "continentalness": {
+              "min": -1.0,
+              "max": 0.25
+            },
+            "erosion": {
+              "min": -0.35,
+              "max": 0.2
+            },
             "depth": 0.0,
-            "weirdness": { "min": -1.0, "max": 1.0 },
+            "weirdness": {
+              "min": -1.0,
+              "max": 0.35
+            },
             "offset": 0.0
           }
         },
         {
           "biome": "nocterra:mourning_marsh",
           "parameters": {
-            "temperature": { "min": 0.2, "max": 1.0 },
-            "humidity": { "min": 0.35, "max": 1.0 },
-            "continentalness": { "min": -1.0, "max": 1.0 },
-            "erosion": { "min": -1.0, "max": 1.0 },
+            "temperature": {
+              "min": -1.0,
+              "max": 0.1
+            },
+            "humidity": {
+              "min": 0.0,
+              "max": 1.0
+            },
+            "continentalness": {
+              "min": -1.0,
+              "max": 0.25
+            },
+            "erosion": {
+              "min": -0.35,
+              "max": 0.2
+            },
             "depth": 0.0,
-            "weirdness": { "min": -1.0, "max": 1.0 },
+            "weirdness": {
+              "min": -1.0,
+              "max": 0.35
+            },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "nocterra:black_crown_ruins",
+          "parameters": {
+            "temperature": {
+              "min": -1.0,
+              "max": 0.1
+            },
+            "humidity": {
+              "min": -1.0,
+              "max": 1.0
+            },
+            "continentalness": {
+              "min": 0.25,
+              "max": 1.0
+            },
+            "erosion": {
+              "min": -0.35,
+              "max": 0.2
+            },
+            "depth": 0.0,
+            "weirdness": {
+              "min": 0.35,
+              "max": 1.0
+            },
             "offset": 0.0
           }
         }

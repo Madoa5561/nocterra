@@ -1,0 +1,119 @@
+{
+  "npc": "marsh_widow",
+  "entries": [
+    { "node": "after_saint", "conditions": [ { "type": "quest", "quest": "saint_requiem", "state": "completed" } ] },
+    { "node": "during_saint", "conditions": [ { "type": "quest", "quest": "saint_requiem", "state": "active" } ] },
+    { "node": "need_saint", "conditions": [
+        { "type": "quest", "quest": "marsh_lament", "state": "completed" },
+        { "type": "quest", "quest": "saint_requiem", "state": "not_started" } ] },
+    { "node": "during_lament", "conditions": [ { "type": "quest", "quest": "marsh_lament", "state": "active" } ] },
+    { "node": "first", "conditions": [ { "type": "first_meet" } ] },
+    { "node": "root" }
+  ],
+  "nodes": {
+    "first": {
+      "text": "dialogue.nocterra.marsh_widow.first",
+      "onEnter": [
+        { "type": "quest_offer", "quest": "marsh_lament" },
+        { "type": "lore_unlock", "lore": "widow_daughter" }
+      ],
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.daughter", "next": "daughter_story" },
+        { "text": "dialogue.nocterra.marsh_widow.choice.marsh", "next": "marsh_lore" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "root": {
+      "text": "dialogue.nocterra.marsh_widow.root",
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.daughter", "next": "daughter_story" },
+        { "text": "dialogue.nocterra.marsh_widow.choice.marsh", "next": "marsh_lore" },
+        { "text": "dialogue.nocterra.marsh_widow.choice.duty", "next": "quests" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "daughter_story": {
+      "text": "dialogue.nocterra.marsh_widow.daughter_story",
+      "onEnter": [ { "type": "lore_unlock", "lore": "sorrow_saint_origin" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.more", "next": "daughter_story_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "daughter_story_more": {
+      "text": "dialogue.nocterra.marsh_widow.daughter_story_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "marsh_lore": {
+      "text": "dialogue.nocterra.marsh_widow.marsh_lore",
+      "onEnter": [ { "type": "lore_unlock", "lore": "mourning_marsh" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.more", "next": "marsh_lore_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "marsh_lore_more": {
+      "text": "dialogue.nocterra.marsh_widow.marsh_lore_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "during_lament": {
+      "text": "dialogue.nocterra.marsh_widow.during_lament",
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.marsh", "next": "marsh_lore" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "need_saint": {
+      "text": "dialogue.nocterra.marsh_widow.need_saint",
+      "onEnter": [ { "type": "quest_offer", "quest": "saint_requiem" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.saint_how", "next": "saint_how" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "saint_how": {
+      "text": "dialogue.nocterra.marsh_widow.saint_how",
+      "onEnter": [ { "type": "lore_unlock", "lore": "saint_how" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "during_saint": {
+      "text": "dialogue.nocterra.marsh_widow.during_saint",
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.saint_how", "next": "saint_how" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "after_saint": {
+      "text": "dialogue.nocterra.marsh_widow.after_saint",
+      "onEnter": [ { "type": "lore_unlock", "lore": "saint_released" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.after", "next": "after_saint_2" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "after_saint_2": {
+      "text": "dialogue.nocterra.marsh_widow.after_saint_2",
+      "onEnter": [ { "type": "lore_unlock", "lore": "widow_farewell" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "quests": {
+      "text": "dialogue.nocterra.marsh_widow.quests",
+      "choices": [
+        { "text": "dialogue.nocterra.marsh_widow.choice.offer_saint", "next": "saint_how",
+          "conditions": [
+            { "type": "quest", "quest": "marsh_lament", "state": "completed" },
+            { "type": "quest", "quest": "saint_requiem", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "saint_requiem" } },
+        { "text": "dialogue.nocterra.marsh_widow.choice.nothing", "next": "root" }
+      ]
+    }
+  }
+}

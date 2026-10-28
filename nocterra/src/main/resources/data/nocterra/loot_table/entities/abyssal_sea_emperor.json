@@ -47,6 +47,15 @@
           ]
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_abyssal"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/abyssal_sea_emperor"

@@ -1,0 +1,15 @@
+{
+  "title": "quest.nocterra.ash_first_light.title",
+  "description": "quest.nocterra.ash_first_light.description",
+  "type": "COLLECT_ITEM",
+  "target": "nocterra:ember_shard",
+  "count": 3,
+  "giver": "warden_of_ash",
+  "requires": [],
+  "reward": {
+    "xp": 50,
+    "items": [
+      { "item": "nocterra:ashwood_blade", "count": 1 }
+    ]
+  }
+}

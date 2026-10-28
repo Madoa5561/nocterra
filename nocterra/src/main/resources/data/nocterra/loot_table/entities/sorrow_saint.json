@@ -47,6 +47,15 @@
           ]
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_sorrow"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/sorrow_saint"

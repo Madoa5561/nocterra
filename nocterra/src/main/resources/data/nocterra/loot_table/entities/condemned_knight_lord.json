@@ -47,6 +47,15 @@
           "name": "minecraft:iron_block"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_condemned"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/condemned_knight_lord"

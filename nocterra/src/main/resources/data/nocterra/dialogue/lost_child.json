@@ -1,0 +1,75 @@
+{
+  "npc": "lost_child",
+  "entries": [
+    { "node": "returned", "conditions": [ { "type": "quest", "quest": "lost_child_return", "state": "completed" } ] },
+    { "node": "following", "conditions": [ { "type": "flag", "flag": "lost_child_following" } ] },
+    { "node": "first", "conditions": [ { "type": "first_meet" } ] },
+    { "node": "root" }
+  ],
+  "nodes": {
+    "first": {
+      "text": "dialogue.nocterra.lost_child.first",
+      "choices": [
+        { "text": "dialogue.nocterra.lost_child.choice.name", "next": "child_name" },
+        { "text": "dialogue.nocterra.lost_child.choice.origin", "next": "child_origin" },
+        { "text": "dialogue.nocterra.lost_child.choice.hand", "next": "hand_taken" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "root": {
+      "text": "dialogue.nocterra.lost_child.root",
+      "choices": [
+        { "text": "dialogue.nocterra.lost_child.choice.name", "next": "child_name" },
+        { "text": "dialogue.nocterra.lost_child.choice.hand", "next": "hand_taken" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "child_name": {
+      "text": "dialogue.nocterra.lost_child.child_name",
+      "onEnter": [ { "type": "lore_unlock", "lore": "child_crown" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.lost_child.choice.origin", "next": "child_origin" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "child_origin": {
+      "text": "dialogue.nocterra.lost_child.child_origin",
+      "onEnter": [ { "type": "lore_unlock", "lore": "child_origin" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.lost_child.choice.hand", "next": "hand_taken" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "hand_taken": {
+      "text": "dialogue.nocterra.lost_child.hand_taken",
+      "onEnter": [
+        { "type": "npc_action", "action": "follow_player" },
+        { "type": "quest_offer", "quest": "lost_child_return" },
+        { "type": "lore_unlock", "lore": "child_in_ash" }
+      ],
+      "choices": [
+        { "text": "dialogue.nocterra.lost_child.choice.go", "action": { "type": "close" } }
+      ]
+    },
+    "following": {
+      "text": "dialogue.nocterra.lost_child.following",
+      "choices": [
+        { "text": "dialogue.nocterra.lost_child.choice.go", "action": { "type": "close" } },
+        { "text": "dialogue.nocterra.lost_child.choice.stay", "next": "stayed",
+          "action": { "type": "npc_action", "action": "stop_following" } }
+      ]
+    },
+    "stayed": {
+      "text": "dialogue.nocterra.lost_child.stayed",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "returned": {
+      "text": "dialogue.nocterra.lost_child.returned",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    }
+  }
+}

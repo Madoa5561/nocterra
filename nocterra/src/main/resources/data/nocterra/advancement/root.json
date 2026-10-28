@@ -1,0 +1,30 @@
+{
+  "criteria": {
+    "entered": {
+      "conditions": {
+        "to": "nocterra:nocterra"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:gui/advancements/backgrounds/stone",
+    "description": {
+      "translate": "advancements.nocterra.root.description"
+    },
+    "icon": {
+      "id": "nocterra:gate_frame"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.nocterra.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "entered"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -37,6 +37,15 @@
           "name": "minecraft:gold_block"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_sandglass"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/sandglass_twin_kings"

@@ -22,8 +22,10 @@ public final class NocterraStructureTypes {
 
     public static final Identifier FALLEN_FORTRESS = id("fallen_fortress");
     public static final Identifier MOURNING_CATACOMB = id("mourning_catacomb");
+    public static final Identifier BLACK_CROWN_CASTLE = id("black_crown_castle");
     public static final Identifier FALLEN_FORTRESS_PIECE = id("fallen_fortress_piece");
     public static final Identifier MOURNING_CATACOMB_PIECE = id("mourning_catacomb_piece");
+    public static final Identifier BLACK_CROWN_CASTLE_PIECE = id("black_crown_castle_piece");
 
     private static final AtomicBoolean TYPES_REGISTERED = new AtomicBoolean(false);
     private static final AtomicBoolean PIECES_REGISTERED = new AtomicBoolean(false);
@@ -42,10 +44,12 @@ public final class NocterraStructureTypes {
         if (event.getRegistry(Registries.STRUCTURE_TYPE) != null && TYPES_REGISTERED.compareAndSet(false, true)) {
             event.register(Registries.STRUCTURE_TYPE, FALLEN_FORTRESS, () -> FallenFortressStructure.TYPE);
             event.register(Registries.STRUCTURE_TYPE, MOURNING_CATACOMB, () -> MourningCatacombStructure.TYPE);
+            event.register(Registries.STRUCTURE_TYPE, BLACK_CROWN_CASTLE, () -> BlackCrownCastleStructure.TYPE);
         }
         if (event.getRegistry(Registries.STRUCTURE_PIECE) != null && PIECES_REGISTERED.compareAndSet(false, true)) {
             event.register(Registries.STRUCTURE_PIECE, FALLEN_FORTRESS_PIECE, () -> FallenFortressPiece.TYPE);
             event.register(Registries.STRUCTURE_PIECE, MOURNING_CATACOMB_PIECE, () -> MourningCatacombPiece.TYPE);
+            event.register(Registries.STRUCTURE_PIECE, BLACK_CROWN_CASTLE_PIECE, () -> BlackCrownCastlePiece.TYPE);
         }
     }
 }

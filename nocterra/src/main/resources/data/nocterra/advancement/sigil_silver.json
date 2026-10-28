@@ -1,0 +1,33 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "got": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nocterra:sigil_silver"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nocterra.sigil_silver.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "nocterra:sigil_silver"
+    },
+    "title": {
+      "translate": "advancements.nocterra.sigil_silver.title"
+    }
+  },
+  "requirements": [
+    [
+      "got"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,105 @@
+{
+  "npc": "blind_scribe",
+  "entries": [
+    { "node": "after_legacy", "conditions": [ { "type": "quest", "quest": "scribe_legacy", "state": "completed" } ] },
+    { "node": "during_legacy", "conditions": [ { "type": "quest", "quest": "scribe_legacy", "state": "active" } ] },
+    { "node": "first", "conditions": [ { "type": "first_meet" } ] },
+    { "node": "root" }
+  ],
+  "nodes": {
+    "first": {
+      "text": "dialogue.nocterra.blind_scribe.first",
+      "onEnter": [ { "type": "lore_unlock", "lore": "scribe_eyes" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.ritual", "next": "lore_ritual" },
+        { "text": "dialogue.nocterra.blind_scribe.choice.sigils", "next": "lore_sigils" },
+        { "text": "dialogue.nocterra.blind_scribe.choice.duty", "next": "quests" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "root": {
+      "text": "dialogue.nocterra.blind_scribe.root",
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.ritual", "next": "lore_ritual" },
+        { "text": "dialogue.nocterra.blind_scribe.choice.sigils", "next": "lore_sigils" },
+        { "text": "dialogue.nocterra.blind_scribe.choice.king", "next": "lore_king" },
+        { "text": "dialogue.nocterra.blind_scribe.choice.duty", "next": "quests" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_ritual": {
+      "text": "dialogue.nocterra.blind_scribe.lore_ritual",
+      "onEnter": [ { "type": "lore_unlock", "lore": "the_ritual" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.more", "next": "lore_ritual_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_ritual_more": {
+      "text": "dialogue.nocterra.blind_scribe.lore_ritual_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_sigils": {
+      "text": "dialogue.nocterra.blind_scribe.lore_sigils",
+      "onEnter": [ { "type": "lore_unlock", "lore": "sigil_keys" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.more", "next": "lore_sigils_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_sigils_more": {
+      "text": "dialogue.nocterra.blind_scribe.lore_sigils_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_king": {
+      "text": "dialogue.nocterra.blind_scribe.lore_king",
+      "onEnter": [ { "type": "lore_unlock", "lore": "black_crown_scribe" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "quests": {
+      "text": "dialogue.nocterra.blind_scribe.quests",
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.offer", "next": "legacy_detail",
+          "conditions": [
+            { "type": "quest", "quest": "ash_first_light", "state": "completed" },
+            { "type": "quest", "quest": "scribe_legacy", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "scribe_legacy" } },
+        { "text": "dialogue.nocterra.blind_scribe.choice.nothing", "next": "root" }
+      ]
+    },
+    "legacy_detail": {
+      "text": "dialogue.nocterra.blind_scribe.legacy_detail",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "during_legacy": {
+      "text": "dialogue.nocterra.blind_scribe.during_legacy",
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.sigils", "next": "lore_sigils" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "after_legacy": {
+      "text": "dialogue.nocterra.blind_scribe.after_legacy",
+      "onEnter": [ { "type": "lore_unlock", "lore": "the_eight" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.blind_scribe.choice.gate", "next": "gate_location" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "gate_location": {
+      "text": "dialogue.nocterra.blind_scribe.gate_location",
+      "onEnter": [ { "type": "lore_unlock", "lore": "gate_keeper_where" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    }
+  }
+}

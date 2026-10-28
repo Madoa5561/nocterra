@@ -1,0 +1,189 @@
+{
+  "npc": "warden_of_ash",
+  "entries": [
+    { "node": "return_child", "conditions": [ { "type": "quest", "quest": "lost_child_return", "state": "completed" } ] },
+    { "node": "after_king", "conditions": [ { "type": "quest", "quest": "rotwood_king_fall", "state": "completed" } ] },
+    { "node": "during_first", "conditions": [ { "type": "quest", "quest": "ash_first_light", "state": "active" } ] },
+    { "node": "need_hunt", "conditions": [
+        { "type": "quest", "quest": "ash_first_light", "state": "completed" },
+        { "type": "quest", "quest": "ash_hunt", "state": "not_started" } ] },
+    { "node": "need_king", "conditions": [
+        { "type": "quest", "quest": "ash_hunt", "state": "completed" },
+        { "type": "quest", "quest": "rotwood_king_fall", "state": "not_started" } ] },
+    { "node": "first", "conditions": [ { "type": "first_meet" } ] },
+    { "node": "root" }
+  ],
+  "nodes": {
+    "first": {
+      "text": "dialogue.nocterra.warden_of_ash.first",
+      "onEnter": [
+        { "type": "quest_offer", "quest": "ash_first_light" },
+        { "type": "lore_unlock", "lore": "nocterra_ash" }
+      ],
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.who", "next": "guard" },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.forest", "next": "lore_forest" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "root": {
+      "text": "dialogue.nocterra.warden_of_ash.root",
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.who", "next": "guard" },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.forest", "next": "lore_forest" },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.crown_ask", "next": "lore_crown",
+          "conditions": [ { "type": "lore_not", "lore": "black_crown" } ] },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.crown_known", "next": "lore_crown_known",
+          "conditions": [ { "type": "lore", "lore": "black_crown" } ] },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.duty", "next": "quests" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "guard": {
+      "text": "dialogue.nocterra.warden_of_ash.guard",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_forest": {
+      "text": "dialogue.nocterra.warden_of_ash.lore_forest",
+      "onEnter": [ { "type": "lore_unlock", "lore": "ash_grove" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.more", "next": "lore_forest_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_forest_more": {
+      "text": "dialogue.nocterra.warden_of_ash.lore_forest_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_crown": {
+      "text": "dialogue.nocterra.warden_of_ash.lore_crown",
+      "onEnter": [ { "type": "lore_unlock", "lore": "black_crown" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.more", "next": "lore_crown_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_crown_more": {
+      "text": "dialogue.nocterra.warden_of_ash.lore_crown_more",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "lore_crown_known": {
+      "text": "dialogue.nocterra.warden_of_ash.lore_crown_known",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "during_first": {
+      "text": "dialogue.nocterra.warden_of_ash.during_first",
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.forest", "next": "lore_forest" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "need_hunt": {
+      "text": "dialogue.nocterra.warden_of_ash.need_hunt",
+      "onEnter": [ { "type": "quest_offer", "quest": "ash_hunt" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.ash_crawler", "next": "hunt_detail" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "need_king": {
+      "text": "dialogue.nocterra.warden_of_ash.need_king",
+      "onEnter": [ { "type": "quest_offer", "quest": "rotwood_king_fall" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.king_warning", "next": "king_detail" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "hunt_detail": {
+      "text": "dialogue.nocterra.warden_of_ash.hunt_detail",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "king_detail": {
+      "text": "dialogue.nocterra.warden_of_ash.king_detail",
+      "onEnter": [ { "type": "lore_unlock", "lore": "rotwood_king" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "quests": {
+      "text": "dialogue.nocterra.warden_of_ash.quests",
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.offer_hunt", "next": "hunt_detail",
+          "conditions": [
+            { "type": "quest", "quest": "ash_first_light", "state": "completed" },
+            { "type": "quest", "quest": "ash_hunt", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "ash_hunt" } },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.offer_king", "next": "king_detail",
+          "conditions": [
+            { "type": "quest", "quest": "ash_hunt", "state": "completed" },
+            { "type": "quest", "quest": "rotwood_king_fall", "state": "not_started" } ],
+          "action": { "type": "quest_offer", "quest": "rotwood_king_fall" } },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.nothing", "next": "root" }
+      ]
+    },
+    "after_king": {
+      "text": "dialogue.nocterra.warden_of_ash.after_king",
+      "onEnter": [ { "type": "lore_unlock", "lore": "the_crown_remains" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.widow", "next": "after_king_widow" },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.scribe", "next": "after_king_scribe" },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.gate", "next": "after_king_gate" },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.crown_known", "next": "lore_crown_known" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "after_king_widow": {
+      "text": "dialogue.nocterra.warden_of_ash.after_king_widow",
+      "onEnter": [ { "type": "lore_unlock", "lore": "marsh_widow_rumor" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "after_king_scribe": {
+      "text": "dialogue.nocterra.warden_of_ash.after_king_scribe",
+      "onEnter": [ { "type": "lore_unlock", "lore": "blind_scribe_rumor" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "after_king_gate": {
+      "text": "dialogue.nocterra.warden_of_ash.after_king_gate",
+      "onEnter": [ { "type": "lore_unlock", "lore": "black_gate_rumor" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "return_child": {
+      "text": "dialogue.nocterra.warden_of_ash.return_child",
+      "choices": [
+        { "text": "dialogue.nocterra.warden_of_ash.choice.child_who", "next": "return_child_lore",
+          "conditions": [ { "type": "lore_not", "lore": "the_last_child" } ] },
+        { "text": "dialogue.nocterra.warden_of_ash.choice.child_thanks", "next": "return_child_thanks" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "return_child_lore": {
+      "text": "dialogue.nocterra.warden_of_ash.return_child_lore",
+      "onEnter": [ { "type": "lore_unlock", "lore": "the_last_child" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "return_child_thanks": {
+      "text": "dialogue.nocterra.warden_of_ash.return_child_thanks",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    }
+  }
+}

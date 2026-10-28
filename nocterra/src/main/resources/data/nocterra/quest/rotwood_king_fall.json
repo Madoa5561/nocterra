@@ -1,0 +1,17 @@
+{
+  "title": "quest.nocterra.rotwood_king_fall.title",
+  "description": "quest.nocterra.rotwood_king_fall.description",
+  "type": "DEFEAT_BOSS",
+  "target": "rotwood_king",
+  "count": 1,
+  "giver": "warden_of_ash",
+  "requires": [
+    { "type": "quest", "quest": "ash_hunt", "state": "completed" }
+  ],
+  "reward": {
+    "xp": 300,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 8 }
+    ]
+  }
+}

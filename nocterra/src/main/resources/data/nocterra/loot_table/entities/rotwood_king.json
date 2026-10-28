@@ -47,6 +47,15 @@
           ]
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:sigil_rotwood"
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/rotwood_king"

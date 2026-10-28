@@ -33,6 +33,7 @@ public final class NocterraCommands {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
         NocterraDevCommands.register(dispatcher);
+        NocterraStoryCommands.register(dispatcher);
 
         dispatcher.register(
                 Commands.literal("nocterra")

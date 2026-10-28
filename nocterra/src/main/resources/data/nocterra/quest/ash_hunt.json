@@ -1,0 +1,17 @@
+{
+  "title": "quest.nocterra.ash_hunt.title",
+  "description": "quest.nocterra.ash_hunt.description",
+  "type": "KILL_ENTITY",
+  "target": "nocterra:ash_crawler",
+  "count": 6,
+  "giver": "warden_of_ash",
+  "requires": [
+    { "type": "quest", "quest": "ash_first_light", "state": "completed" }
+  ],
+  "reward": {
+    "xp": 80,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 4 }
+    ]
+  }
+}

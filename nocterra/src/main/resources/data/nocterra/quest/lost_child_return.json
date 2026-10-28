@@ -1,0 +1,15 @@
+{
+  "title": "quest.nocterra.lost_child_return.title",
+  "description": "quest.nocterra.lost_child_return.description",
+  "type": "TALK_TO_NPC",
+  "target": "warden_of_ash",
+  "count": 1,
+  "giver": "lost_child",
+  "requires": [],
+  "reward": {
+    "xp": 250,
+    "items": [
+      { "item": "nocterra:ember_shard", "count": 10 }
+    ]
+  }
+}

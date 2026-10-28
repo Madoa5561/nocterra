@@ -6,6 +6,7 @@ import com.nocterra.entity.NocterraEntities;
 import com.nocterra.networking.NocterraNetwork;
 import com.nocterra.registry.NocterraBlocks;
 import com.nocterra.registry.NocterraItems;
+import com.nocterra.registry.NocterraStoryItems;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -30,7 +31,10 @@ public final class Nocterra {
 
         NocterraBlocks.register(modBus);
         NocterraItems.register(modBus);
+        NocterraStoryItems.register(modBus);
+        com.nocterra.progression.ProgressionAttachments.register(modBus);
         NocterraEntities.register(modBus);
+        com.nocterra.npc.NocterraNpcs.register(modBus);
         NocterraCombat.register(modBus);
         NocterraNetwork.register(modBus);
         com.nocterra.registry.NocterraSounds.register(modBus);
@@ -44,6 +48,10 @@ public final class Nocterra {
                 com.nocterra.core.NocterraCommands::onRegisterCommands);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
                 com.nocterra.core.NocterraBossVoice::onEntityJoin);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                com.nocterra.progression.ProgressionEvents::onLivingDeath);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                com.nocterra.progression.StoryIntro::onChangedDimension);
 
         LOG.info("NOCTERRA bootstrap complete in {} ms (mod id={}, side={})",
                 (System.nanoTime() - startedAt) / 1_000_000, MOD_ID, dist);

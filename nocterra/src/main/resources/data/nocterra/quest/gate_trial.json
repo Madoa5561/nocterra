@@ -1,0 +1,17 @@
+{
+  "title": "quest.nocterra.gate_trial.title",
+  "description": "quest.nocterra.gate_trial.description",
+  "type": "COLLECT_ITEM",
+  "target": "nocterra:ember_shard",
+  "count": 16,
+  "giver": "gate_keeper",
+  "requires": [
+    { "type": "seals", "min": 5 }
+  ],
+  "reward": {
+    "xp": 400,
+    "items": [
+      { "item": "nocterra:grave_greatsword", "count": 1 }
+    ]
+  }
+}

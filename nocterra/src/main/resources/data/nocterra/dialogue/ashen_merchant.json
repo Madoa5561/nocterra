@@ -1,0 +1,82 @@
+{
+  "npc": "ashen_merchant",
+  "entries": [
+    { "node": "first", "conditions": [ { "type": "first_meet" } ] },
+    { "node": "root" }
+  ],
+  "nodes": {
+    "first": {
+      "text": "dialogue.nocterra.ashen_merchant.first",
+      "onEnter": [
+        { "type": "quest_offer", "quest": "merchant_debt" },
+        { "type": "lore_unlock", "lore": "merchant_trade" }
+      ],
+      "choices": [
+        { "text": "dialogue.nocterra.ashen_merchant.choice.trade", "next": "trade_menu" },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.who", "next": "merchant_who" },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.debt", "next": "debt_detail" },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.gossip", "next": "merchant_gossip" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "root": {
+      "text": "dialogue.nocterra.ashen_merchant.root",
+      "choices": [
+        { "text": "dialogue.nocterra.ashen_merchant.choice.trade", "next": "trade_menu" },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.who", "next": "merchant_who" },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.debt", "next": "debt_detail" },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.gossip", "next": "merchant_gossip" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "trade_menu": {
+      "text": "dialogue.nocterra.ashen_merchant.trade_menu",
+      "choices": [
+        { "text": "dialogue.nocterra.ashen_merchant.choice.buy_ember", "next": "trade_done",
+          "action": { "type": "trade",
+            "cost": { "item": "nocterra:ashwood_planks", "count": 2 },
+            "result": { "item": "nocterra:ember_shard", "count": 3 } } },
+        { "text": "dialogue.nocterra.ashen_merchant.choice.buy_planks", "next": "trade_done",
+          "action": { "type": "trade",
+            "cost": { "item": "nocterra:ember_shard", "count": 2 },
+            "result": { "item": "nocterra:ashwood_planks", "count": 3 } } },
+        { "text": "dialogue.nocterra.common.back", "next": "root" }
+      ]
+    },
+    "trade_done": {
+      "text": "dialogue.nocterra.ashen_merchant.trade_done",
+      "choices": [
+        { "text": "dialogue.nocterra.ashen_merchant.choice.trade", "next": "trade_menu" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "merchant_who": {
+      "text": "dialogue.nocterra.ashen_merchant.merchant_who",
+      "onEnter": [ { "type": "lore_unlock", "lore": "ashen_merchant" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "debt_detail": {
+      "text": "dialogue.nocterra.ashen_merchant.debt_detail",
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "merchant_gossip": {
+      "text": "dialogue.nocterra.ashen_merchant.merchant_gossip",
+      "onEnter": [ { "type": "lore_unlock", "lore": "child_rumor" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.ashen_merchant.choice.more_gossip", "next": "merchant_gossip_more" },
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    },
+    "merchant_gossip_more": {
+      "text": "dialogue.nocterra.ashen_merchant.merchant_gossip_more",
+      "onEnter": [ { "type": "lore_unlock", "lore": "child_rumor_more" } ],
+      "choices": [
+        { "text": "dialogue.nocterra.common.farewell", "action": { "type": "close" } }
+      ]
+    }
+  }
+}
