@@ -1,0 +1,21 @@
+{
+  "item.nocterra.ashwood_blade": "Ashwood Blade",
+  "item.nocterra.grave_greatsword": "Grave Greatsword",
+  "item.nocterra.mourning_scythe": "Mourning Scythe",
+  "key.category.nocterra.combat": "NOCTERRA Combat",
+  "key.nocterra.dodge": "Dodge",
+  "key.nocterra.heavy_attack": "Heavy Attack",
+  "key.nocterra.parry": "Parry",
+  "key.nocterra.skill": "Weapon Skill",
+  "key.nocterra.magic": "Cast Magic",
+  "nocterra.weapon_type.light_blade": "Light Blade",
+  "nocterra.weapon_type.greatsword": "Greatsword",
+  "nocterra.weapon_type.scythe": "Scythe",
+  "nocterra.weapon_element.none": "None",
+  "nocterra.weapon_element.ashen": "Ashen",
+  "nocterra.weapon_element.ember": "Ember",
+  "nocterra.weapon_element.frost": "Frost",
+  "nocterra.weapon_element.void": "Void",
+  "nocterra.message.stamina_insufficient": "Not enough stamina.",
+  "nocterra.message.no_weapon": "No weapon with a weapon skill is equipped."
+}

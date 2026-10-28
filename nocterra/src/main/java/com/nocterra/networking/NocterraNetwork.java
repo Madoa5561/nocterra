@@ -29,9 +29,8 @@ public final class NocterraNetwork {
         registerCombatPayloads(registrar);
     }
 
-    /** combat サブシステムから呼ばれる payload 登録（現在は未登録）。 */
+    /** combat サブシステムの payload 登録（実装は CombatPayloads 側）。 */
     private static void registerCombatPayloads(PayloadRegistrar registrar) {
-        // 例: registrar.playToClient(StaminaSyncPayload.TYPE, StaminaSyncPayload.STREAM_CODEC,
-        //         (payload, context) -> context.enqueueWork(() -> ...));
+        com.nocterra.combat.network.CombatPayloads.register(registrar);
     }
 }

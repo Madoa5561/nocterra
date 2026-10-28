@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "IPI",
+    " E ",
+    " S "
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "P": "nocterra:ashwood_planks",
+    "E": "nocterra:ember_shard",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "count": 1,
+    "id": "nocterra:mourning_scythe"
+  }
+}

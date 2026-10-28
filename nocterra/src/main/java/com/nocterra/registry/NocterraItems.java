@@ -35,6 +35,7 @@ public final class NocterraItems {
     public static final DeferredItem<BlockItem> ASHWOOD_PLANKS = ITEMS.registerSimpleBlockItem(NocterraBlocks.ASHWOOD_PLANKS);
     public static final DeferredItem<BlockItem> ASHSTONE = ITEMS.registerSimpleBlockItem(NocterraBlocks.ASHSTONE);
     public static final DeferredItem<BlockItem> ASH_COAL_ORE = ITEMS.registerSimpleBlockItem(NocterraBlocks.ASH_COAL_ORE);
+    public static final DeferredItem<BlockItem> ROTWOOD_ALTAR = ITEMS.registerSimpleBlockItem(NocterraBlocks.ROTWOOD_ALTAR);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NOCTERRA_TAB = CREATIVE_TABS.register(
             "nocterra",
@@ -48,6 +49,9 @@ public final class NocterraItems {
                         output.accept(ASHWOOD_PLANKS.get());
                         output.accept(ASHSTONE.get());
                         output.accept(ASH_COAL_ORE.get());
+                        output.accept(ROTWOOD_ALTAR.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.ASHEN_WRAITH_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.ROTWOOD_KING_SPAWN_EGG.get());
                     })
                     .build());
 

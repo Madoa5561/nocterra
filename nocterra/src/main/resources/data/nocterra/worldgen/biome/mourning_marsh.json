@@ -122,7 +122,8 @@
     ],
     [
       "minecraft:freeze_top_layer"
-    ]
+    ],
+    "#nocterra:mourning_marsh_features"
   ],
   "has_precipitation": true,
   "temperature": 0.55

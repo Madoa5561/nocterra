@@ -39,7 +39,6 @@ public final class NocterraBlocks {
                     .lightLevel(state -> 11)
                     .strength(-1.0F, 3_600_000.0F)
                     .noLootTable()
-                    .randomTicks()
                     .sound(SoundType.GLASS));
 
     // ---- 灰樹の森の建材 ----
@@ -73,6 +72,17 @@ public final class NocterraBlocks {
                     .strength(3.0F, 3.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops());
+
+    /** 腐朽の森王を呼び覚ます祭壇（古代神殿の内部に生成される）。 */
+    public static final DeferredBlock<com.nocterra.world.structure.RotwoodAltar> ROTWOOD_ALTAR =
+            BLOCKS.registerBlock(
+                    "rotwood_altar",
+                    com.nocterra.world.structure.RotwoodAltar::new,
+                    () -> BlockBehaviour.Properties.of()
+                            .mapColor(MapColor.DEEPSLATE)
+                            .strength(4.0F, 8.0F)
+                            .sound(SoundType.DEEPSLATE_BRICKS)
+                            .requiresCorrectToolForDrops());
 
     public static void register(IEventBus modBus) {
         BLOCKS.register(modBus);
