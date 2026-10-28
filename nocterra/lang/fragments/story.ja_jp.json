@@ -262,5 +262,9 @@
   "message.nocterra.region_altar.none": "この地に冠の者は居ない。",
   "message.nocterra.region_altar.missing": "祭壇は %s に届かない。",
   "message.nocterra.region_altar.already": "冠の者はすでにこの地を歩いている。",
-  "message.nocterra.region_altar.awakened": "%s が祭壇に応えた。"
+  "message.nocterra.region_altar.awakened": "%s が祭壇に応えた。",
+  "subtitles.nocterra.music.boss_ash": "灰冠の残響",
+  "subtitles.nocterra.music.boss_void": "虚空の聖歌",
+  "subtitles.nocterra.music.boss_iron": "鉄の審判",
+  "subtitles.nocterra.music.ambient_nocterra": "ノクテラの静寂"
 }

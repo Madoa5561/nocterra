@@ -67,16 +67,15 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
 
     /** アニメ名の規約: {@code animation.<modid>.<entity>.<name>}（.animation.json のキーと一致）。 */
     public static final String ANIM_IDLE = "animation.nocterra.rotwood_king.idle";
-    public static final String ANIM_IDLE_ENRAGED = "animation.nocterra.rotwood_king.idle_enraged";
     public static final String ANIM_WALK = "animation.nocterra.rotwood_king.walk";
-    public static final String ANIM_ATTACK_SWEEP = "animation.nocterra.rotwood_king.attack_sweep";
-    public static final String ANIM_ATTACK_SLAM = "animation.nocterra.rotwood_king.attack_slam";
-    public static final String ANIM_ATTACK_CAST = "animation.nocterra.rotwood_king.attack_cast";
+    public static final String ANIM_ATTACK1 = "animation.nocterra.rotwood_king.attack1";
+    public static final String ANIM_ATTACK2 = "animation.nocterra.rotwood_king.attack2";
+    public static final String ANIM_PHASE2 = "animation.nocterra.rotwood_king.phase2";
     public static final String ANIM_HURT = "animation.nocterra.rotwood_king.hurt";
     public static final String ANIM_DEATH = "animation.nocterra.rotwood_king.death";
 
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop(ANIM_IDLE);
-    private static final RawAnimation IDLE_ENRAGED = RawAnimation.begin().thenLoop(ANIM_IDLE_ENRAGED);
+    private static final RawAnimation PHASE2 = RawAnimation.begin().thenLoop(ANIM_PHASE2);
     private static final RawAnimation WALK = RawAnimation.begin().thenLoop(ANIM_WALK);
 
     private final AnimatableInstanceCache geoCache = GeckoLibUtil.createInstanceCache(this);
@@ -266,13 +265,13 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
         this.getLookControl().setLookAt(target, 30.0F, 30.0F);
 
         switch (variant) {
-            case 1 -> this.triggerAnim(CONTROLLER, "attack_slam");
-            case 2 -> this.triggerAnim(CONTROLLER, "attack_cast");
+            case 1 -> this.triggerAnim(CONTROLLER, "attack2");
+            case 2 -> this.triggerAnim(CONTROLLER, "attack2");
             case 3 -> {
-                this.triggerAnim(CONTROLLER, "attack_cast");
+                this.triggerAnim(CONTROLLER, "attack2");
                 this.playSound(SoundEvents.RAVAGER_ROAR, 1.2F, 0.55F);
             }
-            default -> this.triggerAnim(CONTROLLER, "attack_sweep");
+            default -> this.triggerAnim(CONTROLLER, "attack1");
         }
     }
 
@@ -530,9 +529,8 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<RotwoodKingEntity>(CONTROLLER, 6, this::animationPredicate)
                 .receiveTriggeredAnimations()
-                .triggerableAnim("attack_sweep", RawAnimation.begin().thenPlay(ANIM_ATTACK_SWEEP))
-                .triggerableAnim("attack_slam", RawAnimation.begin().thenPlay(ANIM_ATTACK_SLAM))
-                .triggerableAnim("attack_cast", RawAnimation.begin().thenPlay(ANIM_ATTACK_CAST))
+                .triggerableAnim("attack1", RawAnimation.begin().thenPlay(ANIM_ATTACK1))
+                .triggerableAnim("attack2", RawAnimation.begin().thenPlay(ANIM_ATTACK2))
                 .triggerableAnim("hurt", RawAnimation.begin().thenPlay(ANIM_HURT))
                 .triggerableAnim("death", RawAnimation.begin().thenPlay(ANIM_DEATH)));
     }
@@ -541,7 +539,7 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
         if (test.isMoving()) {
             return test.setAndContinue(WALK);
         }
-        return test.setAndContinue(this.getPhase() >= 2 ? IDLE_ENRAGED : IDLE);
+        return test.setAndContinue(this.getPhase() >= 2 ? PHASE2 : IDLE);
     }
 
     @Override

@@ -142,5 +142,49 @@
     "sounds": [
       "nocterra:boss/nameless_observer_2"
     ]
+  },
+  "music.nocterra.boss_ash": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "nocterra:music/boss_ash",
+        "stream": true,
+        "volume": 0.85
+      }
+    ],
+    "subtitle": "subtitles.nocterra.music.boss_ash"
+  },
+  "music.nocterra.boss_void": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "nocterra:music/boss_void",
+        "stream": true,
+        "volume": 0.85
+      }
+    ],
+    "subtitle": "subtitles.nocterra.music.boss_void"
+  },
+  "music.nocterra.boss_iron": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "nocterra:music/boss_iron",
+        "stream": true,
+        "volume": 0.85
+      }
+    ],
+    "subtitle": "subtitles.nocterra.music.boss_iron"
+  },
+  "music.nocterra.ambient_nocterra": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "nocterra:music/ambient_nocterra",
+        "stream": true,
+        "volume": 0.85
+      }
+    ],
+    "subtitle": "subtitles.nocterra.music.ambient_nocterra"
   }
 }

@@ -64,6 +64,32 @@ public final class NocterraSounds {
         return null;
     }
 
+    // ------------------------------------------------------------------ music
+
+    /** 音楽トラック名（sounds.json のキー `music.nocterra.<name>` に対応）。 */
+    public static final String[] MUSIC_TRACKS = {
+            "boss_ash", "boss_void", "boss_iron", "ambient_nocterra"
+    };
+
+    private static final Map<String, DeferredHolder<SoundEvent, SoundEvent>> MUSIC =
+            new LinkedHashMap<>();
+
+    static {
+        for (String track : MUSIC_TRACKS) {
+            final String key = "music.nocterra." + track;
+            final Identifier location = Identifier.fromNamespaceAndPath(Nocterra.MOD_ID, key);
+            // BGM は広い範囲に聞かせたいので固定レンジ（256 ブロック）を使う
+            MUSIC.put(track, SOUNDS.register(key,
+                    () -> SoundEvent.createFixedRangeEvent(location, 256.0F)));
+        }
+    }
+
+    /** 音楽トラックの SoundEvent（未知なら null）。 */
+    public static SoundEvent music(String track) {
+        DeferredHolder<SoundEvent, SoundEvent> holder = MUSIC.get(track);
+        return holder == null ? null : holder.get();
+    }
+
     public static void register(IEventBus modBus) {
         SOUNDS.register(modBus);
     }

@@ -52,6 +52,10 @@ public final class Nocterra {
                 com.nocterra.progression.ProgressionEvents::onLivingDeath);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
                 com.nocterra.progression.StoryIntro::onChangedDimension);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                com.nocterra.music.BossMusic::onBossJoin);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(
+                com.nocterra.music.BossMusic::onBossDeath);
 
         LOG.info("NOCTERRA bootstrap complete in {} ms (mod id={}, side={})",
                 (System.nanoTime() - startedAt) / 1_000_000, MOD_ID, dist);

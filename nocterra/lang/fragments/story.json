@@ -262,5 +262,9 @@
   "message.nocterra.region_altar.none": "This land has no crowned one.",
   "message.nocterra.region_altar.missing": "The altar cannot reach %s.",
   "message.nocterra.region_altar.already": "Its crowned one already walks here.",
-  "message.nocterra.region_altar.awakened": "%s answers the altar."
+  "message.nocterra.region_altar.awakened": "%s answers the altar.",
+  "subtitles.nocterra.music.boss_ash": "Ashen Crown (boss)",
+  "subtitles.nocterra.music.boss_void": "Void Choir (boss)",
+  "subtitles.nocterra.music.boss_iron": "Iron Verdict (boss)",
+  "subtitles.nocterra.music.ambient_nocterra": "Nocterra"
 }
