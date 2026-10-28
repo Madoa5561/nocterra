@@ -52,7 +52,22 @@ public class NetherBastionStructure extends Structure {
             }
         }
 
-        final int baseY = Math.max(highest, MIN_BASE_Y);
+        // ネザーは y=122..127 に岩盤の天井があり、WORLD_SURFACE_WG はそこを「地表」として
+        // 返すことがある（そのまま使うと屋根の上に生成されてしまう）。
+        // 96 を超える値は天井とみなし、溶岩海（y=31）より上の決定的な帯 33..52 に置く。
+        int chunkX = minX >> 4;
+        int chunkZ = minZ >> 4;
+        int h = (chunkX * 0x9E3779B1) ^ (chunkZ * 0x85EBCA77);
+        h ^= h >>> 15;
+        h *= 0x2545F491;
+        h ^= h >>> 13;
+        final int baseY;
+        if (highest > 96) {
+            baseY = MIN_BASE_Y + Math.floorMod(h, 20); // 33..52
+        } else {
+            baseY = Math.min(Math.max(highest, MIN_BASE_Y), 96);
+        }
+
         if (baseY - 20 <= height.getMinY() || baseY + 30 >= height.getMaxY()) {
             return Optional.empty();
         }

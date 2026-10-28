@@ -69,7 +69,9 @@
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
     ],
-    [],
+    [
+      "nocterra:region_altar"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -109,13 +111,10 @@
     [
       "minecraft:glow_lichen",
       "minecraft:seagrass_swamp",
-      "minecraft:patch_waterlily"
-    ],
-    [],
-    [
-      "nocterra:region_altar",
+      "minecraft:patch_waterlily",
       "nocterra:abyssal_coral"
-    ]
+    ],
+    []
   ],
   "has_precipitation": true,
   "temperature": 0.5

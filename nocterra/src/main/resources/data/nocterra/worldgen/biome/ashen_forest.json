@@ -73,9 +73,9 @@
       "minecraft:monster_room_deep"
     ],
     [
+      "nocterra:region_altar",
       "nocterra:ancient_temple",
-      "nocterra:ash_sanctuary",
-      "nocterra:region_altar"
+      "nocterra:ash_sanctuary"
     ],
     [],
     [

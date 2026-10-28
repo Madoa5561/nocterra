@@ -73,7 +73,9 @@
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
     ],
-    [],
+    [
+      "nocterra:region_altar"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -114,13 +116,10 @@
       "minecraft:patch_dead_bush",
       "minecraft:patch_pumpkin",
       "minecraft:brown_mushroom_normal",
-      "minecraft:patch_leaf_litter"
-    ],
-    [],
-    [
-      "nocterra:region_altar",
+      "minecraft:patch_leaf_litter",
       "nocterra:citadel_rubble"
-    ]
+    ],
+    []
   ],
   "has_precipitation": false,
   "temperature": 0.3

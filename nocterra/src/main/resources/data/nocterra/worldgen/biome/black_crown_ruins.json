@@ -84,7 +84,10 @@
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
     ],
-    [],
+    [
+      "nocterra:region_altar",
+      "nocterra:ancient_temple"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -133,10 +136,6 @@
     ],
     [
       "minecraft:freeze_top_layer"
-    ],
-    [
-      "nocterra:region_altar",
-      "nocterra:ancient_temple"
     ]
   ],
   "has_precipitation": false,

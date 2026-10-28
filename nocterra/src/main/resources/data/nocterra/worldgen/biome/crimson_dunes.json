@@ -62,7 +62,9 @@
       "minecraft:fossil_lower",
       "minecraft:fossil_upper"
     ],
-    [],
+    [
+      "nocterra:region_altar"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -100,13 +102,10 @@
     [
       "minecraft:patch_dead_bush",
       "minecraft:brown_mushroom_normal",
-      "minecraft:patch_leaf_litter"
-    ],
-    [],
-    [
-      "nocterra:region_altar",
+      "minecraft:patch_leaf_litter",
       "nocterra:crimson_dune_rock"
-    ]
+    ],
+    []
   ],
   "has_precipitation": false,
   "temperature": 2.0

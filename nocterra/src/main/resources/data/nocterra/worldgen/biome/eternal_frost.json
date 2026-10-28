@@ -69,7 +69,9 @@
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
     ],
-    [],
+    [
+      "nocterra:region_altar"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -107,14 +109,11 @@
     ],
     [
       "minecraft:glow_lichen",
-      "minecraft:patch_dead_bush"
+      "minecraft:patch_dead_bush",
+      "nocterra:frost_spike"
     ],
     [
       "minecraft:freeze_top_layer"
-    ],
-    [
-      "nocterra:region_altar",
-      "nocterra:frost_spike"
     ]
   ],
   "has_precipitation": true,
