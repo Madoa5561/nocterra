@@ -52,3 +52,4 @@ tools/gradle/gradle-*/
 .agent/
 __pycache__/
 *.pyc
+dist-test/

@@ -47,6 +47,27 @@ GUI クライアント（`runClientJoin`）で実プレイヤーを開発サー�
 - ✅ ボス死亡時のドロップ生成、ルートテーブルのパース
 - ✅ 6 エンティティすべて `/summon` 成功・登録例外 0
 
+### 配布 JAR の本番サーバー配備テスト（第2ラウンド・実測）
+
+開発クラスパスではなく、**純正 NeoForge 26.3.0.99 専用サーバーを `--installServer` で新規導入**し、
+`mods/` に `nocterra-0.1.0-alpha.jar` と `geckolib-neoforge-26.3-5.5.7.jar` を置いて起動した。
+
+| 確認項目 | 結果 | 証拠（ログ） |
+|---|---|---|
+| 本番モードで起動 | ✅ | `Failed to find common Minecraft classes... Assuming we're launching production.` |
+| 両 MOD が jar から認識 | ✅ | Mod List: `GeckoLib 5 5.5.7 (geckolib)` / `NOCTERRA 0.1.0-alpha (nocterra)` |
+| MOD 初期化 | ✅ | `NOCTERRA combat bootstrap: attachments, data components, weapons and combat handlers registered` / `bootstrap complete ... side=DEDICATED_SERVER` |
+| サーバー完成 | ✅ | `Done (4.038s)!` |
+| 独自コマンド | ✅ | `/nocterra info` が応答 |
+| 独自ディメンション | ✅ | `nocterra:nocterra` が生成・保存され `forceload` 可能 |
+| カスタムフィーチャー | ✅ | `Placed "nocterra:ancient_temple" at 0, 74, 0` |
+| エンティティ登録 | ✅ | `Summoned new Rotwood King` / `Summoned new entity.nocterra.sorrow_saint` |
+| 例外・ERROR | ✅ 0 件 | ログ内 `Exception|ERROR` の件数 0 |
+| 正常停止 | ✅ | `Stopping the server` → 全ディメンションのチャンク保存 |
+
+検証環境は `dist-test/`（`--installServer` で生成、約 154MB）。**`.gitignore` 済み**で配布物には含めない。
+
+
 ## 実装カタログ
 
 | 分類 | 実装済み |
