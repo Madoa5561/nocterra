@@ -1,0 +1,12 @@
+{
+  "itemGroup.nocterra": "NOCTERRA",
+  "block.nocterra.gate_frame": "Ancient Gate Frame",
+  "block.nocterra.ashen_portal": "Ashen Gate",
+  "block.nocterra.ashstone": "Ashstone",
+  "block.nocterra.ash_coal_ore": "Ashen Coal Ore",
+  "block.nocterra.ashwood_log": "Ashwood Log",
+  "block.nocterra.ashwood_planks": "Ashwood Planks",
+  "item.nocterra.ember_shard": "Ember Shard",
+  "biome.nocterra.ashen_forest": "Ashen Forest",
+  "biome.nocterra.mourning_marsh": "Mourning Marsh"
+}

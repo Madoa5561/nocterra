@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "nocterra:block/ashen_portal"
+    },
+    "axis=z": {
+      "model": "nocterra:block/ashen_portal"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "nocterra:block/ashwood_log_top",
+    "side": "nocterra:block/ashwood_log"
+  }
+}

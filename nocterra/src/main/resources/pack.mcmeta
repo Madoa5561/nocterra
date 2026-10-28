@@ -1,1 +1,7 @@
-﻿{ "pack": { "description": "NOCTERRA resources", "pack_format": 99 } }
+{
+  "pack": {
+    "description": "NOCTERRA resources & data",
+    "min_format": 97,
+    "max_format": 121
+  }
+}

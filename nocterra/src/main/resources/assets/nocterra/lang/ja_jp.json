@@ -1,0 +1,12 @@
+{
+  "itemGroup.nocterra": "NOCTERRA",
+  "block.nocterra.gate_frame": "古代の門の骨組み",
+  "block.nocterra.ashen_portal": "灰冠の門",
+  "block.nocterra.ashstone": "灰石",
+  "block.nocterra.ash_coal_ore": "灰炭鉱石",
+  "block.nocterra.ashwood_log": "灰木の原木",
+  "block.nocterra.ashwood_planks": "灰木の板材",
+  "item.nocterra.ember_shard": "エンバーシャード",
+  "biome.nocterra.ashen_forest": "灰樹の森",
+  "biome.nocterra.mourning_marsh": "嘆きの湿原"
+}
