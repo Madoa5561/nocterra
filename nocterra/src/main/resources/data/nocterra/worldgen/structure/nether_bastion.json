@@ -1,0 +1,7 @@
+{
+  "type": "nocterra:nether_bastion",
+  "biomes": "#nocterra:has_nether_bastion",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin"
+}

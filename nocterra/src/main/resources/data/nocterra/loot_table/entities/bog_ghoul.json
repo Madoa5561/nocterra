@@ -64,11 +64,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:bog_iron",
-          "weight": 30
+          "weight": 35
         },
         {
           "type": "minecraft:empty",
-          "weight": 70
+          "weight": 65
         }
       ]
     },
@@ -78,11 +78,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:grave_dust",
-          "weight": 25
+          "weight": 30
         },
         {
           "type": "minecraft:empty",
-          "weight": 75
+          "weight": 70
         }
       ]
     }

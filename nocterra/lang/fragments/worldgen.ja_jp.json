@@ -11,5 +11,8 @@
   "biome.nocterra.abyssal_deeps": "深淵の海",
   "biome.nocterra.starfall_isles": "星骸の浮島",
   "biome.nocterra.eternal_frost": "永劫の氷原",
-  "biome.nocterra.molten_volcano": "黒鉄の火山"
+  "biome.nocterra.molten_volcano": "黒鉄の火山",
+  "structure.nocterra.buried_keep": "埋もれた要塞",
+  "structure.nocterra.nether_bastion": "ネザーの要塞",
+  "structure.nocterra.end_citadel": "エンドの城塞"
 }

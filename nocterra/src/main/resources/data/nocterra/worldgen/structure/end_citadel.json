@@ -1,0 +1,7 @@
+{
+  "type": "nocterra:end_citadel",
+  "biomes": "#nocterra:has_end_citadel",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "none"
+}

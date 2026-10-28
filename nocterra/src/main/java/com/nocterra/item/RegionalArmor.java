@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -37,6 +38,10 @@ public final class RegionalArmor {
 
     // ---------------------------------------------------------------- 樹脂装備（軽装）
 
+    /** 樹脂装備の修理素材タグ（Lead が data/nocterra/tags/item/repairs_resin_armor.json を作成済み）。 */
+    public static final TagKey<Item> REPAIRS_RESIN_ARMOR =
+            ItemTags.create(Identifier.fromNamespaceAndPath(Nocterra.MOD_ID, "repairs_resin_armor"));
+
     public static final ResourceKey<EquipmentAsset> RESIN_ARMOR_ASSET = asset("resin_armor");
 
     public static final ArmorMaterial RESIN_ARMOR_MATERIAL = new ArmorMaterial(
@@ -51,7 +56,7 @@ public final class RegionalArmor {
             SoundEvents.ARMOR_EQUIP_LEATHER,
             0.0F,
             0.0F,
-            ItemTags.REPAIRS_LEATHER_ARMOR,
+            REPAIRS_RESIN_ARMOR,
             RESIN_ARMOR_ASSET);
 
     public static final DeferredItem<Item> RESIN_HELMET = ITEMS.registerItem(
@@ -72,6 +77,10 @@ public final class RegionalArmor {
 
     // ---------------------------------------------------------------- 霜装備（重装）
 
+    /** 霜装備の修理素材タグ（Lead が data/nocterra/tags/item/repairs_frost_armor.json を作成済み）。 */
+    public static final TagKey<Item> REPAIRS_FROST_ARMOR =
+            ItemTags.create(Identifier.fromNamespaceAndPath(Nocterra.MOD_ID, "repairs_frost_armor"));
+
     public static final ResourceKey<EquipmentAsset> FROST_ARMOR_ASSET = asset("frost_armor");
 
     public static final ArmorMaterial FROST_ARMOR_MATERIAL = new ArmorMaterial(
@@ -86,7 +95,7 @@ public final class RegionalArmor {
             SoundEvents.ARMOR_EQUIP_IRON,
             1.0F,
             0.05F,
-            ItemTags.REPAIRS_IRON_ARMOR,
+            REPAIRS_FROST_ARMOR,
             FROST_ARMOR_ASSET);
 
     public static final DeferredItem<Item> FROST_HELMET = ITEMS.registerItem(

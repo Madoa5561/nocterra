@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 154321013,
+    "separation": 12,
+    "spacing": 40
+  },
+  "structures": [
+    {
+      "structure": "nocterra:end_citadel",
+      "weight": 1
+    }
+  ]
+}

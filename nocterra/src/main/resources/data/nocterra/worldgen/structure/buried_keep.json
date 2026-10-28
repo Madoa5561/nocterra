@@ -1,0 +1,7 @@
+{
+  "type": "nocterra:buried_keep",
+  "biomes": "#nocterra:has_buried_keep",
+  "spawn_overrides": {},
+  "step": "underground_structures",
+  "terrain_adaptation": "beard_thin"
+}

@@ -37,7 +37,7 @@ public class GraveHammerItem extends NocterraWeaponItem {
 
     @Override
     public int skillCooldownTicks() {
-        return 45;
+        return 55;
     }
 
     @Override

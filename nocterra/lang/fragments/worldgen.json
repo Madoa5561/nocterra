@@ -11,5 +11,8 @@
   "biome.nocterra.abyssal_deeps": "Abyssal Deeps",
   "biome.nocterra.starfall_isles": "Starfall Isles",
   "biome.nocterra.eternal_frost": "Eternal Frost",
-  "biome.nocterra.molten_volcano": "Molten Volcano"
+  "biome.nocterra.molten_volcano": "Molten Volcano",
+  "structure.nocterra.buried_keep": "Buried Keep",
+  "structure.nocterra.nether_bastion": "Nether Bastion",
+  "structure.nocterra.end_citadel": "End Citadel"
 }

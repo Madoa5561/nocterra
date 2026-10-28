@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.equipment.ArmorMaterial;
@@ -37,6 +38,14 @@ public final class AshenArmor {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Nocterra.MOD_ID);
 
+    /**
+     * 灰装備の修理素材タグ。
+     * 中身は Lead が {@code data/nocterra/tags/item/repairs_ashen_armor.json} で定義する。
+     * static 初期化順の都合で素材定義より先に宣言する。
+     */
+    public static final TagKey<Item> REPAIRS_ASHEN_ARMOR =
+            ItemTags.create(Identifier.fromNamespaceAndPath(Nocterra.MOD_ID, "repairs_ashen_armor"));
+
     /** 装備アセット ID。クライアント側 JSON: {@code assets/nocterra/equipment/ashen_armor.json}。 */
     public static final ResourceKey<EquipmentAsset> ASHEN_ARMOR_ASSET =
             ResourceKey.create(EquipmentAssets.ROOT_ID,
@@ -55,8 +64,8 @@ public final class AshenArmor {
             SoundEvents.ARMOR_EQUIP_IRON,
             0.0F,
             0.0F,
-            // 専用タグは data/nocterra/tags の作成が必要なため、既存タグで代用（修理素材は革）。
-            ItemTags.REPAIRS_LEATHER_ARMOR,
+            // 専用修理タグ（Lead が data/nocterra/tags/item/repairs_ashen_armor.json を作成済み）
+            REPAIRS_ASHEN_ARMOR,
             ASHEN_ARMOR_ASSET);
 
     public static final DeferredItem<Item> ASHEN_HELMET = ITEMS.registerItem(

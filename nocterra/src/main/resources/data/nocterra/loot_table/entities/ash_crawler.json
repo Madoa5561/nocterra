@@ -54,11 +54,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:ashen_fiber",
-          "weight": 40
+          "weight": 45
         },
         {
           "type": "minecraft:empty",
-          "weight": 60
+          "weight": 55
         }
       ]
     },
@@ -68,11 +68,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:grave_dust",
-          "weight": 15
+          "weight": 20
         },
         {
           "type": "minecraft:empty",
-          "weight": 85
+          "weight": 80
         }
       ]
     }

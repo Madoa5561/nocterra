@@ -44,7 +44,7 @@ public class PaleDaggerItem extends NocterraWeaponItem {
 
     @Override
     public int skillCooldownTicks() {
-        return 25;
+        return 18;
     }
 
     @Override

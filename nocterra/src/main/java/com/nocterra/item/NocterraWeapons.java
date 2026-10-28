@@ -89,7 +89,7 @@ public final class NocterraWeapons {
 
     // ---------------------------------------------------------------- 地域素材 10 種
 
-    /** 樹脂の長槍（槍）。攻撃力 8 = 1 + 7。リーチ +1.5（ENTITY_INTERACTION_RANGE）。 */
+    /** 樹脂の長槍（槍）。攻撃力 9 = 1 + 8。攻撃速度 1.4。リーチ +1.5（ENTITY_INTERACTION_RANGE）。 */
     public static final DeferredItem<ResinSpearItem> RESIN_SPEAR = ITEMS.registerItem(
             "resin_spear",
             ResinSpearItem::new,
@@ -102,13 +102,13 @@ public final class NocterraWeapons {
             VeilWandItem::new,
             properties -> properties.sword(ToolMaterial.IRON, 1.0F, -2.0F));
 
-    /** 墓土の戦槌（槌）。攻撃力 13 = 1 + 12。攻撃速度は遅い。 */
+    /** 墓土の戦槌（槌）。攻撃力 13 = 1 + 12。攻撃速度 0.8。 */
     public static final DeferredItem<GraveHammerItem> GRAVE_HAMMER = ITEMS.registerItem(
             "grave_hammer",
             GraveHammerItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 10.0F, -3.6F));
+            properties -> properties.sword(ToolMaterial.IRON, 10.0F, -3.2F));
 
-    /** 砂刃（曲刀）。攻撃力 9 = 1 + 8。攻撃速度 +0.4（baseline -2.0）。 */
+    /** 砂刃（曲刀）。攻撃力 9 = 1 + 8。攻撃速度 +0.4（baseline -2.0 / 実速度 2.0）。 */
     public static final DeferredItem<SandglassBladeItem> SANDGLASS_BLADE = ITEMS.registerItem(
             "sandglass_blade",
             SandglassBladeItem::new,
@@ -120,11 +120,11 @@ public final class NocterraWeapons {
             TidalTridentItem::new,
             properties -> properties.sword(ToolMaterial.IRON, 7.0F, -2.8F));
 
-    /** 星屑の薙刀（薙刀）。攻撃力 15 = 1 + 14。 */
+    /** 星屑の薙刀（薙刀）。攻撃力 14 = 1 + 13。攻撃速度 1.0。 */
     public static final DeferredItem<StarfallGlaiveItem> STARFALL_GLAIVE = ITEMS.registerItem(
             "starfall_glaive",
             StarfallGlaiveItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 12.0F, -3.2F));
+            properties -> properties.sword(ToolMaterial.IRON, 11.0F, -3.0F));
 
     /** 霜の大鎌（大鎌）。攻撃力 12 = 1 + 11。 */
     public static final DeferredItem<FrostScytheItem> FROST_SCYTHE = ITEMS.registerItem(
@@ -132,32 +132,32 @@ public final class NocterraWeapons {
             FrostScytheItem::new,
             properties -> properties.sword(ToolMaterial.IRON, 9.0F, -2.8F));
 
-    /** 火山の大槌（大槌）。攻撃力 16 = 1 + 15。 */
+    /** 火山の大槌（大槌）。攻撃力 15 = 1 + 14。攻撃速度 0.8。 */
     public static final DeferredItem<VolcanicMaulItem> VOLCANIC_MAUL = ITEMS.registerItem(
             "volcanic_maul",
             VolcanicMaulItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 13.0F, -3.8F));
+            properties -> properties.sword(ToolMaterial.IRON, 12.0F, -3.2F));
 
-    /** 白刃の短剣（短剣）。攻撃力 6 = 1 + 5。攻撃速度が速い。 */
+    /** 白刃の短剣（短剣）。攻撃力 5 = 1 + 2 + 2。攻撃速度 2.4。 */
     public static final DeferredItem<PaleDaggerItem> PALE_DAGGER = ITEMS.registerItem(
             "pale_dagger",
             PaleDaggerItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 3.0F, -1.4F));
+            properties -> properties.sword(ToolMaterial.IRON, 2.0F, -1.6F));
 
-    /** 冠の王笏（王笏）。攻撃力 7 = 1 + 6。 */
+    /** 冠の王笏（王笏）。攻撃力 6 = 1 + 5。 */
     public static final DeferredItem<CrownScepterItem> CROWN_SCEPTER = ITEMS.registerItem(
             "crown_scepter",
             CrownScepterItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 4.0F, -2.4F));
+            properties -> properties.sword(ToolMaterial.IRON, 3.0F, -2.4F));
 
     /**
      * 槍用の属性。{@code .sword(...)} が付ける属性を上書きし、
-     * 攻撃力 7 / 攻撃速度 -2.6 / 攻撃間合い +1.5 をまとめて設定する。
+     * 攻撃力 8（表示 9）/ 攻撃速度 -2.6 / 攻撃間合い +1.5 をまとめて設定する。
      */
     private static ItemAttributeModifiers spearAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
-                        new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 7.0, AttributeModifier.Operation.ADD_VALUE),
+                        new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID, 8.0, AttributeModifier.Operation.ADD_VALUE),
                         EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED,
                         new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, -2.6, AttributeModifier.Operation.ADD_VALUE),

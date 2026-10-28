@@ -72,7 +72,11 @@
       "minecraft:monster_room",
       "minecraft:monster_room_deep"
     ],
-    [],
+    [
+      "nocterra:ancient_temple",
+      "nocterra:ash_sanctuary",
+      "nocterra:region_altar"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -121,13 +125,11 @@
       "minecraft:patch_grass_forest",
       "minecraft:patch_leaf_litter",
       "minecraft:patch_sugar_cane",
-      "minecraft:patch_firefly_bush_near_water"
+      "minecraft:patch_firefly_bush_near_water",
+      "nocterra:ashwood_dead_tree"
     ],
     [
       "minecraft:freeze_top_layer"
-    ],
-    [
-      "#nocterra:ashen_forest_features"
     ]
   ],
   "has_precipitation": true,

@@ -54,11 +54,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:ashen_fiber",
-          "weight": 35
+          "weight": 45
         },
         {
           "type": "minecraft:empty",
-          "weight": 65
+          "weight": 55
         }
       ]
     },
@@ -68,11 +68,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:rotwood_resin",
-          "weight": 20
+          "weight": 30
         },
         {
           "type": "minecraft:empty",
-          "weight": 80
+          "weight": 70
         }
       ]
     }

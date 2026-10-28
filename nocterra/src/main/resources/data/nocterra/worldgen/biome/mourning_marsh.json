@@ -82,7 +82,9 @@
       "minecraft:fossil_lower",
       "minecraft:fossil_upper"
     ],
-    [],
+    [
+      "nocterra:region_altar"
+    ],
     [],
     [
       "minecraft:ore_dirt",
@@ -133,13 +135,11 @@
       "minecraft:brown_mushroom_normal",
       "minecraft:patch_firefly_bush_swamp",
       "minecraft:patch_firefly_bush_near_water_swamp",
-      "minecraft:patch_waterlily"
+      "minecraft:patch_waterlily",
+      "nocterra:mourning_reed"
     ],
     [
       "minecraft:freeze_top_layer"
-    ],
-    [
-      "#nocterra:mourning_marsh_features"
     ]
   ],
   "has_precipitation": true,

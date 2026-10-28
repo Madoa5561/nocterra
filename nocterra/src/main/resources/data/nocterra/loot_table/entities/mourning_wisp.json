@@ -54,11 +54,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:wisp_dust",
-          "weight": 35
+          "weight": 40
         },
         {
           "type": "minecraft:empty",
-          "weight": 65
+          "weight": 60
         }
       ]
     },
@@ -68,11 +68,11 @@
         {
           "type": "minecraft:item",
           "name": "nocterra:veil_silk",
-          "weight": 20
+          "weight": 30
         },
         {
           "type": "minecraft:empty",
-          "weight": 80
+          "weight": 70
         }
       ]
     }

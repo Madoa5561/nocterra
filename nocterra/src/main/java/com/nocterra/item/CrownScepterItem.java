@@ -41,7 +41,7 @@ public class CrownScepterItem extends NocterraWeaponItem {
 
     @Override
     public int skillCooldownTicks() {
-        return 120;
+        return 80;
     }
 
     @Override
