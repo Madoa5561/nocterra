@@ -41,11 +41,12 @@ public final class NocterraSounds {
             String id = BOSS_IDS[i];
             DeferredHolder<SoundEvent, SoundEvent>[] pair = new DeferredHolder[2];
             for (int v = 1; v <= 2; v++) {
-                final String path = "boss/" + id + "_" + v;
-                // SoundEvent の ID は sounds.json のキーと 1:1（nocterra:boss_<id>_voice<v>）
-                pair[v - 1] = SOUNDS.register("boss_" + id + "_voice" + v,
-                        () -> SoundEvent.createVariableRangeEvent(
-                                Identifier.fromNamespaceAndPath(Nocterra.MOD_ID, path)));
+                // 重要: SoundEvent の location() は登録キーと一致させる必要がある。
+                // SoundEngine は sound.location() で sounds.json のエントリを引くため、
+                // ここがずれると "Missing sound for event" になる。
+                final String key = "boss_" + id + "_voice" + v;
+                final Identifier location = Identifier.fromNamespaceAndPath(Nocterra.MOD_ID, key);
+                pair[v - 1] = SOUNDS.register(key, () -> SoundEvent.createVariableRangeEvent(location));
             }
             REGISTERED[i] = pair;
             BOSS_VOICES.put(id, pair);
