@@ -38,6 +38,12 @@ neoForge {
             client()
             programArguments.addAll '--quickPlayMultiplayer', '127.0.0.1:25565'
         }
+        // マルチプレイ検証用の 2 台目クライアント
+        clientJoin2 {
+            client()
+            programArguments.addAll '--username', 'Dev2',
+                    '--quickPlayMultiplayer', '127.0.0.1:25565'
+        }
         server {
             server()
             programArgument '--nogui'
