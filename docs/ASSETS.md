@@ -35,13 +35,16 @@
   32 解像度で約 1,850 cubes は Minecraft のエンティティ描画には重すぎる。
 - → **ゲーム内では使用しない**（手書きの 13〜16 キューブモデルを採用）。成功と偽らず「制約あり」と記録。
 
-## 2. 音声の実装状況（重要・未完了）
+## 2. 音声の実装状況（解決済み）
 
-- 24 本の OGG は **jar に同梱**、`sounds.json` も 24 イベント分を作成、`SoundEvent` も登録済み。
-- しかし**ゲーム内でサウンドイベントが解決されない**（クライアント起動時に
-  `Missing sound for event: nocterra:boss_<id>_voice<n>` が 24 件）。
-  `sounds.json` のパースエラーは出ておらず、原因を特定できていない（26.3 のサウンド解決仕様の再調査が必要）。
-- **再生は未検証**。ボス出現時に鳴らすコード（`NocterraBossVoice`）は入っているが、現状は無音。
+- 24 本の OGG は **jar に同梱**、`sounds.json` は 24 イベント分、`SoundEvent` も登録済み。
+- **解決済みのバグ**: `SoundEvent.createVariableRangeEvent(...)` に登録キーと**別の ID** を渡していたため、
+  `SoundEngine.reload()` の `soundManager.getSoundEvent(sound.location())` が解決できず、
+  クライアント起動時に `Missing sound for event` が 24 件出ていた。
+  → **SoundEvent の location を登録キー（`nocterra:boss_<id>_voice<v>`）と一致**させて解決。
+  再起動後のクライアントログで **`Missing sound` 0 件**を確認済み。
+- ボス出現時に `voice1` を再生するコード（`NocterraBossVoice`）が動作する。
+- **音が実際に聞こえるか（音量・長さ・内容）は未検証**（自動化では聴取できない）。形式・解決・送信経路までは確認済み。
 
 ## 3. 手続き生成（$0・ローカル）
 

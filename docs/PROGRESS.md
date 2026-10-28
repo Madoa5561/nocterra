@@ -50,8 +50,10 @@
 - 合計 **$2.67612**（上限 $5/サービス）: OpenAI 30 枚 $1.47 / Tripo 2 タスク $1.20（**残高 600→540 で実測**）/ Fish 24 本 $0.00612
 - ボス 12 体のポートレート（128×128）は**実際に MOD のボスバーに反映**（クライアント起動ログにスプライト欠落なし）
 - 詳細は [ASSETS.md](ASSETS.md)
-- ⚠️ **音声は未解決**: 24 本の OGG と `sounds.json` を同梱したが、クライアントが
-  `Missing sound for event: nocterra:boss_<id>_voice<n>` を 24 件出し、**再生されない**。原因未特定（26.3 のサウンド解決仕様を再調査する必要）。
+- ✅ **音声は解決**: `SoundEvent.createVariableRangeEvent` に登録キーと別の ID を渡していたのが原因
+  （`SoundEngine.reload()` は `sound.location()` で sounds.json を引く）。location を登録キーに一致させ、
+  クライアントログの `Missing sound` が **24件 → 0件** になることを確認。ボス出現時に voice1 を再生する。
+  ⚠️ 実際に聞こえるか（音量・内容）は未検証（自動化では聴取できない）。
 - ⚠️ Tripo の GLB→GeckoLib 変換は**成功したが実用外**（静的 1 ボーン・約1,850 cubes）。ゲーム内では未使用。
 
 
