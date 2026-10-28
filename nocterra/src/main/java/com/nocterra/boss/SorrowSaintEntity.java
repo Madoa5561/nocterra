@@ -500,7 +500,11 @@ public class SorrowSaintEntity extends Monster implements GeoEntity {
 
     /** 開発用: 予兆の残り tick を短縮する（0 で次 tick に発動）。 */
     public void debugSetAttackWindup(int ticks) {
-        this.attackWindup = Math.max(0, Math.min(this.attackWindup, ticks));
+        // 0 を渡したら「次の tick で発動」になるよう最低 1 に丸める。
+        // attackWindup が 0 のとき（攻撃予兆が無いとき）は何もしない。
+        if (this.attackWindup > 0) {
+            this.attackWindup = Math.max(1, Math.min(this.attackWindup, ticks));
+        }
     }
 
     /** 開発用: 亡霊召喚を即座に実行する（CD を無視）。 */
