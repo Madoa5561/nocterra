@@ -32,7 +32,7 @@ public final class NocterraStoryCommands {
                         .then(Commands.literal("sigils").executes(NocterraStoryCommands::grantAllSigils))
                         .then(Commands.literal("clear").executes(NocterraStoryCommands::clearSigils))
                         .then(Commands.literal("status").executes(NocterraStoryCommands::status))
-                        .then(Commands.literal("journal").executes(NocterraStoryCommands::status))
+                        .then(Commands.literal("journal").executes(NocterraStoryCommands::useJournal))
                         .then(Commands.literal("ending")
                                 .then(Commands.argument("kind", StringArgumentType.word())
                                         .executes(ctx -> ending(ctx, StringArgumentType.getString(ctx, "kind")))))));
@@ -74,6 +74,22 @@ public final class NocterraStoryCommands {
         }
         player.setData(ProgressionAttachments.progressionType(), new ProgressionData());
         source.sendSuccess(() -> Component.literal("progression cleared"), false);
+        return 1;
+    }
+
+    /** 探索手帳のアイテム処理をサーバー側から実行して検証する。 */
+    private static int useJournal(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        ServerPlayer player = player(context);
+        if (player == null) {
+            source.sendFailure(Component.literal("no player in this dimension"));
+            return 0;
+        }
+        net.minecraft.world.item.ItemStack stack = new net.minecraft.world.item.ItemStack(
+                com.nocterra.registry.NocterraStoryItems.EXPLORER_JOURNAL.get());
+        net.minecraft.world.InteractionResult result = stack.use(
+                player.level(), player, net.minecraft.world.InteractionHand.MAIN_HAND);
+        source.sendSuccess(() -> Component.literal("journal used: " + result), false);
         return 1;
     }
 

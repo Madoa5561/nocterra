@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nocterra:item/ashen_merchant_spawn_egg"
+  }
+}

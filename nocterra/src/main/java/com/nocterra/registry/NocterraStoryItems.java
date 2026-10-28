@@ -32,6 +32,28 @@ public final class NocterraStoryItems {
         }
     }
 
+    /** NPC スポーンエッグ（検証・配置用）。 */
+    public static final DeferredItem<Item> WARDEN_OF_ASH_SPAWN_EGG = ITEMS.registerItem(
+            "warden_of_ash_spawn_egg",
+            Item::new,
+            props -> props.spawnEgg(com.nocterra.npc.NocterraNpcs.WARDEN_OF_ASH.get()));
+    public static final DeferredItem<Item> MARSH_WIDOW_SPAWN_EGG = ITEMS.registerItem(
+            "marsh_widow_spawn_egg",
+            Item::new,
+            props -> props.spawnEgg(com.nocterra.npc.NocterraNpcs.MARSH_WIDOW.get()));
+    public static final DeferredItem<Item> BLIND_SCRIBE_SPAWN_EGG = ITEMS.registerItem(
+            "blind_scribe_spawn_egg",
+            Item::new,
+            props -> props.spawnEgg(com.nocterra.npc.NocterraNpcs.BLIND_SCRIBE.get()));
+    public static final DeferredItem<Item> GATE_KEEPER_SPAWN_EGG = ITEMS.registerItem(
+            "gate_keeper_spawn_egg",
+            Item::new,
+            props -> props.spawnEgg(com.nocterra.npc.NocterraNpcs.GATE_KEEPER.get()));
+    public static final DeferredItem<Item> ASHEN_MERCHANT_SPAWN_EGG = ITEMS.registerItem(
+            "ashen_merchant_spawn_egg",
+            Item::new,
+            props -> props.spawnEgg(com.nocterra.npc.NocterraNpcs.ASHEN_MERCHANT.get()));
+
     /** 探索手帳。 */
     public static final DeferredItem<Item> EXPLORER_JOURNAL = ITEMS.registerItem(
             "explorer_journal",

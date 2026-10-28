@@ -23,11 +23,15 @@ import net.neoforged.neoforge.client.network.ClientPacketDistributor;
  *   <li>Esc … 会話を閉じる（サーバーにも通知）</li>
  * </ul>
  *
- * <p>本文・選択肢は翻訳キーとして受け取り、この画面で解決する
- * （サーバーは文字列そのものを送らない）。選択結果は index のみをサーバーへ返し、
- * 次ノードの決定・条件判定・報酬はすべてサーバーが行う。</p>
+ * <p><b>レイアウト方針（実機フィードバック反映）</b>: パネルの高さは
+ * 「画面の GUI 高さ − 余白」を上限として、名前・選択肢・ヒントを<b>先に確保</b>し、
+ * 残りを本文に割り当てる。本文が入りきらない場合は最後の 1 行を「…」に置き換えて
+ * パネルが画面外へはみ出さないことを保証する。選択肢は常に画面内に表示される。</p>
  *
- * <p>26.3 の描画 API は {@link GuiGraphicsExtractor#extractRenderState} 方式
+ * <p>本文は {@code font.split} で行に分解し、その分解結果をそのまま描画する
+ * （測定と描画で行数がずれないようにするため）。</p>
+ *
+ * <p>26.3 の描画 API は {@link Screen#extractRenderState} 方式
  * （{@code render(GuiGraphics)} は存在しない）。</p>
  */
 public final class DialogueScreen extends Screen {
@@ -39,6 +43,13 @@ public final class DialogueScreen extends Screen {
     private static final int COLOR_HINT = 0xFF8A8298;
     private static final int COLOR_SEPARATOR = 0xFF6B4A9E;
 
+    /** 横幅の上限（広い画面で本文が縦に伸びすぎないように）。 */
+    private static final int MAX_PANEL_WIDTH = 560;
+    private static final int MIN_PANEL_WIDTH = 200;
+    /** 画面端からの余白。 */
+    private static final int SCREEN_MARGIN = 6;
+    private static final int CHOICE_ROW_HEIGHT = 13;
+
     private final int npcEntityId;
     private String npcId;
     private String textKey;
@@ -47,6 +58,7 @@ public final class DialogueScreen extends Screen {
     /** 描画時に確定する選択肢の当たり判定（x0,y0,x1,y1）。 */
     private final List<int[]> choiceBounds = new ArrayList<>();
     private int hovered = -1;
+    private boolean debugLogged;
 
     /** 連打で 2 回選択が飛ぶのを防ぐ。 */
     private long lockUntil;
@@ -72,6 +84,7 @@ public final class DialogueScreen extends Screen {
         this.choices = List.copyOf(payload.choices());
         this.hovered = -1;
         this.lockUntil = 0L;
+        this.debugLogged = false;
     }
 
     /** サーバー主導のクローズ。 */
@@ -96,21 +109,60 @@ public final class DialogueScreen extends Screen {
 
     @Override
     public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
-        int guiWidth = graphics.guiWidth();
-        int guiHeight = graphics.guiHeight();
+        int screenWidth = graphics.guiWidth();
+        int screenHeight = graphics.guiHeight();
 
-        int panelWidth = Math.min(430, Math.max(240, guiWidth - 32));
-        int innerWidth = panelWidth - 32;
+        int lineHeight = this.font.lineHeight;
+        int bodyLineHeight = lineHeight + 1;
+
+        int panelWidth = Math.min(MAX_PANEL_WIDTH, screenWidth - SCREEN_MARGIN * 2);
+        panelWidth = Math.max(MIN_PANEL_WIDTH, panelWidth);
+        int innerWidth = Math.max(40, panelWidth - 28);
         Component body = Component.translatable(this.textKey);
         List<FormattedCharSequence> bodyLines = this.font.split(body, innerWidth);
-        int bodyHeight = Math.max(1, bodyLines.size()) * (this.font.lineHeight + 1);
-        int choiceBlockHeight = this.choices.isEmpty() ? 0 : 8 + this.choices.size() * 15;
-        int panelHeight = 14 + this.font.lineHeight + 6 + bodyHeight + choiceBlockHeight + 22;
 
-        int x0 = (guiWidth - panelWidth) / 2;
-        int y0 = guiHeight - panelHeight - 12;
+        // ---- 高さの確保順: 名前 → 選択肢 → ヒント → 本文 ----
+        int padTop = 7;
+        int padBottom = 5;
+        int nameHeight = lineHeight;
+        int separatorGap = 4;
+        int bodyGap = 5;
+        int choiceGap = this.choices.isEmpty() ? 0 : 6;
+        int choiceBlock = this.choices.isEmpty() ? 0 : this.choices.size() * CHOICE_ROW_HEIGHT;
+        int hintHeight = lineHeight + 3;
+
+        int maxPanelHeight = Math.max(48, screenHeight - SCREEN_MARGIN * 2);
+
+        // ヒントは入る余裕があるときだけ出す（入力は数字キーで分かるため優先度は低い）
+        int fixedWithoutHint = padTop + nameHeight + separatorGap + bodyGap
+                + choiceGap + choiceBlock + padBottom;
+        boolean showHint = fixedWithoutHint + hintHeight + bodyLineHeight <= maxPanelHeight;
+        int fixed = fixedWithoutHint + (showHint ? hintHeight : 0);
+
+        int bodySpace = Math.max(0, maxPanelHeight - fixed);
+        int maxBodyLines = bodySpace / bodyLineHeight;
+        int bodyLineCount = Math.min(bodyLines.size(), maxBodyLines);
+        boolean truncated = bodyLineCount < bodyLines.size();
+        // 入りきらない場合は最後の 1 行を「…」表示に使う（ブロック高さは変えない）
+        int textLineCount = truncated ? Math.max(0, bodyLineCount - 1) : bodyLineCount;
+        int bodyBlockHeight = bodyLineCount * bodyLineHeight;
+
+        int panelHeight = Math.min(maxPanelHeight, fixed + bodyBlockHeight);
+        int x0 = (screenWidth - panelWidth) / 2;
+        int y0 = screenHeight - panelHeight - SCREEN_MARGIN;
+        if (y0 < SCREEN_MARGIN) {
+            y0 = SCREEN_MARGIN;
+        }
         int x1 = x0 + panelWidth;
         int y1 = y0 + panelHeight;
+
+        if (!this.debugLogged) {
+            this.debugLogged = true;
+            com.nocterra.Nocterra.LOG.info(
+                    "[NOCTERRA] dialogue panel: screen={}x{} panel={}x{} y0={} bodyLines={}/{} truncated={}",
+                    screenWidth, screenHeight, panelWidth, panelHeight, y0,
+                    textLineCount, bodyLines.size(), truncated);
+        }
 
         // 外枠（影 → 本体 → 金属枠）
         graphics.fill(x0 - 2, y0 - 2, x1 + 2, y1 + 2, 0xC00B0714);
@@ -121,26 +173,35 @@ public final class DialogueScreen extends Screen {
         graphics.fill(x1 - 2, y0, x1, y1, 0xFF4A3568);
 
         // NPC 名
+        int nameY = y0 + padTop;
         graphics.text(this.font,
                 Component.translatable("entity.nocterra." + this.npcId).withStyle(ChatFormatting.GOLD),
-                x0 + 16, y0 + 12, COLOR_NAME);
-        int separatorY = y0 + 12 + this.font.lineHeight + 1;
-        graphics.fill(x0 + 16, separatorY, x1 - 16, separatorY + 1, COLOR_SEPARATOR);
+                x0 + 14, nameY, COLOR_NAME);
 
-        // 本文
-        int bodyY = separatorY + 6;
-        graphics.textWithWordWrap(this.font, body, x0 + 16, bodyY, innerWidth, COLOR_TEXT);
+        // 区切り線
+        int separatorY = nameY + nameHeight + 2;
+        graphics.fill(x0 + 14, separatorY, x1 - 14, separatorY + 1, COLOR_SEPARATOR);
 
-        // 選択肢
+        // 本文（split した行をそのまま描画 = 測定と描画が一致する）
+        int bodyY = separatorY + 1 + bodyGap;
+        for (int i = 0; i < textLineCount; i++) {
+            graphics.text(this.font, bodyLines.get(i), x0 + 14, bodyY + i * bodyLineHeight, COLOR_TEXT);
+        }
+        if (truncated && bodyLineCount > 0) {
+            graphics.text(this.font, Component.translatable("dialogue.nocterra.more"),
+                    x0 + 14, bodyY + textLineCount * bodyLineHeight, COLOR_HINT);
+        }
+
+        // 選択肢（常に画面内）
         this.choiceBounds.clear();
         this.hovered = -1;
-        int choiceY = bodyY + bodyHeight + 8;
+        int choiceY = bodyY + bodyBlockHeight + choiceGap;
+        int left = x0 + 12;
+        int right = x1 - 12;
         for (int i = 0; i < this.choices.size(); i++) {
             DialogueOpenPayload.Choice choice = this.choices.get(i);
-            int rowTop = choiceY + i * 15;
-            int rowBottom = rowTop + 13;
-            int left = x0 + 12;
-            int right = x1 - 12;
+            int rowTop = choiceY + i * CHOICE_ROW_HEIGHT;
+            int rowBottom = rowTop + CHOICE_ROW_HEIGHT - 2;
             boolean hover = mouseX >= left && mouseX <= right && mouseY >= rowTop && mouseY <= rowBottom;
             if (hover && choice.enabled()) {
                 this.hovered = i;
@@ -151,13 +212,15 @@ public final class DialogueScreen extends Screen {
                     : (hover ? COLOR_CHOICE_HOVER : COLOR_CHOICE);
             Component label = Component.literal("[" + (i + 1) + "] ")
                     .append(Component.translatable(choice.textKey()));
-            graphics.text(this.font, label, left + 4, rowTop + 2, color);
+            graphics.text(this.font, label, left + 4, rowTop + 1, color);
             this.choiceBounds.add(new int[] {left, rowTop - 1, right, rowBottom});
         }
 
         // 操作ヒント
-        graphics.text(this.font, Component.translatable("dialogue.nocterra.hint"),
-                x0 + 16, y1 - 15, COLOR_HINT);
+        if (showHint) {
+            graphics.text(this.font, Component.translatable("dialogue.nocterra.hint"),
+                    x0 + 14, y1 - padBottom - lineHeight, COLOR_HINT);
+        }
     }
 
     // ------------------------------------------------------------------ 入力

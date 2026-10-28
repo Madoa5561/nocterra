@@ -89,7 +89,9 @@ public final class DialogueService {
             return;
         }
 
-        DialogueSession session = new DialogueSession(player.getUUID(), npc.getId(), npcId, wasDiscovered);
+        boolean endingSeen = isEndingSeen(player);
+        DialogueSession session = new DialogueSession(player.getUUID(), npc.getId(), npcId,
+                wasDiscovered, endingSeen);
         SESSIONS.put(player.getUUID(), session);
         npc.triggerTalkAnimation();
         npc.facePlayer(player);
@@ -156,7 +158,7 @@ public final class DialogueService {
         }
     }
 
-    /** プレイヤー tick から呼ぶ距離チェック。 */
+    /** プレイヤー tick から呼ぶ距離チェックと、会話中のエンディング検出。 */
     public static void validate(ServerPlayer player) {
         DialogueSession session = SESSIONS.get(player.getUUID());
         if (session == null) {
@@ -166,7 +168,18 @@ public final class DialogueService {
         if (!(entity instanceof NocterraNpc npc) || !npc.isAlive()
                 || npc.distanceToSqr(player) > MAX_DISTANCE_SQ) {
             close(player);
+            return;
         }
+        // 会話中にエンディング演出が始まったら UI を閉じる（タイトルと重ならないように）
+        if (!session.endingSeenAtOpen && isEndingSeen(player)) {
+            close(player);
+        }
+    }
+
+    /** 通常／真エンディングのいずれかを既に見たか（Lead の進行データを参照）。 */
+    private static boolean isEndingSeen(ServerPlayer player) {
+        var data = StoryProgression.of(player);
+        return data != null && (data.normalEndingSeen() || data.trueEndingSeen());
     }
 
     public static void onLogout(ServerPlayer player) {

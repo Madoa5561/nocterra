@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nocterra:item/marsh_widow_spawn_egg"
+  }
+}

@@ -55,6 +55,29 @@ public final class StoryIntro {
                 player.drop(journal, false, net.minecraft.util.Prediction.SERVER_ONLY);
             }
         }
+        // 案内人（灰の番人）を到着地点の近くに配置する（物語の入口を必ず見つけられるように）
+        if (player.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+            net.minecraft.core.BlockPos base = player.blockPosition();
+            boolean alreadyNearby = !serverLevel.getEntitiesOfClass(
+                    com.nocterra.npc.NocterraNpc.class,
+                    new net.minecraft.world.phys.AABB(base).inflate(48.0),
+                    npc -> npc.getType().equals(com.nocterra.npc.NocterraNpcs.WARDEN_OF_ASH.get())).isEmpty();
+            if (!alreadyNearby) {
+                for (int attempt = 0; attempt < 8; attempt++) {
+                    int dx = (attempt % 3) - 1;
+                    int dz = (attempt / 3) - 1;
+                    net.minecraft.core.BlockPos spot = base.offset(dx * 3, 0, dz * 3);
+                    if (serverLevel.isEmptyBlock(spot) && serverLevel.isEmptyBlock(spot.above())) {
+                        com.nocterra.npc.NocterraNpc npc =
+                                com.nocterra.npc.NocterraNpcs.spawn(serverLevel, "warden_of_ash", spot);
+                        if (npc != null) {
+                            npc.setPersistenceRequired();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.END_PORTAL_SPAWN, SoundSource.PLAYERS, 0.7F, 0.8F);
         Nocterra.LOG.info("[NOCTERRA] {} entered Nocterra for the first time",

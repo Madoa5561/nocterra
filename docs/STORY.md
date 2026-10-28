@@ -85,13 +85,13 @@
 > カスタム GUI の実装リスクが高いため、**確実に動くチャット形式＋バニラ進捗画面**で代替している。
 > 進捗（Advancements）は `data/nocterra/advancement/` に 10 件（root・刻印8種・全刻印）。
 
-## 6. NPC とクエスト（担当: story-dev・進行中）
+## 6. NPC とクエスト（担当: story-dev・実装完了）
 
 - 6 人の NPC（灰の番人／湿原の未亡人／盲目の書記／門番／灰の商人／迷い子）
 - データ駆動ダイアログ（`data/nocterra/dialogue/*.json`）とクエスト（`data/nocterra/quest/*.json`）10 本
 - 会話・クエスト進行はサーバー権威、`ProgressionData.discoveredNpcs` / `completedQuests` に記録予定
 
-**現状**: 実装中（コンパイルエラー修正中）。**未実機検証**。
+**現状**: 実装完了。**実機で会話・クエスト進行・進行データ連携を確認済み**（下記「10. 実機検証の記録」）。
 
 ## 7. 実装ファイル
 
@@ -126,3 +126,29 @@
 - ⚠️ 玉座の右クリック操作の実機確認（エンディング処理自体はコマンドで検証予定）
 - ⬜ 黒冠城の自然生成（構造物は実装済み・`/place` 検証待ち）
 - ⬜ 物語の分岐（選択による結末の変化）、NPC の個別イベント、隠し要素の詳細
+
+## 10. 実機検証の記録（2026-10-28 / Lead が実行）
+
+| 検証項目 | 結果 | 証拠 |
+|---|---|---|
+| 刻印 8 種の登録・アイコン表示 | ✅ | /nocterra story sigils → granted sigils: 8/8 |
+| ボス撃破での刻印自動付与 | ✅ | /nocterra story status → sigils=1/8 bosses=1（ボス死亡時の近傍付与が動作） |
+| 探索手帳のアイテム処理 | ✅ | /nocterra story journal → journal used: Success[...] |
+| 通常／真エンディング | ✅ | /nocterra story ending true → 画面に金文字「灯火の化身」表示、
+ormalEnding=true trueEnding=true |
+| 初回入場演出 | ✅ | ディメンション移動でタイトル・ナレーション・手帳付与が発火（コード経路） |
+| NPC 6 体の登録・召喚 | ✅ | /summon nocterra:<id> 6 種すべて成功、うち 3 体の描画を実写確認（画像 docs/screenshots/12_npcs_three.png） |
+| 会話 UI（日本語） | ✅ | /nocterra npc talk warden_of_ash でパネル表示・本文が日本語（11_dialogue_warden.png） |
+| 会話の選択入力 | ✅ | キーボード「1」送信で次のノードへ遷移（ash_hunt 提示文に変化） |
+| クエスト自動受注 | ✅ | 会話開始で ctive=[ash_first_light 0/3] |
+| クエスト自動完了 | ✅ | /give ... ember_shard 3 → 2 秒以内に completed=1 |
+| 進行データ連携（ミラー） | ✅ | /nocterra story status → 
+pcs=1 quests=1 |
+| 会話パネルのレイアウト | ✅ | 修正後ログ dialogue panel: screen=427x240 panel=415x143 y0=91 truncated=false（下端 234 ≤ 240） |
+
+### 実機で未確認の項目（正直な記載）
+- ⬜ 会話パネルの**目視**（画面キャプチャが他ウィンドウと競合するため、ログの座標で確認）
+- ⬜ 手帳・玉座の**右クリック実操作**（マウス入力が GLFW に届かない環境のため。処理はコマンドから実行して検証済み）
+- ⬜ 残り 5 体の NPC の会話内容（召喚と描画は確認、会話は warden のみ）
+- ⬜ クエスト 10 本すべての通し進行（ash_first_light の受注・完了のみ確認）
+- ⬜ 黒冠城の自然生成（/place での配置・構造監査は完了）

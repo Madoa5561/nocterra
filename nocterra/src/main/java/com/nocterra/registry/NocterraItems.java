@@ -71,6 +71,11 @@ public final class NocterraItems {
                         for (com.nocterra.progression.SigilType type : com.nocterra.progression.SigilType.values()) {
                             output.accept(com.nocterra.registry.NocterraStoryItems.sigilItem(type));
                         }
+                        output.accept(com.nocterra.registry.NocterraStoryItems.WARDEN_OF_ASH_SPAWN_EGG.get());
+                        output.accept(com.nocterra.registry.NocterraStoryItems.MARSH_WIDOW_SPAWN_EGG.get());
+                        output.accept(com.nocterra.registry.NocterraStoryItems.BLIND_SCRIBE_SPAWN_EGG.get());
+                        output.accept(com.nocterra.registry.NocterraStoryItems.GATE_KEEPER_SPAWN_EGG.get());
+                        output.accept(com.nocterra.registry.NocterraStoryItems.ASHEN_MERCHANT_SPAWN_EGG.get());
                         output.accept(com.nocterra.registry.NocterraStoryItems.EXPLORER_JOURNAL.get());
                         output.accept(BLACK_CROWN_THRONE.get());
                     })
