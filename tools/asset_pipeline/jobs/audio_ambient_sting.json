@@ -1,0 +1,20 @@
+{
+  "id": "ambient_sting_01",
+  "kind": "audio",
+  "service": "fish",
+  "model": "s2.1-pro",
+  "prompt": "A short, low, ominous ambient sting for a dark forest boss encounter. Deep sub-bass swell, distant wooden creak, faint whispering leaves, ends abruptly. No music melody, no voice.",
+  "audio": {
+    "tts_model": "s2.1-pro",
+    "format": "wav",
+    "sample_rate": 44100,
+    "latency": "normal",
+    "prosody": {
+      "speed": 0.9,
+      "volume": 0,
+      "normalize_loudness": true
+    }
+  },
+  "license_note": "AI-generated for NOCTERRA. Fish Audio terms are UNVERIFIED; confirm before release.",
+  "notes": "TTS job. Minecraft needs Ogg Vorbis: the pipeline transcodes via ffmpeg."
+}

@@ -1,0 +1,22 @@
+{
+  "id": "forest_king_model",
+  "kind": "model",
+  "service": "tripo",
+  "mode": "text_to_model",
+  "model": "v2.5-20250123",
+  "prompt": "A towering corrupted forest king: bark-armoured humanoid boss, antler crown of blackened oak, glowing amber eyes, tattered moss cloak, low-poly stylised game boss, neutral A-pose, feet together, no base, no ground plane",
+  "negative_prompt": "photorealistic, humans, text, watermark, multiple characters, complex background",
+  "params": {
+    "model_version": "v2.5-20250123",
+    "face_limit": 12000,
+    "texture": true,
+    "pbr": true,
+    "texture_quality": "standard",
+    "geometry_quality": "standard",
+    "export_uv": true,
+    "quad": false,
+    "auto_size": false
+  },
+  "license_note": "AI-generated for NOCTERRA. Tripo terms for generated models are UNVERIFIED; confirm commercial-use rights before release.",
+  "notes": "Model job; DRY RUN only until the Lead approves real Tripo spend (600 credits available)."
+}

@@ -1,0 +1,54 @@
+﻿# ---- Secrets ----
+.env
+.env.local
+*.pem
+*.key
+
+# ---- Gradle / build ----
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+**/build/
+out/
+bin/
+*.class
+
+# ---- Minecraft run dirs ----
+run/
+runs/
+logs/
+crash-reports/
+*.log
+
+# ---- IDE ----
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# ---- OS ----
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---- Generated / large assets ----
+generated_assets/raw/
+generated_assets/cache/
+generated_assets/tmp/
+generated_assets/manifests/*.tmp
+tools/gradle/*.zip
+tools/gradle/gradle-*/
+**/*.zip.part
+*.jar.tmp
+
+# ---- Temp ----
+.agent/build*.log
+.agent/tmp/
+*.tmp
+.agent/
+__pycache__/
+*.pyc

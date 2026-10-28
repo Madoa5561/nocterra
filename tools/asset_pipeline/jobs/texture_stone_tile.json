@@ -1,0 +1,27 @@
+{
+  "id": "stone_wall_tile",
+  "kind": "texture",
+  "service": "openai",
+  "model": "gpt-image-2.5-flare",
+  "prompt": "Seamless tileable 16x16 pixel-art texture of a mossy grey stone block wall for a dark fantasy Minecraft mod, flat orthographic top-down view, no lighting gradient, no border, no text, crisp single-pixel details, limited palette of 12 desaturated colours, transparent background outside the block silhouette",
+  "params": {
+    "size": "1024x1024",
+    "quality": "medium",
+    "background": "transparent",
+    "output_format": "png",
+    "n": 1,
+    "moderation": "auto"
+  },
+  "texture": {
+    "sizes": [16, 32, 64],
+    "remove_background": true,
+    "bg_method": "flood",
+    "bg_tolerance": 28,
+    "alpha_mode": "cutout",
+    "quantize_colors": 16,
+    "comparison_scale": 8,
+    "write_comparison": true
+  },
+  "license_note": "AI-generated for NOCTERRA. Provider terms for generated images are UNVERIFIED; confirm before public release.",
+  "notes": "Reference job used to demonstrate the DRY RUN path; costs nothing."
+}
