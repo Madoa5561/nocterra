@@ -98,6 +98,15 @@ public final class JournalScreen extends Screen {
                 Component.translatable("journal.nocterra.quests", this.data.questCount()), x, y, COLOR_TEXT);
         y += line + 2;
 
+        graphics.text(this.font, Component.translatable("guide.nocterra.header"), x, y, COLOR_TITLE);
+        y += line;
+        graphics.text(this.font,
+                com.nocterra.progression.NextObjective.describe(
+                        owned, SIGIL_KEYS.length, this.data.trueEnding(), this.data.normalEnding(),
+                        this.data.questCount(), this.data.npcCount()),
+                x, y, 0xFFFFE9A8);
+        y += line + 3;
+
         Component status;
         int color;
         if (this.data.trueEnding()) {

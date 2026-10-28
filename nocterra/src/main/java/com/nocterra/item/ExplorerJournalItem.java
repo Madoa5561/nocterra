@@ -73,6 +73,12 @@ public class ExplorerJournalItem extends Item {
         player.sendSystemMessage(Component.translatable("journal.nocterra.quests",
                 data.completedQuests().size()).withStyle(ChatFormatting.GREEN));
 
+        player.sendSystemMessage(Component.translatable("guide.nocterra.header")
+                .withStyle(ChatFormatting.GOLD, ChatFormatting.BOLD));
+        player.sendSystemMessage(com.nocterra.progression.NextObjective.describe(data)
+                .withStyle(ChatFormatting.YELLOW));
+        player.sendSystemMessage(Component.empty());
+
         if (data.canTrueEnding()) {
             player.sendSystemMessage(Component.translatable("journal.nocterra.ready.true")
                     .withStyle(ChatFormatting.GOLD));

@@ -266,5 +266,11 @@
   "subtitles.nocterra.music.boss_ash": "Ashen Crown (boss)",
   "subtitles.nocterra.music.boss_void": "Void Choir (boss)",
   "subtitles.nocterra.music.boss_iron": "Iron Verdict (boss)",
-  "subtitles.nocterra.music.ambient_nocterra": "Nocterra"
+  "subtitles.nocterra.music.ambient_nocterra": "Nocterra",
+  "guide.nocterra.header": "--- Next objective ---",
+  "guide.nocterra.find_npc": "First, find a soul to talk to. The Ash Warden appears where you arrive. (Sigils needed: %s)",
+  "guide.nocterra.collect_sigils": "Hunt the crowned ones in each region and claim %s more sigils.",
+  "guide.nocterra.normal_ready": "Five sigils are yours. Head to the Black Crown Castle and sit the throne. (%s more for the TRUE ending)",
+  "guide.nocterra.true_ready": "All eight sigils are yours. The throne will show you the true ending.",
+  "guide.nocterra.done": "You have witnessed both endings. Nocterra is still yours to explore."
 }

@@ -266,5 +266,11 @@
   "subtitles.nocterra.music.boss_ash": "灰冠の残響",
   "subtitles.nocterra.music.boss_void": "虚空の聖歌",
   "subtitles.nocterra.music.boss_iron": "鉄の審判",
-  "subtitles.nocterra.music.ambient_nocterra": "ノクテラの静寂"
+  "subtitles.nocterra.music.ambient_nocterra": "ノクテラの静寂",
+  "guide.nocterra.header": "--- 次の目的 ---",
+  "guide.nocterra.find_npc": "まず、話せる魂を探そう。到着地点の近くに「灰の番人」が現れる。（必要刻印: あと %s 個）",
+  "guide.nocterra.collect_sigils": "各地域の冠の者を討ち、刻印をあと %s 個集めよう。",
+  "guide.nocterra.normal_ready": "刻印が5つ揃った。黒冠城の玉座へ向かおう。（真エンディングまであと %s 個）",
+  "guide.nocterra.true_ready": "八つの刻印が揃った。玉座が真実を見せてくれる。",
+  "guide.nocterra.done": "両方の結末を見届けた。ノクテラはまだ、あなたのものだ。"
 }

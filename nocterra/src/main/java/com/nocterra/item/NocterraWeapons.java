@@ -63,29 +63,29 @@ public final class NocterraWeapons {
 
     // ---------------------------------------------------------------- ドロップ素材から作る武器
 
-    /** 灰繊維のサーベル（片手剣）。攻撃力 7 = 1 + 4 + 2。 */
+    /** 灰繊維のサーベル（片手剣）。攻撃力 7 = 1 + 4 + 2。攻撃速度 1.6。 */
     public static final DeferredItem<AshenSabreItem> ASHEN_SABRE = ITEMS.registerItem(
             "ashen_sabre",
             AshenSabreItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 4.0F, -2.2F));
+            properties -> properties.sword(ToolMaterial.IRON, 4.0F, -2.4F));
 
-    /** 沼鉄の大剣（大剣）。攻撃力 12 = 1 + 9 + 2。 */
+    /** 沼鉄の大剣（大剣）。攻撃力 12 = 1 + 9 + 2。攻撃速度 1.0。 */
     public static final DeferredItem<BogIronGreatswordItem> BOG_IRON_GREATSWORD = ITEMS.registerItem(
             "bog_iron_greatsword",
             BogIronGreatswordItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 9.0F, -3.2F));
+            properties -> properties.sword(ToolMaterial.IRON, 9.0F, -3.0F));
 
-    /** 燐粉の短剣（片手剣）。攻撃力 5 = 1 + 2 + 2、攻撃速度は速い。 */
+    /** 燐粉の短剣（短剣）。攻撃力 4 = 1 + 1 + 2。攻撃速度 2.4。 */
     public static final DeferredItem<WispglassDaggerItem> WISPGLASS_DAGGER = ITEMS.registerItem(
             "wispglass_dagger",
             WispglassDaggerItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 2.0F, -1.6F));
+            properties -> properties.sword(ToolMaterial.IRON, 1.0F, -1.6F));
 
-    /** 冠砕き（大剣）。攻撃力 14 = 1 + 11 + 2。 */
+    /** 冠砕き（大剣）。攻撃力 14 = 1 + 11 + 2。攻撃速度 1.0。 */
     public static final DeferredItem<CrownbreakerItem> CROWNBREAKER = ITEMS.registerItem(
             "crownbreaker",
             CrownbreakerItem::new,
-            properties -> properties.sword(ToolMaterial.IRON, 11.0F, -3.4F));
+            properties -> properties.sword(ToolMaterial.IRON, 11.0F, -3.0F));
 
     // ---------------------------------------------------------------- 地域素材 10 種
 
