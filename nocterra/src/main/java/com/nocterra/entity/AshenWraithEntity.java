@@ -123,6 +123,35 @@ public class AshenWraithEntity extends Monster implements GeoEntity {
     }
 
     // ------------------------------------------------------------------
+    // デバッグ用フック（Lead 所有の dev コマンドから呼ぶ想定。通常プレイでは未使用）
+    // ------------------------------------------------------------------
+
+    /** 開発用: 現在のターゲット（または指定対象）へ即座にブリンクする。 */
+    public boolean debugForceBlink(LivingEntity target) {
+        if (!(this.level() instanceof ServerLevel serverLevel)) {
+            return false;
+        }
+        if (target != null) {
+            this.setTarget(target);
+        }
+        LivingEntity current = this.getTarget();
+        if (current == null) {
+            return false;
+        }
+        boolean blinked = this.tryBlink(serverLevel, current);
+        if (blinked) {
+            this.blinkCooldown = 80;
+        }
+        return blinked;
+    }
+
+    /** 開発用: 状態を 1 行で返す（コマンド出力用）。 */
+    public String debugStatus() {
+        return "hp=" + this.getHealth() + "/" + this.getMaxHealth()
+                + " blinkCd=" + this.blinkCooldown;
+    }
+
+    // ------------------------------------------------------------------
     // 戦闘フック（アニメーションはサーバーから triggerAnim で同期される）
     // ------------------------------------------------------------------
 

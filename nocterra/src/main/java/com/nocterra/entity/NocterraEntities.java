@@ -2,6 +2,7 @@ package com.nocterra.entity;
 
 import com.nocterra.Nocterra;
 import com.nocterra.boss.RotwoodKingEntity;
+import com.nocterra.boss.SorrowSaintEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacementTypes;
@@ -20,12 +21,13 @@ import net.neoforged.neoforge.registries.DeferredRegister;
  * <ul>
  *   <li>{@link EntityAttributeCreationEvent} — モブ属性（26.3 の正規ルート）</li>
  *   <li>{@link RegisterSpawnPlacementsEvent} — 自然スポーン判定（26.3 のイベント名はこれ）</li>
- *   <li>{@link NocterraEntityItems} — スポーンエッグ（検証用）</li>
+ *   <li>{@link NocterraEntityItems} — スポーンエッグ（検証・クリエイティブタブ用）</li>
  * </ul>
  *
- * <p><b>未配線:</b> バイオームの {@code minecraft:gameplay/natural_mob_spawns} への
- * {@code nocterra:ashen_wraith} 追加は {@code data/nocterra/worldgen/biome/ashen_forest.json}
- * （Lead 所有）側の作業。詳細は Lead への報告に記載。</p>
+ * <p><b>未配線:</b> バイオームの {@code minecraft:gameplay/natural_mob_spawns} への追記は
+ * {@code data/nocterra/worldgen/biome/*.json}（Lead 所有）側の作業。
+ * ashen_forest に {@code ashen_wraith} / {@code ash_crawler}、
+ * mourning_marsh に {@code mourning_wisp} / {@code bog_ghoul} を追加する。</p>
  */
 public final class NocterraEntities {
     private NocterraEntities() {}
@@ -40,6 +42,30 @@ public final class NocterraEntities {
                             .clientTrackingRange(10)
                             .updateInterval(2));
 
+    /** 灰樹の森の這い虫。 */
+    public static final DeferredHolder<EntityType<?>, EntityType<AshCrawlerEntity>> ASH_CRAWLER =
+            ENTITIES.registerEntityType("ash_crawler", AshCrawlerEntity::new, MobCategory.MONSTER,
+                    builder -> builder
+                            .sized(1.0F, 0.8F)
+                            .clientTrackingRange(8)
+                            .updateInterval(3));
+
+    /** 嘆きの湿原の亡霊。 */
+    public static final DeferredHolder<EntityType<?>, EntityType<MourningWispEntity>> MOURNING_WISP =
+            ENTITIES.registerEntityType("mourning_wisp", MourningWispEntity::new, MobCategory.MONSTER,
+                    builder -> builder
+                            .sized(0.8F, 1.6F)
+                            .clientTrackingRange(10)
+                            .updateInterval(3));
+
+    /** 嘆きの湿原の屍鬼。 */
+    public static final DeferredHolder<EntityType<?>, EntityType<BogGhoulEntity>> BOG_GHOUL =
+            ENTITIES.registerEntityType("bog_ghoul", BogGhoulEntity::new, MobCategory.MONSTER,
+                    builder -> builder
+                            .sized(0.95F, 2.3F)
+                            .clientTrackingRange(10)
+                            .updateInterval(3));
+
     /** ボス「腐朽の森王」。 */
     public static final DeferredHolder<EntityType<?>, EntityType<RotwoodKingEntity>> ROTWOOD_KING =
             ENTITIES.registerEntityType("rotwood_king", RotwoodKingEntity::new, MobCategory.MONSTER,
@@ -48,6 +74,15 @@ public final class NocterraEntities {
                             .clientTrackingRange(12)
                             .updateInterval(2)
                             .fireImmune());
+
+    /** ボス「悲嘆の聖女」（嘆きの湿原）。浮遊型。 */
+    public static final DeferredHolder<EntityType<?>, EntityType<SorrowSaintEntity>> SORROW_SAINT =
+            ENTITIES.registerEntityType("sorrow_saint", SorrowSaintEntity::new, MobCategory.MONSTER,
+                    builder -> builder
+                            .sized(1.0F, 2.8F)
+                            .clientTrackingRange(12)
+                            .updateInterval(2)
+                            .notInPeaceful());
 
     public static void register(IEventBus modBus) {
         ENTITIES.register(modBus);
@@ -58,15 +93,27 @@ public final class NocterraEntities {
 
     private static void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(ASHEN_WRAITH.get(), AshenWraithEntity.createAttributes().build());
+        event.put(ASH_CRAWLER.get(), AshCrawlerEntity.createAttributes().build());
+        event.put(MOURNING_WISP.get(), MourningWispEntity.createAttributes().build());
+        event.put(BOG_GHOUL.get(), BogGhoulEntity.createAttributes().build());
         event.put(ROTWOOD_KING.get(), RotwoodKingEntity.createAttributes().build());
+        event.put(SORROW_SAINT.get(), SorrowSaintEntity.createAttributes().build());
     }
 
     private static void onRegisterSpawnPlacements(RegisterSpawnPlacementsEvent event) {
-        event.register(ASHEN_WRAITH.get(),
+        registerGroundMonster(event, ASHEN_WRAITH.get());
+        registerGroundMonster(event, ASH_CRAWLER.get());
+        registerGroundMonster(event, MOURNING_WISP.get());
+        registerGroundMonster(event, BOG_GHOUL.get());
+    }
+
+    private static <T extends Monster> void registerGroundMonster(
+            RegisterSpawnPlacementsEvent event, EntityType<T> type) {
+        event.register(type,
                 SpawnPlacementTypes.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (type, level, spawnReason, pos, random) ->
-                        Monster.checkMonsterSpawnRules(type, level, spawnReason, pos, random),
+                (spawnType, level, spawnReason, pos, random) ->
+                        Monster.checkMonsterSpawnRules(spawnType, level, spawnReason, pos, random),
                 RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 }

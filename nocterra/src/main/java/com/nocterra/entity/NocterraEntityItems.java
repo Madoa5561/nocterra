@@ -33,10 +33,30 @@ public final class NocterraEntityItems {
             SpawnEggItem::new,
             properties -> properties.spawnEgg(NocterraEntities.ASHEN_WRAITH.get()));
 
+    public static final DeferredItem<Item> ASH_CRAWLER_SPAWN_EGG = ITEMS.registerItem(
+            "ash_crawler_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.ASH_CRAWLER.get()));
+
+    public static final DeferredItem<Item> MOURNING_WISP_SPAWN_EGG = ITEMS.registerItem(
+            "mourning_wisp_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.MOURNING_WISP.get()));
+
+    public static final DeferredItem<Item> BOG_GHOUL_SPAWN_EGG = ITEMS.registerItem(
+            "bog_ghoul_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.BOG_GHOUL.get()));
+
     public static final DeferredItem<Item> ROTWOOD_KING_SPAWN_EGG = ITEMS.registerItem(
             "rotwood_king_spawn_egg",
             SpawnEggItem::new,
             properties -> properties.spawnEgg(NocterraEntities.ROTWOOD_KING.get()));
+
+    public static final DeferredItem<Item> SORROW_SAINT_SPAWN_EGG = ITEMS.registerItem(
+            "sorrow_saint_spawn_egg",
+            SpawnEggItem::new,
+            properties -> properties.spawnEgg(NocterraEntities.SORROW_SAINT.get()));
 
     public static void register(IEventBus modBus) {
         ITEMS.register(modBus);

@@ -1,6 +1,14 @@
 {
   "entity.nocterra.ashen_wraith": "Ashen Wraith",
+  "entity.nocterra.ash_crawler": "Ash Crawler",
+  "entity.nocterra.mourning_wisp": "Mourning Wisp",
+  "entity.nocterra.bog_ghoul": "Bog Ghoul",
   "entity.nocterra.rotwood_king": "Rotwood King",
+  "entity.nocterra.sorrow_saint": "Sorrow Saint",
   "item.nocterra.ashen_wraith_spawn_egg": "Ashen Wraith Spawn Egg",
-  "item.nocterra.rotwood_king_spawn_egg": "Rotwood King Spawn Egg"
+  "item.nocterra.ash_crawler_spawn_egg": "Ash Crawler Spawn Egg",
+  "item.nocterra.mourning_wisp_spawn_egg": "Mourning Wisp Spawn Egg",
+  "item.nocterra.bog_ghoul_spawn_egg": "Bog Ghoul Spawn Egg",
+  "item.nocterra.rotwood_king_spawn_egg": "Rotwood King Spawn Egg",
+  "item.nocterra.sorrow_saint_spawn_egg": "Sorrow Saint Spawn Egg"
 }

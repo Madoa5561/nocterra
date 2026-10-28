@@ -88,6 +88,9 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
             BossEvent.BossBarOverlay.PROGRESS);
 
     /** > 0 の間は予兆中（移動停止）。 */
+    /** 開発用: true の間は HP 由来のフェーズ自動更新を行わない（{@link #debugForcePhase} 用）。 */
+    private boolean debugPhaseLocked;
+
     private int attackWindup;
     private int attackCooldown;
     /** 0..3: 0 爪薙ぎ / 1 拳槌 / 2 呪詛 / 3 腐敗の新星。 */
@@ -223,13 +226,19 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
     }
 
     private void updatePhase(ServerLevel level) {
-        int wanted = this.getHealth() <= this.getMaxHealth() * 0.5F ? 2 : 1;
-        if (wanted == this.getPhase()) {
+        if (this.debugPhaseLocked) {
             return;
         }
+        int wanted = this.getHealth() <= this.getMaxHealth() * 0.5F ? 2 : 1;
+        if (wanted != this.getPhase()) {
+            this.applyPhase(level, wanted);
+        }
+    }
 
-        this.setPhase(wanted);
-        if (wanted == 2) {
+    /** フェーズを適用する（EntityDataAccessor 同期 + 移行演出 + 速度上昇）。 */
+    private void applyPhase(ServerLevel level, int phase) {
+        this.setPhase(phase);
+        if (phase == 2) {
             this.playSound(SoundEvents.RAVAGER_ROAR, 1.6F, 0.5F);
             level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
                     this.getX(), this.getY() + 1.8, this.getZ(), 80, 1.0, 1.2, 1.0, 0.05);
@@ -247,6 +256,11 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
 
     private void beginAttack(LivingEntity target) {
         int variant = this.getPhase() >= 2 ? this.random.nextInt(4) : this.random.nextInt(3);
+        this.startAttack(variant, target);
+    }
+
+    /** 指定バリアントで予兆を開始する（{@link #beginAttack} とデバッグ用の共通経路）。 */
+    private void startAttack(int variant, LivingEntity target) {
         this.attackVariant = variant;
         this.attackWindup = WINDUP_TICKS;
         this.getLookControl().setLookAt(target, 30.0F, 30.0F);
@@ -366,7 +380,8 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
             if (this.getTarget() != null) {
                 wraith.setTarget(this.getTarget());
             }
-            wraith.setPersistenceRequired();
+            // 永続化はしない: ボス戦後にプレイヤーが離れれば通常のデスポーンに任せる
+            // （召喚のたびに永続モブが蓄積してワールドを汚さないように）。
             level.addFreshEntity(wraith);
             level.sendParticles(ParticleTypes.SOUL, x, this.getY() + 1.0, z, 24, 0.4, 0.8, 0.4, 0.02);
         }
@@ -408,6 +423,80 @@ public class RotwoodKingEntity extends Monster implements GeoEntity {
             this.bossEvent.removeAllPlayers();
         }
         super.remove(reason);
+    }
+
+    // ------------------------------------------------------------------
+    // デバッグ用フック（Lead 所有の dev コマンドから呼ぶ想定。通常プレイでは未使用）
+    // ------------------------------------------------------------------
+
+    /**
+     * 開発用: フェーズを強制する。HP を変えずに、同期（{@code EntityDataAccessor}）と
+     * 移行演出・クライアント側 idle_enraged 選択を検証できる。
+     * 強制中は HP 由来の自動更新を止める（解除は {@link #debugReleasePhaseLock()}）。
+     */
+    public boolean debugForcePhase(int phase) {
+        if (!(this.level() instanceof ServerLevel serverLevel)) {
+            return false;
+        }
+        if (phase < 1 || phase > 2) {
+            return false;
+        }
+        this.debugPhaseLocked = true;
+        this.applyPhase(serverLevel, phase);
+        return true;
+    }
+
+    /** 開発用: フェーズの強制を解除し、HP 由来の自動更新に戻す。 */
+    public void debugReleasePhaseLock() {
+        this.debugPhaseLocked = false;
+    }
+
+    /**
+     * 開発用: 指定バリアントの攻撃予兆を開始する。{@code target} を渡すとその対象を狙う
+     * （null なら現在のターゲット）。予兆の後、通常どおり {@link #executeAttack} が走る。
+     */
+    public boolean debugForceAttack(int variant, LivingEntity target) {
+        if (!(this.level() instanceof ServerLevel)) {
+            return false;
+        }
+        if (variant < 0 || variant > 3) {
+            return false;
+        }
+        if (target != null) {
+            this.setTarget(target);
+        }
+        LivingEntity current = this.getTarget();
+        if (current == null) {
+            return false;
+        }
+        this.startAttack(variant, current);
+        return true;
+    }
+
+    /** 開発用: 予兆の残り tick を短縮する（0 で次 tick に発動）。 */
+    public void debugSetAttackWindup(int ticks) {
+        this.attackWindup = Math.max(0, Math.min(this.attackWindup, ticks));
+    }
+
+    /** 開発用: 亡霊召喚を即座に実行する（CD を無視）。 */
+    public boolean debugSummonMinions() {
+        if (!(this.level() instanceof ServerLevel serverLevel)) {
+            return false;
+        }
+        this.summonCooldown = 0;
+        this.summonMinions(serverLevel);
+        return true;
+    }
+
+    /** 開発用: 状態を 1 行で返す（コマンド出力用）。 */
+    public String debugStatus() {
+        return "phase=" + this.getPhase()
+                + " hp=" + this.getHealth() + "/" + this.getMaxHealth()
+                + " windup=" + this.attackWindup
+                + " attackCd=" + this.attackCooldown
+                + " summonCd=" + this.summonCooldown
+                + " variant=" + this.attackVariant
+                + " phaseLocked=" + this.debugPhaseLocked;
     }
 
     // ------------------------------------------------------------------

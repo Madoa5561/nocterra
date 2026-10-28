@@ -15,6 +15,18 @@
 | biome JSON の `spawners` / `spawn_costs` | **`attributes."minecraft:gameplay/natural_mob_spawns"`**（`{argument, modifier}` 形式） |
 | dimension_type JSON の `effects`, `ultrawarm` 等 | **`attributes` マップ**（`minecraft:visual/sky_color` など）。`cloud_color` は **8桁 ARGB** |
 | `pack.mcmeta` の `pack_format` | **`min_format` / `max_format`** |
+| `assets/<ns>/models/item/<name>.json` だけ置く | **`assets/<ns>/items/<name>.json` も必須**（26.3 の item model definition） |
+
+### アイテムモデル（26.3 / 1.21.4+ 方式）
+`assets/<ns>/models/item/X.json` に加えて、**`assets/<ns>/items/X.json`** が必要。
+無いと `Missing item model for location nocterra:X` となりアイテムが市松模様（紫黒）で描画される。
+
+```json
+// assets/nocterra/items/ember_shard.json
+{ "model": { "type": "minecraft:model", "model": "nocterra:item/ember_shard" } }
+// ブロックアイテムはブロックモデルを直接指してよい
+{ "model": { "type": "minecraft:model", "model": "nocterra:block/gate_frame" } }
+```
 
 ## 登録 API
 

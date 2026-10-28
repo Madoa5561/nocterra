@@ -33,6 +33,11 @@ neoForge {
         client {
             client()
         }
+        // 開発サーバーへ自動接続するクライアント（自動検証用）
+        clientJoin {
+            client()
+            programArguments.addAll '--quickPlayMultiplayer', '127.0.0.1:25565'
+        }
         server {
             server()
             programArgument '--nogui'

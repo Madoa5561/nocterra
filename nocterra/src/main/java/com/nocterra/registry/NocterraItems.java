@@ -51,6 +51,9 @@ public final class NocterraItems {
                         output.accept(ASH_COAL_ORE.get());
                         output.accept(ROTWOOD_ALTAR.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.ASHEN_WRAITH_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.ASH_CRAWLER_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.MOURNING_WISP_SPAWN_EGG.get());
+                        output.accept(com.nocterra.entity.NocterraEntityItems.BOG_GHOUL_SPAWN_EGG.get());
                         output.accept(com.nocterra.entity.NocterraEntityItems.ROTWOOD_KING_SPAWN_EGG.get());
                     })
                     .build());

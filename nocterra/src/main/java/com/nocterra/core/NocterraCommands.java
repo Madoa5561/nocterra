@@ -32,6 +32,8 @@ public final class NocterraCommands {
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
+        NocterraDevCommands.register(dispatcher);
+
         dispatcher.register(
                 Commands.literal("nocterra")
                         .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))

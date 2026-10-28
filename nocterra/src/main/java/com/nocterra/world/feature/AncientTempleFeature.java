@@ -76,13 +76,20 @@ public record AncientTempleFeature() implements Feature {
 
         // ---- 1. 地面の高さを決める -------------------------------------------------
         // WORLD_SURFACE_WG は葉や水面も拾ってしまうため、当たり判定を持つブロックだけを見る
-        // OCEAN_FLOOR_WG の中央値を使う。中央値なら木の幹 1〜2 本に引きずられない。
+        // OCEAN_FLOOR の中央値を使う。中央値なら木の幹 1〜2 本に引きずられない。
+        //
+        // heightmap の種類は OCEAN_FLOOR（= FINAL_HEIGHTMAPS）を使う。理由:
+        //   - ワールド生成中の FEATURES ステップでは、依存する TERRAIN チャンクの
+        //     FINAL_HEIGHTMAPS が ChunkStatusTasks#buildTerrain で primed 済み。
+        //   - 稼働中の ServerLevel では *_WG の heightmap は LevelChunk 昇格時に破棄され
+        //     （ChunkStatus#FINAL_HEIGHTMAPS のみ保持）、/place feature で
+        //     "Unprimed heightmap" になる。OCEAN_FLOOR は両方で利用できる。
         int diameter = HALF * 2 + 1;
         int[] heights = new int[diameter * diameter];
         int index = 0;
         for (int dx = -HALF; dx <= HALF; dx++) {
             for (int dz = -HALF; dz <= HALF; dz++) {
-                heights[index++] = level.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, centerX + dx, centerZ + dz);
+                heights[index++] = level.getHeight(Heightmap.Types.OCEAN_FLOOR, centerX + dx, centerZ + dz);
             }
         }
         Arrays.sort(heights);

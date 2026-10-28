@@ -43,7 +43,9 @@ public record MourningReedFeature() implements Feature {
         for (int attempt = 0; attempt < ATTEMPTS; attempt++) {
             int x = origin.getX() + random.nextInt(RADIUS * 2 + 1) - RADIUS;
             int z = origin.getZ() + random.nextInt(RADIUS * 2 + 1) - RADIUS;
-            int y = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, x, z);
+            // OCEAN_FLOOR はワールド生成中・稼働中サーバーの両方で利用できる heightmap
+            // （FEATURES ステップでは依存 TERRAIN チャンクの FINAL_HEIGHTMAPS が primed 済み）。
+            int y = level.getHeight(Heightmap.Types.OCEAN_FLOOR, x, z);
             BlockPos pos = new BlockPos(x, y, z);
             if (!level.isEmptyBlock(pos)) {
                 continue;

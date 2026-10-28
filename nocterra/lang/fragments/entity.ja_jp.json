@@ -1,0 +1,14 @@
+{
+  "entity.nocterra.ashen_wraith": "灰樹の亡霊",
+  "entity.nocterra.ash_crawler": "灰樹の這い虫",
+  "entity.nocterra.mourning_wisp": "嘆きの亡霊",
+  "entity.nocterra.bog_ghoul": "沼の屍鬼",
+  "entity.nocterra.rotwood_king": "腐朽の森王",
+  "entity.nocterra.sorrow_saint": "悲嘆の聖女",
+  "item.nocterra.ashen_wraith_spawn_egg": "灰樹の亡霊のスポーンエッグ",
+  "item.nocterra.ash_crawler_spawn_egg": "灰樹の這い虫のスポーンエッグ",
+  "item.nocterra.mourning_wisp_spawn_egg": "嘆きの亡霊のスポーンエッグ",
+  "item.nocterra.bog_ghoul_spawn_egg": "沼の屍鬼のスポーンエッグ",
+  "item.nocterra.rotwood_king_spawn_egg": "腐朽の森王のスポーンエッグ",
+  "item.nocterra.sorrow_saint_spawn_egg": "悲嘆の聖女のスポーンエッグ"
+}

@@ -27,6 +27,21 @@
               "type": "minecraft:skeleton",
               "count": 4,
               "weight": 70
+            },
+            {
+              "type": "nocterra:mourning_wisp",
+              "count": 1,
+              "weight": 40
+            },
+            {
+              "type": "nocterra:bog_ghoul",
+              "count": 1,
+              "weight": 30
+            },
+            {
+              "type": "nocterra:ashen_wraith",
+              "count": 1,
+              "weight": 40
             }
           ]
         }

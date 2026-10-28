@@ -31,6 +31,15 @@
               "type": "minecraft:skeleton",
               "count": 4,
               "weight": 100
+            },
+            {
+              "type": "nocterra:ash_crawler",
+              "count": {
+                "type": "minecraft:uniform",
+                "min_inclusive": 2,
+                "max_inclusive": 4
+              },
+              "weight": 60
             }
           ]
         }
