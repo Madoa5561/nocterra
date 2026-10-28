@@ -1,5 +1,8 @@
 # NOCTERRA — 灰冠の残響
 
+> 🌐 **配布ページ / 紹介サイト**: https://madoa5561.github.io/nocterra/  
+> ⬇ **ダウンロード**: https://github.com/Madoa5561/nocterra/releases
+
 Minecraft **Java Edition 26.3** / **NeoForge 26.3.0.99** / **Java 25** 向けのダークファンタジーRPG MOD（開発中）。
 
 > 本リポジトリは **開発中のビルド** です。README の「実装済み / 未実装」を必ず確認してください。
