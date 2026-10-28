@@ -78,6 +78,12 @@ public final class StoryIntro {
                 }
             }
         }
+        // 環境音楽（ノクテラの静寂）を流す
+        var ambient = com.nocterra.registry.NocterraSounds.music("ambient_nocterra");
+        if (ambient != null) {
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                    ambient, SoundSource.MUSIC, 0.7F, 1.0F);
+        }
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.END_PORTAL_SPAWN, SoundSource.PLAYERS, 0.7F, 0.8F);
         Nocterra.LOG.info("[NOCTERRA] {} entered Nocterra for the first time",
