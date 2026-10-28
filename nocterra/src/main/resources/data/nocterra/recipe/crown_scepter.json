@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:star_shard",
+    "nocterra:ember_core"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:crown_scepter"
+  }
+}

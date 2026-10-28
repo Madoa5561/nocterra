@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:crownbreaker",
+    "nocterra:shattered_crown"
+  ],
+  "result": {
+    "id": "nocterra:crownbreaker",
+    "count": 1,
+    "components": {
+      "nocterra:enhancement": 1
+    }
+  }
+}

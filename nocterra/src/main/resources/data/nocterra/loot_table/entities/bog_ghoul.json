@@ -71,6 +71,20 @@
           "weight": 70
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:grave_dust",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 75
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/bog_ghoul"

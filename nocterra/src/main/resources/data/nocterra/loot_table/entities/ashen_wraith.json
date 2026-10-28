@@ -61,6 +61,20 @@
           "weight": 65
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:rotwood_resin",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 80
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/ashen_wraith"

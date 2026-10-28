@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:volcanic_scale",
+    "nocterra:volcanic_scale",
+    "nocterra:ember_core",
+    "nocterra:ember_core",
+    "nocterra:bog_iron",
+    "nocterra:bog_iron"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:volcanic_maul"
+  }
+}

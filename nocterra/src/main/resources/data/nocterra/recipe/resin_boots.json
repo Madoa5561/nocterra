@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:rotwood_resin",
+    "nocterra:rotwood_resin",
+    "nocterra:ashen_fiber",
+    "nocterra:ashen_fiber"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:resin_boots"
+  }
+}

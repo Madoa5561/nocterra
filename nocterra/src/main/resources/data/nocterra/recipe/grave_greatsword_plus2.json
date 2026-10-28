@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:grave_greatsword",
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:grave_dust"
+  ],
+  "result": {
+    "id": "nocterra:grave_greatsword",
+    "count": 1,
+    "components": {
+      "nocterra:enhancement": 2
+    }
+  }
+}

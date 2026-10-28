@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:frost_crystal",
+    "nocterra:frost_crystal",
+    "nocterra:bog_iron",
+    "nocterra:bog_iron"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:frost_boots"
+  }
+}

@@ -61,6 +61,20 @@
           "weight": 60
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nocterra:grave_dust",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 85
+        }
+      ]
     }
   ],
   "random_sequence": "nocterra:entities/ash_crawler"

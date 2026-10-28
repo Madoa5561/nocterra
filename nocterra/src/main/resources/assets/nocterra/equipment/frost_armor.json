@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "nocterra:frost_armor"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "nocterra:frost_armor_leggings"
+      }
+    ]
+  }
+}

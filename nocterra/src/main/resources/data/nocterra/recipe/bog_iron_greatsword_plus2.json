@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:bog_iron_greatsword",
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:tidal_pearl"
+  ],
+  "result": {
+    "id": "nocterra:bog_iron_greatsword",
+    "count": 1,
+    "components": {
+      "nocterra:enhancement": 2
+    }
+  }
+}

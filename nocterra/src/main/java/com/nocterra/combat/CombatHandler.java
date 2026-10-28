@@ -152,7 +152,17 @@ public final class CombatHandler {
         amount += CombatComponents.enhancement(stack) * CombatBalance.enhancementDamagePerLevel;
 
         double multiplier = data.getComboMultiplier();
+        CombatWeapon weapon = stack.getItem() instanceof CombatWeapon candidate ? candidate : null;
+        LivingEntity target = event.getEntity();
+        if (weapon != null) {
+            multiplier *= weapon.meleeDamageMultiplier(attacker, target);
+        }
         event.setAmount((float) (amount * multiplier));
+
+        // 武器固有の近接ヒット効果（着火・移動速度低下・ノックバックなど）
+        if (weapon != null) {
+            weapon.onMeleeHit(attacker, target);
+        }
 
         int maxHits = Math.max(1, CombatBalance.comboMultipliers.length);
         int nextHits = data.getComboHits() + 1;

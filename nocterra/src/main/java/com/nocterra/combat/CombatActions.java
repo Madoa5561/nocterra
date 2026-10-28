@@ -246,6 +246,66 @@ public final class CombatActions {
         return id == null ? "" : id.toString();
     }
 
+    // ---------------------------------------------------------------- 魔力消費型の戦技
+
+    /**
+     * 魔力消費型戦技の標準前処理。クールダウン確認 → 魔力消費 → クールダウン設定。
+     *
+     * @return 発動可能なら true
+     */
+    public static boolean beginManaSkill(ServerPlayer player, ItemStack stack, double manaCost, int cooldownTicks) {
+        if (player.getCooldowns().isOnCooldown(stack)) {
+            return false;
+        }
+        CombatData data = CombatAttachments.get(player);
+        if (!data.spendMana(manaCost)) {
+            notify(player, "nocterra.message.mana_insufficient");
+            return false;
+        }
+        player.getCooldowns().addCooldown(stack, cooldownTicks);
+        CombatSync.sync(player);
+        return true;
+    }
+
+    /** 魔法ダメージ（近接扱いにしないためコンボ倍率は乗らない）。 */
+    public static boolean dealMagicDamage(ServerPlayer player, LivingEntity target, float damage) {
+        return target.hurtServer(player.level(),
+                player.level().damageSources().indirectMagic(player, player), damage);
+    }
+
+    /** 移動速度低下を付与する（スタン・氷結用）。 */
+    public static void applySlowness(LivingEntity target, int ticks, int amplifier) {
+        target.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, ticks, amplifier, false, true));
+    }
+
+    /** 着火（秒指定）。 */
+    public static void ignite(LivingEntity target, float seconds) {
+        target.igniteForSeconds(seconds);
+    }
+
+    /** 攻撃者から遠ざかる方向へ吹き飛ばす（サーバー速度同期込み）。 */
+    public static void pushAway(ServerPlayer source, LivingEntity target, double strength) {
+        Vec3 away = new Vec3(target.getX() - source.getX(), 0.0, target.getZ() - source.getZ());
+        if (away.lengthSqr() < 1.0E-4) {
+            return;
+        }
+        Vec3 push = away.normalize().scale(strength);
+        target.push(push.x, 0.25, push.z);
+        target.syncVelocity = true;
+        target.needsSync = true;
+    }
+
+    /** 周囲のプレイヤー（自分を含む）。王笏の支援戦技などで使う。 */
+    public static List<ServerPlayer> alliesNearby(ServerPlayer player, double radius) {
+        List<ServerPlayer> result = new ArrayList<>();
+        for (Entity entity : player.level().getEntities(player, player.getBoundingBox().inflate(radius),
+                candidate -> candidate instanceof ServerPlayer)) {
+            result.add((ServerPlayer) entity);
+        }
+        result.add(player);
+        return result;
+    }
+
     public static void notifyInsufficientStamina(ServerPlayer player) {
         notify(player, "nocterra.message.stamina_insufficient");
     }

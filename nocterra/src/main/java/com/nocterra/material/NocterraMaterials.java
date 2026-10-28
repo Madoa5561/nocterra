@@ -45,6 +45,41 @@ public final class NocterraMaterials {
     /** 火核: molten_steel_colossus / ember_incarnation から 100%。 */
     public static final DeferredItem<Item> EMBER_CORE = ITEMS.registerSimpleItem("ember_core", properties -> properties);
 
+    // ---------------------------------------------------------------- 地域固有素材 8 種
+    // 地域ボス 100% / その地域の一般モブ 15〜25%。武器・強化レシピで消費する。
+
+    /** 朽葉の樹脂: rotwood_king 100% / ashen_wraith 20%。 */
+    public static final DeferredItem<Item> ROTWOOD_RESIN =
+            ITEMS.registerSimpleItem("rotwood_resin", properties -> properties);
+
+    /** ベールの絹: sorrow_saint 100% / mourning_wisp 20%。 */
+    public static final DeferredItem<Item> VEIL_SILK =
+            ITEMS.registerSimpleItem("veil_silk", properties -> properties);
+
+    /** 墓土の塵: condemned_knight_lord 100% / bog_ghoul 25% / ash_crawler 15%。 */
+    public static final DeferredItem<Item> GRAVE_DUST =
+            ITEMS.registerSimpleItem("grave_dust", properties -> properties);
+
+    /** 黄金の砂: sandglass_twin_kings 100%。 */
+    public static final DeferredItem<Item> GOLDEN_SAND =
+            ITEMS.registerSimpleItem("golden_sand", properties -> properties);
+
+    /** 潮の真珠: abyssal_sea_emperor 100%。 */
+    public static final DeferredItem<Item> TIDAL_PEARL =
+            ITEMS.registerSimpleItem("tidal_pearl", properties -> properties);
+
+    /** 星屑の欠片: astel_fallen_star_dragon 100%。 */
+    public static final DeferredItem<Item> STAR_SHARD =
+            ITEMS.registerSimpleItem("star_shard", properties -> properties);
+
+    /** 霜の結晶: silver_executioner 100%。 */
+    public static final DeferredItem<Item> FROST_CRYSTAL =
+            ITEMS.registerSimpleItem("frost_crystal", properties -> properties);
+
+    /** 火山の鱗: molten_steel_colossus 100%。 */
+    public static final DeferredItem<Item> VOLCANIC_SCALE =
+            ITEMS.registerSimpleItem("volcanic_scale", properties -> properties);
+
     public static void register(IEventBus modBus) {
         ITEMS.register(modBus);
     }
@@ -60,5 +95,13 @@ public final class NocterraMaterials {
         event.accept(new ItemStack(SHATTERED_CROWN.get()));
         event.accept(new ItemStack(ABYSSAL_SCALE.get()));
         event.accept(new ItemStack(EMBER_CORE.get()));
+        event.accept(new ItemStack(ROTWOOD_RESIN.get()));
+        event.accept(new ItemStack(VEIL_SILK.get()));
+        event.accept(new ItemStack(GRAVE_DUST.get()));
+        event.accept(new ItemStack(GOLDEN_SAND.get()));
+        event.accept(new ItemStack(TIDAL_PEARL.get()));
+        event.accept(new ItemStack(STAR_SHARD.get()));
+        event.accept(new ItemStack(FROST_CRYSTAL.get()));
+        event.accept(new ItemStack(VOLCANIC_SCALE.get()));
     }
 }

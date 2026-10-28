@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:grave_dust",
+    "nocterra:grave_dust",
+    "nocterra:grave_dust",
+    "nocterra:bog_iron",
+    "nocterra:bog_iron",
+    "nocterra:ashwood_log"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:grave_hammer"
+  }
+}

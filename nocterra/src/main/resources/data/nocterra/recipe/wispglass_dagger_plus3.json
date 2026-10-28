@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:wispglass_dagger",
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:star_shard"
+  ],
+  "result": {
+    "id": "nocterra:wispglass_dagger",
+    "count": 1,
+    "components": {
+      "nocterra:enhancement": 3
+    }
+  }
+}

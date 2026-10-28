@@ -3,20 +3,23 @@ package com.nocterra.combat;
 import com.nocterra.Nocterra;
 import com.nocterra.item.AshenArmor;
 import com.nocterra.item.NocterraWeapons;
+import com.nocterra.item.RegionalArmor;
 import com.nocterra.material.NocterraMaterials;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 /**
- * 戦闘システム（スタミナ／魔力／回避／パリィ／コンボ／戦技／武器）の登録点。所有: combat 担当。
+ * 戦闘システム（スタミナ／魔力／回避／パリィ／コンボ／戦技／武器／防具／素材）の登録点。
+ * 所有: combat 担当。
  *
  * <p>サーバー権威。クライアントは表示のみ。登録するもの:</p>
  * <ul>
  *   <li>{@link CombatAttachments}: プレイヤーごとのスタミナ・魔力（AttachmentType）</li>
  *   <li>{@link CombatComponents}: 武器の強化段階・属性（Data Components）</li>
- *   <li>{@link NocterraWeapons}: 武器 7 種（DeferredRegister.Items）</li>
- *   <li>{@link NocterraMaterials}: ドロップ素材 6 種（DeferredRegister.Items）</li>
+ *   <li>{@link NocterraWeapons}: 武器 17 種（DeferredRegister.Items）</li>
+ *   <li>{@link NocterraMaterials}: ドロップ素材 14 種（基本 6 + 地域 8、DeferredRegister.Items）</li>
  *   <li>{@link AshenArmor}: 灰装備 4 種（DeferredRegister.Items + ArmorMaterial）</li>
+ *   <li>{@link RegionalArmor}: 樹脂装備 4 種 + 霜装備 4 種</li>
  *   <li>{@link CombatHandler}: 回避の無敵・パリィ・コンボ・自然回復（ゲームバス）</li>
  *   <li>クリエイティブタブへの武器・素材・防具追加</li>
  * </ul>
@@ -35,6 +38,7 @@ public final class NocterraCombat {
         NocterraWeapons.register(modBus);
         NocterraMaterials.register(modBus);
         AshenArmor.register(modBus);
+        RegionalArmor.register(modBus);
 
         // クリエイティブタブ（mod バス）
         modBus.addListener(NocterraCombat::buildCreativeTabContents);
@@ -49,5 +53,6 @@ public final class NocterraCombat {
         NocterraWeapons.addToCreativeTab(event);
         NocterraMaterials.addToCreativeTab(event);
         AshenArmor.addToCreativeTab(event);
+        RegionalArmor.addToCreativeTab(event);
     }
 }

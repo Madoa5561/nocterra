@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:ashwood_blade",
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:rotwood_resin"
+  ],
+  "result": {
+    "id": "nocterra:ashwood_blade",
+    "count": 1,
+    "components": {
+      "nocterra:enhancement": 2
+    }
+  }
+}

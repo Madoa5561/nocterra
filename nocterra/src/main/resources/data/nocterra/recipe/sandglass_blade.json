@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:golden_sand",
+    "nocterra:golden_sand",
+    "nocterra:bog_iron",
+    "nocterra:ember_shard"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:sandglass_blade"
+  }
+}

@@ -67,8 +67,11 @@ public final class CombatBalance {
 
     // ---------------------------------------------------------------- 強化・強攻撃
 
-    /** 強化 1 段階あたりの近接ダメージ加算（+0〜+5）。 */
-    public static double enhancementDamagePerLevel = 0.5;
+    /**
+     * 強化 1 段階あたりの近接ダメージ加算（+0〜+5）。
+     * 強化レシピ（+1〜+3）は +2 / +4 / +6 の攻撃力上昇になる。
+     */
+    public static double enhancementDamagePerLevel = 2.0;
     /**
      * 強攻撃のグローバル倍率。実際のダメージは
      * {@code 攻撃力 * この値 * WeaponType#heavyAttackMultiplier()}（既定 1.8〜2.2）。

@@ -3,6 +3,7 @@ package com.nocterra.core;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import com.nocterra.Nocterra;
 import com.nocterra.progression.EndingHandler;
 import com.nocterra.progression.ProgressionAttachments;
 import com.nocterra.progression.ProgressionData;
@@ -34,6 +35,10 @@ public final class NocterraStoryCommands {
                         .then(Commands.literal("status").executes(NocterraStoryCommands::status))
                         .then(Commands.literal("journal").executes(NocterraStoryCommands::useJournal))
                         .then(Commands.literal("altar").executes(NocterraStoryCommands::testAltar))
+                        .then(Commands.literal("items")
+                                .executes(NocterraStoryCommands::listItems)
+                                .then(Commands.argument("filter", StringArgumentType.word())
+                                        .executes(ctx -> listItems(ctx, StringArgumentType.getString(ctx, "filter")))))
                         .then(Commands.literal("ending")
                                 .then(Commands.argument("kind", StringArgumentType.word())
                                         .executes(ctx -> ending(ctx, StringArgumentType.getString(ctx, "kind")))))));
@@ -112,6 +117,29 @@ public final class NocterraStoryCommands {
                 serverLevel, player.blockPosition(), player);
         source.sendSuccess(() -> Component.literal("altar test: biome=" + biome + " boss=" + boss + " summoned=" + ok), false);
         return ok ? 1 : 0;
+    }
+
+    /** 登録済みの NOCTERRA アイテムを一覧する（検証用）。 */
+    private static int listItems(CommandContext<CommandSourceStack> context) {
+        return listItems(context, "");
+    }
+
+    private static int listItems(CommandContext<CommandSourceStack> context, String filter) {
+        CommandSourceStack source = context.getSource();
+        java.util.List<String> names = new java.util.ArrayList<>();
+        for (var entry : net.minecraft.core.registries.BuiltInRegistries.ITEM.entrySet()) {
+            net.minecraft.resources.Identifier id = entry.getKey().identifier();
+            if (!Nocterra.MOD_ID.equals(id.getNamespace())) {
+                continue;
+            }
+            if (!filter.isEmpty() && !id.getPath().contains(filter)) {
+                continue;
+            }
+            names.add(id.getPath());
+        }
+        java.util.Collections.sort(names);
+        source.sendSuccess(() -> Component.literal("nocterra items (" + names.size() + "): " + String.join(", ", names)), false);
+        return names.size();
     }
 
     private static int status(CommandContext<CommandSourceStack> context) {

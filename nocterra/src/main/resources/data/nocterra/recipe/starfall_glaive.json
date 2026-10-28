@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "nocterra:star_shard",
+    "nocterra:star_shard",
+    "nocterra:shattered_crown",
+    "nocterra:shattered_crown",
+    "nocterra:bog_iron",
+    "nocterra:bog_iron"
+  ],
+  "result": {
+    "count": 1,
+    "id": "nocterra:starfall_glaive"
+  }
+}
