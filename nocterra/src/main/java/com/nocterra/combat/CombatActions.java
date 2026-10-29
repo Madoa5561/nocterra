@@ -6,6 +6,8 @@ import java.util.List;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -56,6 +58,13 @@ public final class CombatActions {
 
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 0.5F, 1.6F);
+        if (player.level() instanceof ServerLevel sl) {
+            // 回避エフェクト: 残像のような雲 + 風の粒子
+            sl.sendParticles(ParticleTypes.CLOUD, player.getX(), player.getY() + 0.4, player.getZ(),
+                    14, 0.35, 0.2, 0.35, 0.06);
+            sl.sendParticles(ParticleTypes.SWEEP_ATTACK, player.getX(), player.getY() + 0.9, player.getZ(),
+                    1, 0.0, 0.0, 0.0, 0.0);
+        }
         CombatSync.sync(player);
         return true;
     }
@@ -116,12 +125,25 @@ public final class CombatActions {
         }
         data.setParryTicks(CombatBalance.parryWindowTicks);
         data.setParryCooldown(CombatBalance.parryCooldownTicks);
+        if (player.level() instanceof ServerLevel sl) {
+            // パリィ構え: 盾のような光の粒
+            sl.sendParticles(ParticleTypes.ENCHANTED_HIT, player.getX(), player.getY() + 1.0, player.getZ(),
+                    18, 0.45, 0.5, 0.45, 0.08);
+            sl.playSound(null, player.getX(), player.getY(), player.getZ(),
+                    SoundEvents.SHIELD_BLOCK, SoundSource.PLAYERS, 0.45F, 1.7F);
+        }
         CombatSync.sync(player);
         return true;
     }
 
     /** パリィ成功時のスタン（移動速度低下 2 秒）。 */
     public static void stun(LivingEntity entity) {
+        if (entity.level() instanceof ServerLevel sl) {
+            sl.sendParticles(ParticleTypes.CRIT, entity.getX(), entity.getY() + entity.getBbHeight() * 0.6,
+                    entity.getZ(), 20, 0.35, 0.45, 0.35, 0.12);
+            sl.sendParticles(ParticleTypes.END_ROD, entity.getX(), entity.getY() + entity.getBbHeight() * 0.6,
+                    entity.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
+        }
         entity.addEffect(new MobEffectInstance(
                 MobEffects.SLOWNESS,
                 CombatBalance.parryStunTicks,
