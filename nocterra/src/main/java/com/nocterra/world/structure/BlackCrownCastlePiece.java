@@ -116,7 +116,8 @@ public class BlackCrownCastlePiece extends NocterraStructurePiece {
         buildStairsToKeep(level, chunkBB);
         buildThroneRoom(level, chunkBB);
         buildLights(level, chunkBB);
-    }
+            this.scatterLootChests(level, chunkBB, "castle");
+}
 
     // ------------------------------------------------------------------ 地形
 

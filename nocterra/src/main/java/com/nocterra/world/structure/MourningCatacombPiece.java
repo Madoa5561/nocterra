@@ -63,7 +63,8 @@ public class MourningCatacombPiece extends NocterraStructurePiece {
         connectStairsToRoom(level, chunkBB);
         decorate(level, chunkBB);
         sealPassages(level, chunkBB);
-    }
+            this.scatterLootChests(level, chunkBB, "catacomb");
+}
 
     /**
      * 通路（階段・連絡路・墓所内部）の周囲を石で完全にシールする。

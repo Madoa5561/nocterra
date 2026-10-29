@@ -72,7 +72,8 @@ public class FallenFortressPiece extends NocterraStructurePiece {
         buildGate(level, chunkBB);
         buildKeep(level, chunkBB);
         buildDungeon(level, chunkBB);
-    }
+            this.scatterLootChests(level, chunkBB, "fortress");
+}
 
     // ------------------------------------------------------------------ 地形の下処理
 

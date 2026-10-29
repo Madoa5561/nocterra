@@ -1,0 +1,34 @@
+{
+  "parent": "nocterra:enter_nocterra",
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "nocterra:ash_crawler"
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.nocterra.first_blood.description"
+    },
+    "icon": {
+      "id": "nocterra:ashen_fiber"
+    },
+    "title": {
+      "translate": "advancement.nocterra.first_blood.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

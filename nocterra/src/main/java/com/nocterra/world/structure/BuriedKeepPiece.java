@@ -87,7 +87,8 @@ public class BuriedKeepPiece extends NocterraStructurePiece {
         buildPartition(level, chunkBB);
         carveEntrance(level, chunkBB);
         decorate(level, chunkBB);
-    }
+            this.scatterLootChests(level, chunkBB, "keep");
+}
 
     private void buildFoundation(WorldGenLevel level, BoundingBox chunkBB, int lx0, int lx1, int lz0, int lz1) {
         for (int lx = lx0; lx <= lx1; lx++) {

@@ -1,5 +1,6 @@
 package com.nocterra.client.dialogue;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.nocterra.npc.network.DialogueOpenPayload;
 import com.nocterra.npc.network.DialogueSelectPayload;
 import java.util.ArrayList;
@@ -227,12 +228,25 @@ public final class DialogueScreen extends Screen {
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-        int index = event.key() - 49; // GLFW_KEY_1
-        if (index >= 0 && index < 9 && index < this.choices.size()) {
+        // 26.3 の KeyEvent#key() は GLFW キーコードではなく InputConstants（SDL スキャンコード）を返す。
+        // 例: "1" は 49 ではなく 30。必ず InputConstants の定数で比較する。
+        int index = choiceIndexFor(event.key());
+        if (index >= 0 && index < this.choices.size()) {
             this.select(index);
             return true;
         }
         return super.keyPressed(event);
+    }
+
+    /** 数字キー（テンキー含む）→ 選択肢インデックス。該当なしは -1。 */
+    private static int choiceIndexFor(int key) {
+        if (key >= InputConstants.KEY_1 && key <= InputConstants.KEY_9) {
+            return key - InputConstants.KEY_1;
+        }
+        if (key >= InputConstants.KEY_NUMPAD1 && key <= InputConstants.KEY_NUMPAD9) {
+            return key - InputConstants.KEY_NUMPAD1;
+        }
+        return -1;
     }
 
     @Override

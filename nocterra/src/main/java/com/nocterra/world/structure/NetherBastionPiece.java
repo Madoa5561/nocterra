@@ -92,7 +92,8 @@ public class NetherBastionPiece extends NocterraStructurePiece {
         buildGate(level, chunkBB);
         buildAltar(level, chunkBB);
         buildLights(level, chunkBB);
-    }
+            this.scatterLootChests(level, chunkBB, "bastion");
+}
 
     private void buildFoundation(WorldGenLevel level, BoundingBox chunkBB, int lx0, int lx1, int lz0, int lz1) {
         for (int lx = lx0; lx <= lx1; lx++) {

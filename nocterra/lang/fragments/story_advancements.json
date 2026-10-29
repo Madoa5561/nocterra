@@ -1,0 +1,17 @@
+{
+  "advancement.nocterra.root.title": "Echoes of the Ashen Crown",
+  "advancement.nocterra.root.description": "The tale of Nocterra begins",
+  "advancement.nocterra.enter_nocterra.title": "Into the Ashes",
+  "advancement.nocterra.enter_nocterra.description": "Step through the Ancient Gate into Nocterra",
+  "advancement.nocterra.first_blood.title": "Ashen Dweller",
+  "advancement.nocterra.first_blood.description": "Defeat your first Nocterra creature",
+  "advancement.nocterra.region_boss.title": "Fell a Crowned One",
+  "advancement.nocterra.region_boss.description": "Defeat one of the Crowned at a region altar",
+  "advancement.nocterra.black_crown.title": "Break the Black Crown",
+  "advancement.nocterra.black_crown.description": "Defeat the Black Crowned King",
+  "advancement.nocterra.true_ending.title": "Ember Incarnate",
+  "advancement.nocterra.true_ending.description": "Reach the true ending",
+  "nocterra.boss.defeated.title": "Felled: %s",
+  "nocterra.boss.defeated.subtitle": "The crown is silent",
+  "nocterra.boss.defeated.message": "%s has fallen. Its echoes remain."
+}

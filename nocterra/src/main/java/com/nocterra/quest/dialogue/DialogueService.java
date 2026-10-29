@@ -109,6 +109,8 @@ public final class DialogueService {
     // ------------------------------------------------------------------ 選択
 
     public static void select(ServerPlayer player, int npcEntityId, int choiceIndex) {
+        com.nocterra.Nocterra.LOG.info("[NOCTERRA] dialogue select received npcEntity={} index={}",
+                npcEntityId, choiceIndex);
         DialogueSession session = SESSIONS.get(player.getUUID());
         if (session == null || session.npcEntityId != npcEntityId) {
             return;
@@ -116,6 +118,8 @@ public final class DialogueService {
         Entity entity = player.level().getEntity(npcEntityId);
         if (!(entity instanceof NocterraNpc npc) || !npc.isAlive()
                 || npc.distanceToSqr(player) > MAX_DISTANCE_SQ) {
+            com.nocterra.Nocterra.LOG.info("[NOCTERRA] dialogue close reason=npc-invalid entity={} dist2={}",
+                    entity, entity == null ? -1 : entity.distanceToSqr(player));
             close(player);
             return;
         }
@@ -174,11 +178,14 @@ public final class DialogueService {
         Entity entity = player.level().getEntity(session.npcEntityId);
         if (!(entity instanceof NocterraNpc npc) || !npc.isAlive()
                 || npc.distanceToSqr(player) > MAX_DISTANCE_SQ) {
+            com.nocterra.Nocterra.LOG.info("[NOCTERRA] dialogue close reason=npc-invalid entity={} dist2={}",
+                    entity, entity == null ? -1 : entity.distanceToSqr(player));
             close(player);
             return;
         }
         // 会話中にエンディング演出が始まったら UI を閉じる（タイトルと重ならないように）
         if (!session.endingSeenAtOpen && isEndingSeen(player)) {
+            com.nocterra.Nocterra.LOG.info("[NOCTERRA] dialogue close reason=ending-seen");
             close(player);
         }
     }

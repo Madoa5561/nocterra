@@ -240,7 +240,9 @@ public final class StoryCommands {
         NocterraNpc npc = level.getEntitiesOfClass(NocterraNpc.class,
                         player.getBoundingBox().inflate(48.0),
                         candidate -> id.equals(candidate.npcId()))
-                .stream().findFirst().orElse(null);
+                .stream()
+                .min(java.util.Comparator.comparingDouble(candidate -> candidate.distanceToSqr(player)))
+                .orElse(null);
         if (npc == null) {
             source.sendFailure(Component.literal("no '" + id + "' npc within 48 blocks of the player"));
             return 0;

@@ -1,0 +1,17 @@
+{
+  "advancement.nocterra.root.title": "灰冠の残響",
+  "advancement.nocterra.root.description": "ノクテラの物語が始まる",
+  "advancement.nocterra.enter_nocterra.title": "灰の中へ",
+  "advancement.nocterra.enter_nocterra.description": "古代の門をくぐりノクテラへ足を踏み入れる",
+  "advancement.nocterra.first_blood.title": "灰の住人",
+  "advancement.nocterra.first_blood.description": "ノクテラの敵を初めて倒す",
+  "advancement.nocterra.region_boss.title": "冠の者を討つ",
+  "advancement.nocterra.region_boss.description": "地域の祭壇で冠の者を一人倒す",
+  "advancement.nocterra.black_crown.title": "黒冠を砕く",
+  "advancement.nocterra.black_crown.description": "黒冠の王を討つ",
+  "advancement.nocterra.true_ending.title": "灯火の化身",
+  "advancement.nocterra.true_ending.description": "真エンディングに到達する",
+  "nocterra.boss.defeated.title": "討伐 ― %s",
+  "nocterra.boss.defeated.subtitle": "冠は静まった",
+  "nocterra.boss.defeated.message": "%s は倒れた。その残響は残る。"
+}

@@ -5,10 +5,13 @@ import com.nocterra.registry.NocterraSounds;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundStopSoundPacket;
 import net.minecraft.resources.Identifier;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
@@ -85,6 +88,7 @@ public final class BossMusic {
                 ServerPlayer.class, entity.getBoundingBox().inflate(NEARBY_RADIUS))) {
             player.connection.send(packet);
         }
+        playDefeatEffects(level, entity);
         Nocterra.LOG.info("[NOCTERRA] boss music '{}' stopped", track);
     }
 
@@ -122,4 +126,36 @@ public final class BossMusic {
     public static Set<String> tracks() {
         return new LinkedHashSet<>(BOSS_TRACKS.values());
     }
+
+    /** 討伐演出: 粒子・音・タイトル表示。所有: Lead。 */
+    private static void playDefeatEffects(ServerLevel level, Entity entity) {
+        Vec3 at = entity.position().add(0, entity.getBbHeight() * 0.5, 0);
+        level.sendParticles(net.minecraft.core.particles.ParticleTypes.EXPLOSION_EMITTER,
+                at.x, at.y, at.z, 1, 0.0, 0.0, 0.0, 0.0);
+        level.sendParticles(net.minecraft.core.particles.ParticleTypes.FLAME,
+                at.x, at.y, at.z, 60, 0.8, 1.0, 0.8, 0.08);
+        level.sendParticles(net.minecraft.core.particles.ParticleTypes.SOUL_FIRE_FLAME,
+                at.x, at.y, at.z, 40, 0.9, 1.2, 0.9, 0.05);
+        level.sendParticles(net.minecraft.core.particles.ParticleTypes.END_ROD,
+                at.x, at.y, at.z, 50, 0.5, 0.8, 0.5, 0.12);
+        level.playSound(null, at.x, at.y, at.z,
+                net.minecraft.sounds.SoundEvents.WITHER_DEATH,
+                net.minecraft.sounds.SoundSource.HOSTILE, 0.55F, 1.35F);
+
+        Component name = entity.getDisplayName();
+        for (ServerPlayer player : level.getEntitiesOfClass(
+                ServerPlayer.class, entity.getBoundingBox().inflate(NEARBY_RADIUS))) {
+            player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket(
+                    Component.translatable("nocterra.boss.defeated.title", name)
+                            .withStyle(ChatFormatting.GOLD)));
+            player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket(
+                    Component.translatable("nocterra.boss.defeated.subtitle")
+                            .withStyle(ChatFormatting.GRAY)));
+            player.connection.send(new net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket(
+                    10, 50, 20));
+            player.sendSystemMessage(Component.translatable("nocterra.boss.defeated.message", name)
+                    .withStyle(ChatFormatting.GOLD));
+        }
+    }
+
 }

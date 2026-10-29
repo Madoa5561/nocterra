@@ -1,0 +1,35 @@
+{
+  "parent": "nocterra:region_boss",
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "nocterra:black_crowned_king"
+          }
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.nocterra.black_crown.description"
+    },
+    "icon": {
+      "id": "nocterra:crownbreaker"
+    },
+    "title": {
+      "translate": "advancement.nocterra.black_crown.title"
+    },
+    "frame": "challenge"
+  },
+  "requirements": [
+    [
+      "kill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -79,7 +79,8 @@ public class EndCitadelPiece extends NocterraStructurePiece {
         buildCornerPillars(level, chunkBB);
         buildCentralTower(level, chunkBB);
         buildPlaza(level, chunkBB);
-    }
+            this.scatterLootChests(level, chunkBB, "citadel");
+}
 
     private void buildFoundation(WorldGenLevel level, BoundingBox chunkBB, int lx0, int lx1, int lz0, int lz1) {
         for (int lx = lx0; lx <= lx1; lx++) {

@@ -1,0 +1,29 @@
+{
+  "parent": "nocterra:root",
+  "criteria": {
+    "entered": {
+      "conditions": {
+        "to": "nocterra:nocterra"
+      },
+      "trigger": "minecraft:changed_dimension"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.nocterra.enter_nocterra.description"
+    },
+    "icon": {
+      "id": "nocterra:gate_frame"
+    },
+    "title": {
+      "translate": "advancement.nocterra.enter_nocterra.title"
+    },
+    "frame": "goal"
+  },
+  "requirements": [
+    [
+      "entered"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
