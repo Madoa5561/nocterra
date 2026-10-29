@@ -10,13 +10,13 @@
   },
   "display": {
     "description": {
-      "translate": "advancement.nocterra.enter_nocterra.description"
+      "translate": "advancements.nocterra.enter_nocterra.description"
     },
     "icon": {
       "id": "nocterra:gate_frame"
     },
     "title": {
-      "translate": "advancement.nocterra.enter_nocterra.title"
+      "translate": "advancements.nocterra.enter_nocterra.title"
     },
     "frame": "goal"
   },

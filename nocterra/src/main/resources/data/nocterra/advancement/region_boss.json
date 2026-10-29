@@ -16,13 +16,13 @@
   },
   "display": {
     "description": {
-      "translate": "advancement.nocterra.region_boss.description"
+      "translate": "advancements.nocterra.region_boss.description"
     },
     "icon": {
       "id": "nocterra:shattered_crown"
     },
     "title": {
-      "translate": "advancement.nocterra.region_boss.title"
+      "translate": "advancements.nocterra.region_boss.title"
     },
     "frame": "challenge"
   },

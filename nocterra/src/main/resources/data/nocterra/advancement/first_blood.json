@@ -16,13 +16,13 @@
   },
   "display": {
     "description": {
-      "translate": "advancement.nocterra.first_blood.description"
+      "translate": "advancements.nocterra.first_blood.description"
     },
     "icon": {
       "id": "nocterra:ashen_fiber"
     },
     "title": {
-      "translate": "advancement.nocterra.first_blood.title"
+      "translate": "advancements.nocterra.first_blood.title"
     }
   },
   "requirements": [

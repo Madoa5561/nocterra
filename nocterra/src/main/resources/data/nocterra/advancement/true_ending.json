@@ -7,13 +7,13 @@
   },
   "display": {
     "description": {
-      "translate": "advancement.nocterra.true_ending.description"
+      "translate": "advancements.nocterra.true_ending.description"
     },
     "icon": {
       "id": "nocterra:sigil_rotwood"
     },
     "title": {
-      "translate": "advancement.nocterra.true_ending.title"
+      "translate": "advancements.nocterra.true_ending.title"
     },
     "frame": "challenge",
     "hidden": true

@@ -7,7 +7,7 @@
   "display": {
     "background": "minecraft:gui/advancements/backgrounds/end",
     "description": {
-      "translate": "advancement.nocterra.root.description"
+      "translate": "advancements.nocterra.root.description"
     },
     "icon": {
       "id": "nocterra:ember_shard"
@@ -15,7 +15,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "title": {
-      "translate": "advancement.nocterra.root.title"
+      "translate": "advancements.nocterra.root.title"
     }
   },
   "requirements": [
