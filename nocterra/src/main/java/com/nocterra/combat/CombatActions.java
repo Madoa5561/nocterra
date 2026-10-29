@@ -89,6 +89,7 @@ public final class CombatActions {
                 * type.heavyAttackMultiplier());
         damage += CombatComponents.enhancement(stack) * CombatBalance.enhancementDamagePerLevel;
 
+        com.nocterra.combat.WeaponEffects.swing(player, type.reach());
         LivingEntity target = findTarget(player, type.reach(), DEFAULT_AIM_DOT);
         if (target != null && dealDamage(player, target, damage)) {
             player.level().playSound(null, target.getX(), target.getY(), target.getZ(),
@@ -173,7 +174,11 @@ public final class CombatActions {
 
     /** 通常ダメージ。無敵時間の影響を受ける（通常の被弾と同じ）。 */
     public static boolean dealDamage(ServerPlayer player, LivingEntity target, float damage) {
-        return target.hurtServer(player.level(), player.level().damageSources().playerAttack(player), damage);
+        boolean hit = target.hurtServer(player.level(), player.level().damageSources().playerAttack(player), damage);
+        if (hit) {
+            com.nocterra.combat.WeaponEffects.hit(player, target);
+        }
+        return hit;
     }
 
     /** 無敵時間をリセットしてからダメージを与える（3 連斬りのように連続ヒットさせる戦技用）。 */

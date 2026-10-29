@@ -5,111 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NOCTERRA — 灰冠の残響 | Minecraft 26.3 / NeoForge</title>
 <meta name="description" content="灰冠の夜明けから九年。滅びかけた世界ノクテラで、八つの王の刻印を集め、黒冠の玉座で2つの結末を見る。Minecraft 26.3 / NeoForge 26.3 のダークファンタジーRPG MOD。">
-<style>
-  :root{
-    --bg:#08060c; --bg2:#120c1a; --panel:#171021; --line:#332549;
-    --gold:#e8c874; --gold2:#f6e3a8; --violet:#b98cf0; --violet2:#8a5fd0;
-    --text:#e9e3f2; --dim:#9d92b0; --ok:#8fe0a0; --warn:#e8c874;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:
-      radial-gradient(1200px 700px at 50% -15%, #2a1a3e 0%, var(--bg) 62%),
-      var(--bg);
-      color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85}
-  a{color:var(--violet);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-
-  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-    background:linear-gradient(180deg,rgba(8,6,12,.92),rgba(8,6,12,.55));
-    border-bottom:1px solid var(--line)}
-  nav.top .wrap{display:flex;align-items:center;gap:18px;height:54px}
-  nav.top .brand{font-weight:800;color:var(--gold);letter-spacing:.14em}
-  nav.top .links{margin-left:auto;display:flex;gap:16px;font-size:13px;flex-wrap:wrap}
-  nav.top .links a{color:var(--dim)}
-  nav.top .links a:hover{color:var(--gold2);text-decoration:none}
-
-  header.hero{position:relative;text-align:center;padding:96px 20px 64px;overflow:hidden;
-    border-bottom:1px solid var(--line)}
-  header.hero::before{content:"";position:absolute;inset:0;
-    background:
-      radial-gradient(600px 300px at 50% 10%, rgba(185,140,240,.16), transparent 70%),
-      radial-gradient(400px 220px at 20% 80%, rgba(232,200,116,.08), transparent 70%);
-    pointer-events:none}
-  .kicker{color:var(--dim);letter-spacing:.42em;font-size:11px;text-transform:uppercase}
-  h1{margin:16px 0 6px;font-size:clamp(38px,8vw,82px);letter-spacing:.08em;color:var(--gold);
-     text-shadow:0 0 30px rgba(232,200,116,.35),0 4px 18px rgba(0,0,0,.6);line-height:1.1}
-  .sub{color:var(--violet);letter-spacing:.28em;font-size:clamp(12px,2vw,17px)}
-  .tagline{max-width:720px;margin:22px auto 0;color:#cfc6dd;font-size:15px}
-  .badges{margin-top:22px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-  .badge{font-size:11px;letter-spacing:.08em;border:1px solid var(--line);color:var(--dim);
-    padding:3px 10px;border-radius:999px;background:rgba(23,16,33,.7)}
-  .cta{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-block;padding:12px 26px;border-radius:999px;border:1px solid var(--gold);
-    color:var(--gold);font-weight:700;letter-spacing:.06em;transition:.2s}
-  .btn.primary{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#1a1206;border-color:var(--gold2)}
-  .btn.ghost{border-color:var(--line);color:var(--text)}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(232,200,116,.22);text-decoration:none}
-
-  main{position:relative}
-  section{padding:64px 0;border-bottom:1px solid rgba(51,37,73,.6)}
-  h2{font-size:clamp(21px,3vw,29px);color:var(--gold);letter-spacing:.06em;margin:0 0 8px;font-weight:800}
-  h2 .num{color:var(--violet2);font-size:13px;letter-spacing:.2em;display:block;margin-bottom:6px}
-  .lead{color:#d8d0e4;font-size:16px}
-  h3{color:var(--violet);font-size:16px;margin:26px 0 8px;letter-spacing:.04em}
-  p{color:#d2c9de}
-  ul{color:#d2c9de}
-  li{margin:4px 0}
-  .grid{display:grid;gap:14px}
-  .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-  .g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
-    border-radius:14px;padding:18px 20px;transition:.2s}
-  .card:hover{border-color:#4d3a6b;transform:translateY(-2px)}
-  .card h4{margin:0 0 6px;color:var(--gold);font-size:15px;letter-spacing:.04em}
-  .card p{margin:0;color:var(--dim);font-size:13px}
-  .card .meta{margin-top:10px;font-size:11px;color:#6f6584;letter-spacing:.06em}
-
-  .timeline{position:relative;margin:22px 0 0;padding-left:26px}
-  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
-    background:linear-gradient(180deg,var(--violet2),transparent)}
-  .ev{position:relative;margin:0 0 22px}
-  .ev::before{content:"";position:absolute;left:-24px;top:7px;width:10px;height:10px;border-radius:50%;
-    background:var(--gold);box-shadow:0 0 12px rgba(232,200,116,.8)}
-  .ev .when{color:var(--violet);font-size:12px;letter-spacing:.16em}
-  .ev .what{font-weight:700;color:var(--gold2)}
-  .ev p{margin:2px 0 0;font-size:14px;color:#cfc6dd}
-
-  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
-  th,td{padding:9px 10px;border-bottom:1px solid rgba(51,37,73,.7);text-align:left;vertical-align:top}
-  th{color:var(--gold);font-weight:700;font-size:12.5px;letter-spacing:.06em;background:rgba(23,16,33,.6)}
-  code,pre{font-family:ui-monospace,"Cascadia Code",Consolas,monospace}
-  code{background:#120c1a;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12.5px;color:#c9b8e8}
-  pre{background:#0f0a17;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:13px}
-
-  .shots{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-  .shots figure{margin:0}
-  .shots img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
-  .shots figcaption{font-size:12px;color:var(--dim);margin-top:6px}
-
-  .note{border-left:3px solid var(--gold);padding:10px 14px;background:rgba(232,200,116,.06);
-    border-radius:0 8px 8px 0;font-size:13.5px;color:#cdc3dc;margin-top:14px}
-  .tag{display:inline-block;font-size:11px;padding:1px 9px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
-  .tag.ok{border-color:#3f7a4a;color:var(--ok)}
-  .tag.warn{border-color:#7a5a2a;color:var(--warn)}
-  .flow{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
-  .step{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
-    border-radius:12px;padding:12px;font-size:13px}
-  .step b{display:block;color:var(--gold);font-size:12px;letter-spacing:.1em;margin-bottom:4px}
-  footer{padding:44px 20px 80px;text-align:center;color:var(--dim);font-size:12px}
-  .kbd{display:inline-block;min-width:20px;text-align:center;padding:1px 6px;border-radius:5px;
-    border:1px solid var(--line);background:#120c1a;font-size:12px;color:var(--gold2)}
-  .dl{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .dl .file{border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--dim)}
-</style>
+<link rel=stylesheet href=theme.css>
 </head>
 <body>
+<div class="embers" id="embers"></div>
 
 <nav class="top"><div class="wrap">
   <span class="brand">NOCTERRA</span>
@@ -149,7 +48,7 @@
 
 <main>
 
-<section id="lore"><div class="wrap">
+<section class="reveal" id="lore"><div class="wrap">
   <h2><span class="num">THE FALL</span>ノクテラの歴史</h2>
   <p class="lead">このMODの世界には、コードの外に物語があります。ゲーム内では、遺構と NPC の言葉から少しずつ明かされます。</p>
   <div class="timeline">
@@ -186,7 +85,7 @@
   </div>
 </div></section>
 
-<section id="features"><div class="wrap">
+<section class="reveal" id="features"><div class="wrap">
   <h2><span class="num">FEATURES</span>このMODでできること</h2>
   <div class="grid g3">
     <div class="card"><h4>9つの地域</h4><p>灰樹の森から黒鉄の火山まで、気候ごとに分かれた9つのバイオーム。それぞれに固有の植生・遺構・冠の者がいます。</p></div>
@@ -198,7 +97,7 @@
   </div>
 </div></section>
 
-<section id="world"><div class="wrap">
+<section class="reveal" id="world"><div class="wrap">
   <h2><span class="num">WORLD</span>9つの地域と構造物</h2>
   <div class="grid g3">
     <div class="card"><h4>灰樹の森</h4><p>灰と枯れ木。古代神殿が眠り、腐朽の祭壇がある。</p><div class="meta">腐朽の森王</div></div>
@@ -227,7 +126,7 @@
   </table>
 </div></section>
 
-<section id="bestiary"><div class="wrap">
+<section class="reveal" id="bestiary"><div class="wrap">
   <h2><span class="num">BESTIARY</span>敵とボス</h2>
   <div class="shots">
     <figure><img src="assets/20_model_sheet_bosses.png" alt="ボス12体"><figcaption>冠の者 12体（3方向プレビュー）</figcaption></figure>
@@ -244,7 +143,7 @@
   <div class="note">BGMはこのMODのために手続き合成したオリジナル曲です（外部の音源・既存曲は使っていません）。</div>
 </div></section>
 
-<section id="combat"><div class="wrap">
+<section class="reveal" id="combat"><div class="wrap">
   <h2><span class="num">COMBAT</span>戦闘と装備</h2>
   <p><span class="kbd">R</span> 回避 ／ <span class="kbd">V</span> 強攻撃 ／ <span class="kbd">F</span> パリィ ／
      <span class="kbd">G</span> 武器戦技 ／ <span class="kbd">C</span> 魔法（キーは設定画面で変更可）</p>
@@ -271,7 +170,7 @@
   </table>
 </div></section>
 
-<section id="craft"><div class="wrap">
+<section class="reveal" id="craft"><div class="wrap">
   <h2><span class="num">PROGRESSION</span>遊びの流れ</h2>
   <div class="flow">
     <div class="step"><b>STEP 1</b>エンバーシャードを作る</div>
@@ -296,7 +195,7 @@
   </div>
 </div></section>
 
-<section id="start"><div class="wrap">
+<section class="reveal" id="start"><div class="wrap">
   <h2><span class="num">GETTING STARTED</span>はじめかた（古代の門）</h2>
   <h3>1. エンバーシャードを作る</h3>
   <p>作業台で <strong>石炭 ×1 ＋ 火打石 ×1 ＋ 金インゴット ×1</strong>（シャップレス） → <strong>エンバーシャード ×2</strong></p>
@@ -327,7 +226,7 @@
   <p>手帳を右クリックすると「次の目的」が出ます。各地域の祭壇を右クリック → 冠の者を討つ → 刻印を集める → 5個で黒冠城の玉座、8個で真エンディング。</p>
 </div></section>
 
-<section id="download"><div class="wrap">
+<section class="reveal" id="download"><div class="wrap">
   <h2><span class="num">DOWNLOAD</span>ダウンロードと導入</h2>
   <div class="dl">
     <div class="file">nocterra-0.1.0-alpha.jar（約 5 MB）</div>
@@ -352,7 +251,7 @@
   </div>
 </div></section>
 
-<section id="history"><div class="wrap">
+<section class="reveal" id="history"><div class="wrap">
   <h2><span class="num">CHANGELOG</span>更新履歴</h2>
   <div class="timeline">
     <div class="ev"><div class="when">v0.1.0-alpha · 2026-10</div><div class="what">最初の公開ビルド</div>
@@ -364,7 +263,7 @@
   </div>
 </div></section>
 
-<section id="faq"><div class="wrap">
+<section class="reveal" id="faq"><div class="wrap">
   <h2><span class="num">FAQ</span>よくある質問</h2>
   <h3>Q. 門に火がつかない</h3>
   <p>A. 内側が空気か／枠が閉じているか／内側が2×3以上かを確認してください。骨組みブロックを<strong>エンバーシャード</strong>で右クリックします（v0.1.0-alpha の修正で、上下左右どの骨組みからでも点火できます）。</p>
@@ -381,7 +280,7 @@
   <p>A. 敵のドロップ素材で武器を強化してください。+1〜+3 強化、防具3セット、地域素材の武器が用意されています。</p>
 </div></section>
 
-<section id="notes"><div class="wrap">
+<section class="reveal" id="notes"><div class="wrap">
   <h2><span class="num">NOTES</span>注意と検証状況</h2>
   <p>このMODは<strong>開発中のビルド</strong>です。以下は実際に確認した範囲です。</p>
   <table>
@@ -408,5 +307,29 @@
   <a href="ITEMS.md">アイテム一覧</a>
 </footer>
 
+
+<script>
+(function(){
+  const box=document.getElementById('embers'); if(!box) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for(let i=0;i<26;i++){
+    const e=document.createElement('i');
+    e.style.left=(Math.random()*100)+'vw';
+    e.style.bottom=(-10-Math.random()*20)+'vh';
+    e.style.setProperty('--dx',((Math.random()*2-1)*60)+'px');
+    e.style.animationDuration=(9+Math.random()*14)+'s';
+    e.style.animationDelay=(-Math.random()*20)+'s';
+    e.style.opacity=(0.3+Math.random()*0.7).toFixed(2);
+    e.style.width=e.style.height=(1+Math.random()*3).toFixed(1)+'px';
+    box.appendChild(e);
+  }
+})();
+(function(){
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+</script>
 </body>
 </html>
