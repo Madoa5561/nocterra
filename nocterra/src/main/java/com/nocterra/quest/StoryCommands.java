@@ -54,7 +54,52 @@ public final class StoryCommands {
                         .then(Commands.literal("talk")
                                 .then(Commands.argument("id", StringArgumentType.word())
                                         .executes(context -> npcTalk(context,
-                                                StringArgumentType.getString(context, "id")))))));
+                                                StringArgumentType.getString(context, "id")))))
+                        .then(Commands.literal("choose")
+                                .then(Commands.argument("index",
+                                                com.mojang.brigadier.arguments.IntegerArgumentType.integer(0, 8))
+                                        .executes(context -> npcChoose(context,
+                                                com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(
+                                                        context, "index")))))
+                        .then(Commands.literal("status").executes(StoryCommands::npcStatus))));
+    }
+
+
+    /** 進行中の会話で index 番目の選択肢をサーバー側から選ぶ（クライアントUIが使えない場合のフォールバック）。 */
+    private static int npcChoose(CommandContext<CommandSourceStack> context, int index) {
+        CommandSourceStack source = context.getSource();
+        ServerPlayer player = player(context);
+        if (player == null) {
+            source.sendFailure(Component.literal("no player"));
+            return 0;
+        }
+        var session = com.nocterra.quest.dialogue.DialogueService.currentSession(player);
+        if (session == null) {
+            source.sendFailure(Component.literal("no dialogue is open"));
+            return 0;
+        }
+        com.nocterra.quest.dialogue.DialogueService.select(player, session.npcEntityId, index);
+        source.sendSuccess(() -> Component.literal("dialogue choose index=" + index), false);
+        return 1;
+    }
+
+    /** 進行中の会話の状態（ノード・選択肢数）を表示する。 */
+    private static int npcStatus(CommandContext<CommandSourceStack> context) {
+        CommandSourceStack source = context.getSource();
+        ServerPlayer player = player(context);
+        if (player == null) {
+            source.sendFailure(Component.literal("no player"));
+            return 0;
+        }
+        var session = com.nocterra.quest.dialogue.DialogueService.currentSession(player);
+        if (session == null) {
+            source.sendSuccess(() -> Component.literal("no dialogue open"), false);
+            return 0;
+        }
+        int choices = session.choices().size();
+        source.sendSuccess(() -> Component.literal(
+                "dialogue npc=" + session.npcId + " node=" + session.nodeId() + " choices=" + choices), false);
+        return choices;
     }
 
     // ------------------------------------------------------------------ quest

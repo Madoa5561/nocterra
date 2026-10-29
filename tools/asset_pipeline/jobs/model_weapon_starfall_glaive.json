@@ -1,0 +1,22 @@
+{
+  "id": "weapon_starfall_glaive",
+  "kind": "model",
+  "service": "tripo",
+  "mode": "text_to_model",
+  "model": "v2.5-20250123",
+  "prompt": "A wide-bladed glaive called Starfall: long shaft of dark wood, broad crescent blade of purple starry crystal with tiny floating shards, low-poly stylised fantasy game weapon, single object, vertical composition, no hands, no character, no base, no ground plane",
+  "negative_prompt": "photorealistic, hands, human, character, text, watermark, multiple objects, complex background, base, ground plane",
+  "params": {
+    "model_version": "v2.5-20250123",
+    "face_limit": 8000,
+    "texture": true,
+    "pbr": false,
+    "texture_quality": "standard",
+    "geometry_quality": "standard",
+    "export_uv": true,
+    "quad": false,
+    "auto_size": false
+  },
+  "license_note": "AI-generated for NOCTERRA. Tripo terms UNVERIFIED; confirm commercial use before release.",
+  "notes": "Weapon model job approved by the user (Tripo budget /service)."
+}

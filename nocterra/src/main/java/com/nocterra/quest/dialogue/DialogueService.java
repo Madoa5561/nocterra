@@ -21,6 +21,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import org.jspecify.annotations.Nullable;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -50,6 +51,12 @@ public final class DialogueService {
     private static final Map<UUID, DialogueSession> SESSIONS = new HashMap<>();
 
     // ------------------------------------------------------------------ 開始
+
+
+    /** 進行中の会話セッション（なければ null）。所有: Lead（デバッグ・フォールバック用）。 */
+    public static @Nullable DialogueSession currentSession(ServerPlayer player) {
+        return SESSIONS.get(player.getUUID());
+    }
 
     public static void open(ServerPlayer player, NocterraNpc npc) {
         String npcId = npc.npcId();

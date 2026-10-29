@@ -1,0 +1,167 @@
+{
+  "ashwood_blade": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\ashwood_blade.png"
+  },
+  "grave_greatsword": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\grave_greatsword.png"
+  },
+  "mourning_scythe": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\mourning_scythe.png"
+  },
+  "ashen_sabre": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\ashen_sabre.png"
+  },
+  "bog_iron_greatsword": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\bog_iron_greatsword.png"
+  },
+  "wispglass_dagger": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\wispglass_dagger.png"
+  },
+  "crownbreaker": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\crownbreaker.png"
+  },
+  "resin_spear": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\resin_spear.png"
+  },
+  "veil_wand": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\veil_wand.png"
+  },
+  "grave_hammer": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\grave_hammer.png"
+  },
+  "sandglass_blade": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\sandglass_blade.png"
+  },
+  "tidal_trident": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\tidal_trident.png"
+  },
+  "starfall_glaive": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\starfall_glaive.png"
+  },
+  "frost_scythe": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\frost_scythe.png"
+  },
+  "volcanic_maul": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\volcanic_maul.png"
+  },
+  "pale_dagger": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\pale_dagger.png"
+  },
+  "crown_scepter": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\crown_scepter.png"
+  },
+  "ashen_fiber": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\ashen_fiber.png"
+  },
+  "wisp_dust": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\wisp_dust.png"
+  },
+  "bog_iron": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\bog_iron.png"
+  },
+  "shattered_crown": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\shattered_crown.png"
+  },
+  "abyssal_scale": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\abyssal_scale.png"
+  },
+  "ember_core": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\ember_core.png"
+  },
+  "rotwood_resin": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\rotwood_resin.png"
+  },
+  "veil_silk": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\veil_silk.png"
+  },
+  "grave_dust": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\grave_dust.png"
+  },
+  "golden_sand": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\golden_sand.png"
+  },
+  "tidal_pearl": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\tidal_pearl.png"
+  },
+  "star_shard": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\star_shard.png"
+  },
+  "frost_crystal": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\frost_crystal.png"
+  },
+  "volcanic_scale": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\volcanic_scale.png"
+  },
+  "ember_shard": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\ember_shard.png"
+  },
+  "explorer_journal": {
+    "ok": true,
+    "cost_usd": 0.02,
+    "raw": "C:\\Users\\2674469\\Desktop\\mcmod\\generated_assets\\processed\\icons_ai\\explorer_journal.png"
+  }
+}
