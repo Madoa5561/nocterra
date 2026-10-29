@@ -23,16 +23,16 @@ Minecraft **Java Edition 26.3** / **NeoForge 26.3.0.99** / **Java 25** 向けの
 $env:JAVA_HOME="C:\Program Files\Java\jdk-25.0.5.0.2"
 cd nocterra
 .\gradlew.bat build
-# 生成物: nocterra/build/libs/nocterra-0.1.0-alpha.jar
+# 生成物: nocterra/build/libs/nocterra-0.2.0-alpha.jar
 ```
 
 ### 配布 JAR の実配備テスト（実施済み）
 
 純正の **NeoForge 26.3.0.99 専用サーバー**（`java -jar neoforge-installer.jar --installServer` で導入）に
-`mods/nocterra-0.1.0-alpha.jar` と `mods/geckolib-neoforge-26.3-5.5.7.jar` を置いて起動し、以下を確認済み:
+`mods/nocterra-0.2.0-alpha.jar` と `mods/geckolib-neoforge-26.3-5.5.7.jar` を置いて起動し、以下を確認済み:
 
 - `Assuming we're launching production.`（開発環境ではなく本番モード）
-- Mod List に `NOCTERRA 0.1.0-alpha` と `GeckoLib 5 5.5.7` が表示され、`Done (4.038s)!` で起動
+- Mod List に `NOCTERRA 0.2.0-alpha` と `GeckoLib 5 5.5.7` が表示され、`Done (4.038s)!` で起動
 - `/nocterra info` 応答、`nocterra:nocterra` ディメンション生成、`/place feature nocterra:ancient_temple` 成功、
   2 ボスの `/summon` 成功、ログ内の例外 **0 件**
 - 停止も正常（`Stopping the server` → チャンク保存）
