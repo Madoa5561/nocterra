@@ -32,6 +32,8 @@ public final class NocterraStructureTypes {
     public static final Identifier BURIED_KEEP_PIECE = id("buried_keep_piece");
     public static final Identifier NETHER_BASTION_PIECE = id("nether_bastion_piece");
     public static final Identifier END_CITADEL_PIECE = id("end_citadel_piece");
+    public static final Identifier GRAND_CASTLE = id("grand_castle");
+    public static final Identifier GRAND_CASTLE_PIECE = id("grand_castle_piece");
 
     private static final AtomicBoolean TYPES_REGISTERED = new AtomicBoolean(false);
     private static final AtomicBoolean PIECES_REGISTERED = new AtomicBoolean(false);
@@ -54,6 +56,7 @@ public final class NocterraStructureTypes {
             event.register(Registries.STRUCTURE_TYPE, BURIED_KEEP, () -> BuriedKeepStructure.TYPE);
             event.register(Registries.STRUCTURE_TYPE, NETHER_BASTION, () -> NetherBastionStructure.TYPE);
             event.register(Registries.STRUCTURE_TYPE, END_CITADEL, () -> EndCitadelStructure.TYPE);
+            event.register(Registries.STRUCTURE_TYPE, GRAND_CASTLE, () -> GrandCastleStructure.TYPE);
         }
         if (event.getRegistry(Registries.STRUCTURE_PIECE) != null && PIECES_REGISTERED.compareAndSet(false, true)) {
             event.register(Registries.STRUCTURE_PIECE, FALLEN_FORTRESS_PIECE, () -> FallenFortressPiece.TYPE);
@@ -62,6 +65,7 @@ public final class NocterraStructureTypes {
             event.register(Registries.STRUCTURE_PIECE, BURIED_KEEP_PIECE, () -> BuriedKeepPiece.TYPE);
             event.register(Registries.STRUCTURE_PIECE, NETHER_BASTION_PIECE, () -> NetherBastionPiece.TYPE);
             event.register(Registries.STRUCTURE_PIECE, END_CITADEL_PIECE, () -> EndCitadelPiece.TYPE);
+            event.register(Registries.STRUCTURE_PIECE, GRAND_CASTLE_PIECE, () -> GrandCastlePiece.TYPE);
         }
     }
 }

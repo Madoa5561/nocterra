@@ -1,0 +1,7 @@
+{
+  "type": "nocterra:grand_castle",
+  "biomes": "#nocterra:has_grand_castle",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "none"
+}

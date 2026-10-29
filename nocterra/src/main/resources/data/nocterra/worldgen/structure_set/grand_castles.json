@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 77331191,
+    "separation": 28,
+    "spacing": 96
+  },
+  "structures": [
+    {
+      "structure": "nocterra:grand_castle",
+      "weight": 1
+    }
+  ]
+}

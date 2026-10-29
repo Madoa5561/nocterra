@@ -145,4 +145,40 @@ public abstract class NocterraStructurePiece extends StructurePiece {
         h ^= h >>> 13;
         return h;
     }
+
+    /**
+     * 指定ローカル座標にモブスポナーを置く（空気＋床ありの場所のみ）。所有: Lead。
+     *
+     * @param entityPath {@code nocterra:<entityPath>} のモブを出す
+     */
+    protected void placeSpawner(WorldGenLevel level, BoundingBox chunkBB,
+                                int localX, int relY, int localZ, String entityPath) {
+        int wx = this.originX + localX;
+        int wy = this.baseY + relY;
+        int wz = this.originZ + localZ;
+        if (wx < chunkBB.minX() || wx > chunkBB.maxX()
+                || wy < chunkBB.minY() || wy > chunkBB.maxY()
+                || wz < chunkBB.minZ() || wz > chunkBB.maxZ()) {
+            return;
+        }
+        BlockPos pos = new BlockPos(wx, wy, wz);
+        BlockState here = level.getBlockState(pos);
+        if (!here.isAir() && !here.is(Blocks.CAVE_AIR)) {
+            return;
+        }
+        if (!level.getBlockState(pos.below()).isSolid()) {
+            return;
+        }
+        var found = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE
+                .get(net.minecraft.resources.Identifier.fromNamespaceAndPath("nocterra", entityPath));
+        if (found.isEmpty()) {
+            return;
+        }
+        level.setBlock(pos, Blocks.SPAWNER.defaultBlockState(), 2);
+        if (level.getBlockEntity(pos)
+                instanceof net.minecraft.world.level.block.entity.SpawnerBlockEntity spawner) {
+            spawner.setEntityId(found.get().value(), level.getRandom());
+        }
+    }
+
 }
