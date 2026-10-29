@@ -46,6 +46,20 @@ public class AshenPortalBlock extends Block implements Portal {
         builder.add(AXIS);
     }
 
+
+    /** 当たり判定は空にする（バニラのネザーポータルと同じ）。 */
+    @Override
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos,
+                                           CollisionContext context) {
+        return Shapes.empty();
+    }
+
+    /** 隣接面のカリングを行わない（見た目が欠けないように）。 */
+    @Override
+    protected boolean skipRendering(BlockState state, BlockState adjacentState, Direction direction) {
+        return adjacentState.is(this);
+    }
+
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
