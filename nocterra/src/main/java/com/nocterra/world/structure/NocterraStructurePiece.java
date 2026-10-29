@@ -94,7 +94,6 @@ public abstract class NocterraStructurePiece extends StructurePiece {
      * 壁の中・空中（床なし）は自動でスキップする。
      */
     protected void scatterLootChests(WorldGenLevel level, BoundingBox chunkBB, String lootId) {
-                lootId, this.originX, this.originZ, chunkBB);
         int sizeX = this.boundingBox.maxX() - this.boundingBox.minX() + 1;
         int sizeZ = this.boundingBox.maxZ() - this.boundingBox.minZ() + 1;
         int[] xs = {sizeX / 2, sizeX / 4, (sizeX * 3) / 4, sizeX / 2 + 2, sizeX / 2 - 2};
