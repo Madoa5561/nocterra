@@ -37,13 +37,12 @@ public class EmberShardItem extends Item {
             axis = context.getHorizontalDirection().getAxis();
         }
 
-        Optional<AshenPortalShape> shape = AshenPortalShape.findEmptyPortalShape(level, clicked, axis);
-        if (shape.isEmpty()) {
-            return InteractionResult.PASS;
-        }
-
+        // 骨組みをクリックするため、隣接する内部マスを起点に形状を探索する
         if (!level.isClientSide()) {
-            shape.get().createPortalBlocks(level);
+            boolean lit = AshenPortalShape.igniteNearFrame(level, clicked, axis);
+            if (!lit) {
+                return InteractionResult.PASS;
+            }
             level.playSound(null, clicked, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.7F, 0.6F);
         }
 

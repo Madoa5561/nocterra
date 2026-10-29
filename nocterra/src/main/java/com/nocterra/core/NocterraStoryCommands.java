@@ -35,6 +35,14 @@ public final class NocterraStoryCommands {
                         .then(Commands.literal("status").executes(NocterraStoryCommands::status))
                         .then(Commands.literal("journal").executes(NocterraStoryCommands::useJournal))
                         .then(Commands.literal("altar").executes(NocterraStoryCommands::testAltar))
+                        .then(Commands.literal("ignite")
+                                .then(Commands.argument("x", com.mojang.brigadier.arguments.IntegerArgumentType.integer())
+                                        .then(Commands.argument("y", com.mojang.brigadier.arguments.IntegerArgumentType.integer())
+                                                .then(Commands.argument("z", com.mojang.brigadier.arguments.IntegerArgumentType.integer())
+                                                        .executes(ctx -> ignite(ctx,
+                                                                com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "x"),
+                                                                com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "y"),
+                                                                com.mojang.brigadier.arguments.IntegerArgumentType.getInteger(ctx, "z")))))))
                         .then(Commands.literal("items")
                                 .executes(NocterraStoryCommands::listItems)
                                 .then(Commands.argument("filter", StringArgumentType.word())
@@ -117,6 +125,17 @@ public final class NocterraStoryCommands {
                 serverLevel, player.blockPosition(), player);
         source.sendSuccess(() -> Component.literal("altar test: biome=" + biome + " boss=" + boss + " summoned=" + ok), false);
         return ok ? 1 : 0;
+    }
+
+    /** 骨組みブロックの点火をサーバー側から検証する（EmberShardItem と同じ経路）。 */
+    private static int ignite(CommandContext<CommandSourceStack> context, int x, int y, int z) {
+        CommandSourceStack source = context.getSource();
+        var pos = new net.minecraft.core.BlockPos(x, y, z);
+        var level = source.getLevel();
+        boolean lit = com.nocterra.world.portal.AshenPortalShape.igniteNearFrame(
+                level, pos, net.minecraft.core.Direction.Axis.X);
+        source.sendSuccess(() -> Component.literal("ignite at " + pos + " -> " + lit), false);
+        return lit ? 1 : 0;
     }
 
     /** 登録済みの NOCTERRA アイテムを一覧する（検証用）。 */

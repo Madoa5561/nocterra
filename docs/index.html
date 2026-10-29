@@ -3,325 +3,404 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NOCTERRA — 灰冠の残響</title>
-<meta name="description" content="Minecraft 26.3 / NeoForge 26.3 向けダークファンタジーRPG MOD「NOCTERRA — 灰冠の残響」。9つの地域、12の冠の者、8つの刻印、そして2つの結末。">
+<title>NOCTERRA — 灰冠の残響 | Minecraft 26.3 / NeoForge</title>
+<meta name="description" content="灰冠の夜明けから九年。滅びかけた世界ノクテラで、八つの王の刻印を集め、黒冠の玉座で2つの結末を見る。Minecraft 26.3 / NeoForge 26.3 のダークファンタジーRPG MOD。">
 <style>
-  :root {
-    --bg: #0b0710;
-    --bg2: #150e1f;
-    --panel: #1b1226;
-    --line: #3a2a52;
-    --gold: #e8c874;
-    --violet: #b98cf0;
-    --text: #e9e3f2;
-    --dim: #9d92b0;
+  :root{
+    --bg:#08060c; --bg2:#120c1a; --panel:#171021; --line:#332549;
+    --gold:#e8c874; --gold2:#f6e3a8; --violet:#b98cf0; --violet2:#8a5fd0;
+    --text:#e9e3f2; --dim:#9d92b0; --ok:#8fe0a0; --warn:#e8c874;
   }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: radial-gradient(1200px 600px at 50% -10%, #2a1a3e 0%, var(--bg) 60%);
-    color: var(--text);
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif;
-    line-height: 1.8;
-  }
-  a { color: var(--violet); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  header.hero {
-    padding: 72px 20px 56px;
-    text-align: center;
-    border-bottom: 1px solid var(--line);
-    background: linear-gradient(180deg, rgba(60,30,90,.35), rgba(11,7,16,0));
-  }
-  .kicker { color: var(--dim); letter-spacing: .3em; font-size: 12px; }
-  h1 {
-    margin: 14px 0 6px;
-    font-size: clamp(34px, 7vw, 68px);
-    letter-spacing: .06em;
-    color: var(--gold);
-    text-shadow: 0 0 24px rgba(232,200,116,.35);
-  }
-  .subtitle { color: var(--violet); font-size: clamp(14px, 2.4vw, 20px); letter-spacing: .2em; }
-  .meta { margin-top: 18px; color: var(--dim); font-size: 13px; }
-  .meta span { margin: 0 8px; }
-  .cta { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-block; padding: 12px 26px; border-radius: 999px;
-    border: 1px solid var(--gold); color: var(--gold); font-weight: 700; letter-spacing: .06em;
-    transition: .2s;
-  }
-  .btn.primary { background: var(--gold); color: #1a1206; }
-  .btn:hover { transform: translateY(-2px); text-decoration: none; box-shadow: 0 8px 24px rgba(232,200,116,.25); }
-  main { max-width: 1040px; margin: 0 auto; padding: 8px 20px 80px; }
-  section { padding: 44px 0; border-bottom: 1px solid rgba(58,42,82,.6); }
-  h2 {
-    font-size: 24px; color: var(--gold); letter-spacing: .08em; margin: 0 0 18px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  h2::before { content: "◆"; color: var(--violet); font-size: 14px; }
-  h3 { color: var(--violet); font-size: 17px; margin: 24px 0 8px; }
-  p { color: #d6cee2; }
-  .lead { font-size: 17px; color: #efe9f7; }
-  .grid { display: grid; gap: 14px; }
-  .g2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .g3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-  .card {
-    background: linear-gradient(180deg, var(--panel), var(--bg2));
-    border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px;
-  }
-  .card h4 { margin: 0 0 6px; color: var(--gold); font-size: 15px; letter-spacing: .04em; }
-  .card p { margin: 0; font-size: 13px; color: var(--dim); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
-  th, td { padding: 9px 10px; border-bottom: 1px solid rgba(58,42,82,.7); text-align: left; }
-  th { color: var(--gold); font-weight: 600; font-size: 13px; letter-spacing: .04em; }
-  td { color: #d6cee2; }
-  .tag {
-    display: inline-block; font-size: 11px; padding: 2px 9px; border-radius: 999px;
-    border: 1px solid var(--line); color: var(--dim); margin-right: 4px;
-  }
-  .tag.ok { border-color: #3f7a4a; color: #8fe0a0; }
-  .tag.warn { border-color: #7a5a2a; color: #e8c874; }
-  .shots { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .shots figure { margin: 0; }
-  .shots img { width: 100%; border-radius: 10px; border: 1px solid var(--line); display: block; }
-  .shots figcaption { font-size: 12px; color: var(--dim); margin-top: 6px; }
-  code, pre {
-    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    background: #120c1b; border: 1px solid var(--line); border-radius: 8px;
-  }
-  code { padding: 2px 6px; font-size: 13px; }
-  pre { padding: 14px 16px; overflow-x: auto; font-size: 13px; }
-  .note { border-left: 3px solid var(--gold); padding: 8px 14px; background: rgba(232,200,116,.06); border-radius: 0 8px 8px 0; font-size: 13px; color: var(--dim); }
-  footer { text-align: center; padding: 34px 20px 60px; color: var(--dim); font-size: 12px; }
-  ul { color: #d6cee2; }
-  li { margin: 4px 0; }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:
+      radial-gradient(1200px 700px at 50% -15%, #2a1a3e 0%, var(--bg) 62%),
+      var(--bg);
+      color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85}
+  a{color:var(--violet);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:linear-gradient(180deg,rgba(8,6,12,.92),rgba(8,6,12,.55));
+    border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;gap:18px;height:54px}
+  nav.top .brand{font-weight:800;color:var(--gold);letter-spacing:.14em}
+  nav.top .links{margin-left:auto;display:flex;gap:16px;font-size:13px;flex-wrap:wrap}
+  nav.top .links a{color:var(--dim)}
+  nav.top .links a:hover{color:var(--gold2);text-decoration:none}
+
+  header.hero{position:relative;text-align:center;padding:96px 20px 64px;overflow:hidden;
+    border-bottom:1px solid var(--line)}
+  header.hero::before{content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(600px 300px at 50% 10%, rgba(185,140,240,.16), transparent 70%),
+      radial-gradient(400px 220px at 20% 80%, rgba(232,200,116,.08), transparent 70%);
+    pointer-events:none}
+  .kicker{color:var(--dim);letter-spacing:.42em;font-size:11px;text-transform:uppercase}
+  h1{margin:16px 0 6px;font-size:clamp(38px,8vw,82px);letter-spacing:.08em;color:var(--gold);
+     text-shadow:0 0 30px rgba(232,200,116,.35),0 4px 18px rgba(0,0,0,.6);line-height:1.1}
+  .sub{color:var(--violet);letter-spacing:.28em;font-size:clamp(12px,2vw,17px)}
+  .tagline{max-width:720px;margin:22px auto 0;color:#cfc6dd;font-size:15px}
+  .badges{margin-top:22px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .badge{font-size:11px;letter-spacing:.08em;border:1px solid var(--line);color:var(--dim);
+    padding:3px 10px;border-radius:999px;background:rgba(23,16,33,.7)}
+  .cta{margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 26px;border-radius:999px;border:1px solid var(--gold);
+    color:var(--gold);font-weight:700;letter-spacing:.06em;transition:.2s}
+  .btn.primary{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#1a1206;border-color:var(--gold2)}
+  .btn.ghost{border-color:var(--line);color:var(--text)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(232,200,116,.22);text-decoration:none}
+
+  main{position:relative}
+  section{padding:64px 0;border-bottom:1px solid rgba(51,37,73,.6)}
+  h2{font-size:clamp(21px,3vw,29px);color:var(--gold);letter-spacing:.06em;margin:0 0 8px;font-weight:800}
+  h2 .num{color:var(--violet2);font-size:13px;letter-spacing:.2em;display:block;margin-bottom:6px}
+  .lead{color:#d8d0e4;font-size:16px}
+  h3{color:var(--violet);font-size:16px;margin:26px 0 8px;letter-spacing:.04em}
+  p{color:#d2c9de}
+  ul{color:#d2c9de}
+  li{margin:4px 0}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:14px;padding:18px 20px;transition:.2s}
+  .card:hover{border-color:#4d3a6b;transform:translateY(-2px)}
+  .card h4{margin:0 0 6px;color:var(--gold);font-size:15px;letter-spacing:.04em}
+  .card p{margin:0;color:var(--dim);font-size:13px}
+  .card .meta{margin-top:10px;font-size:11px;color:#6f6584;letter-spacing:.06em}
+
+  .timeline{position:relative;margin:22px 0 0;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,var(--violet2),transparent)}
+  .ev{position:relative;margin:0 0 22px}
+  .ev::before{content:"";position:absolute;left:-24px;top:7px;width:10px;height:10px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 12px rgba(232,200,116,.8)}
+  .ev .when{color:var(--violet);font-size:12px;letter-spacing:.16em}
+  .ev .what{font-weight:700;color:var(--gold2)}
+  .ev p{margin:2px 0 0;font-size:14px;color:#cfc6dd}
+
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+  th,td{padding:9px 10px;border-bottom:1px solid rgba(51,37,73,.7);text-align:left;vertical-align:top}
+  th{color:var(--gold);font-weight:700;font-size:12.5px;letter-spacing:.06em;background:rgba(23,16,33,.6)}
+  code,pre{font-family:ui-monospace,"Cascadia Code",Consolas,monospace}
+  code{background:#120c1a;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:12.5px;color:#c9b8e8}
+  pre{background:#0f0a17;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:13px}
+
+  .shots{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .shots figure{margin:0}
+  .shots img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}
+  .shots figcaption{font-size:12px;color:var(--dim);margin-top:6px}
+
+  .note{border-left:3px solid var(--gold);padding:10px 14px;background:rgba(232,200,116,.06);
+    border-radius:0 8px 8px 0;font-size:13.5px;color:#cdc3dc;margin-top:14px}
+  .tag{display:inline-block;font-size:11px;padding:1px 9px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+  .tag.ok{border-color:#3f7a4a;color:var(--ok)}
+  .tag.warn{border-color:#7a5a2a;color:var(--warn)}
+  .flow{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:14px}
+  .step{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:12px;padding:12px;font-size:13px}
+  .step b{display:block;color:var(--gold);font-size:12px;letter-spacing:.1em;margin-bottom:4px}
+  footer{padding:44px 20px 80px;text-align:center;color:var(--dim);font-size:12px}
+  .kbd{display:inline-block;min-width:20px;text-align:center;padding:1px 6px;border-radius:5px;
+    border:1px solid var(--line);background:#120c1a;font-size:12px;color:var(--gold2)}
+  .dl{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .dl .file{border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--dim)}
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="kicker">MINECRAFT 26.3 / NEOFORGE 26.3</div>
-  <h1>NOCTERRA</h1>
-  <div class="subtitle">灰冠の残響 — ECHOES OF THE ASHEN CROWN</div>
-  <div class="meta">
-    <span>ダークファンタジーRPG</span>·<span>9つの地域</span>·<span>12の冠の者</span>·<span>2つの結末</span>
+<nav class="top"><div class="wrap">
+  <span class="brand">NOCTERRA</span>
+  <div class="links">
+    <a href="#lore">歴史</a>
+    <a href="#features">特徴</a>
+    <a href="#world">世界</a>
+    <a href="#bestiary">敵</a>
+    <a href="#combat">戦闘</a>
+    <a href="#start">はじめかた</a>
+    <a href="#download">DL</a>
+    <a href="recipes.html">全レシピ</a>
+    <a href="https://github.com/Madoa5561/nocterra">GitHub</a>
   </div>
-  <div class="cta">
-    <a class="btn primary" href="#download">ダウンロード</a>
-    <a class="btn" href="#story">物語を読む</a>
-    <a class="btn" href="https://github.com/Madoa5561/nocterra">GitHub</a>
+</div></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Minecraft 26.3 · NeoForge 26.3 · Dark Fantasy RPG</div>
+    <h1>NOCTERRA</h1>
+    <div class="sub">灰冠の残響 — ECHOES OF THE ASHEN CROWN</div>
+    <p class="tagline">灰冠が昇って九年。空は薄暮に沈み、死者は眠らない。<br>
+      八人の冠の者が守る「王の刻印」を集め、黒冠の玉座で —— この世界がなぜ滅びたのかを知る。</p>
+    <div class="badges">
+      <span class="badge">9つの地域</span><span class="badge">12の冠の者</span>
+      <span class="badge">武器17種</span><span class="badge">防具3セット</span>
+      <span class="badge">NPC6体・クエスト10本</span><span class="badge">2つの結末</span>
+      <span class="badge">オリジナルBGM</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#download">ダウンロード</a>
+      <a class="btn ghost" href="#start">はじめかた</a>
+      <a class="btn ghost" href="recipes.html">全レシピを見る</a>
+    </div>
   </div>
 </header>
 
 <main>
 
-<section id="about">
-  <h2>これは何か</h2>
-  <p class="lead">灰冠が昇って以来、世界は薄暮に沈んだ。滅びかけたこの世界が <strong>ノクテラ</strong>。<br>
-  時間は緩やかに止まり、死者は眠らず、九つの地域に九人の<strong>冠の者</strong>が君臨している。</p>
-  <p>プレイヤーは古代の門をくぐり、ノクテラへ踏み込む。目的は「帰ること」。
-  しかし進むほどに、<strong>この世界が滅びたのは誰かの意思ではなく、約束が果たされなかったから</strong>だという真実に近づいていく。</p>
-  <div class="grid g3" style="margin-top:18px">
-    <div class="card"><h4>王道のメトロイドヴァニア進行</h4><p>地域を巡り、冠の者を討ち、王の刻印を集める。集めた刻印が結末を分岐させる。</p></div>
-    <div class="card"><h4>ドロップ → クラフト</h4><p>敵が落とす素材を集めて武器を作る。装備が整うほど、危険な地域へ踏み込める。</p></div>
-    <div class="card"><h4>サーバー権威の戦闘</h4><p>スタミナ・回避・パリィ・武器戦技。すべてサーバー側で判定される。</p></div>
+<section id="lore"><div class="wrap">
+  <h2><span class="num">THE FALL</span>ノクテラの歴史</h2>
+  <p class="lead">このMODの世界には、コードの外に物語があります。ゲーム内では、遺構と NPC の言葉から少しずつ明かされます。</p>
+  <div class="timeline">
+    <div class="ev">
+      <div class="when">— 始原の時代</div>
+      <div class="what">始原の灯火</div>
+      <p>世界の中心に「灯火」があり、季節も、夜明けも、死者の眠りも、すべて灯によって保たれていた。</p>
+    </div>
+    <div class="ev">
+      <div class="when">— 約束の時代</div>
+      <div class="what">八人の王と、ひとつの冠</div>
+      <p>八人の王が灯火のまわりに王国を築き、それぞれが冠の欠片 ——「刻印」—— を預かった。王たちは灯を守ることを誓った。</p>
+    </div>
+    <div class="ev">
+      <div class="when">— 破約</div>
+      <div class="what">灯が落ちる</div>
+      <p>誓いは果たされなかった。灯火は失われ、空に灰の冠が昇る。世界はゆっくりと薄暮に沈み、時間は止まりかけた。</p>
+    </div>
+    <div class="ev">
+      <div class="when">— 九年後（現在）</div>
+      <div class="what">灰冠の残響</div>
+      <p>王たちは冠の者となり、刻印を守って各地に座す。プレイヤーは古代の門をくぐり、ノクテラへ踏み込む。</p>
+    </div>
+    <div class="ev">
+      <div class="when">— 刻印五つ</div>
+      <div class="what">薄暮は終わる（通常エンディング）</div>
+      <p>冠が緩み、灰の中に帰り道が開く。だがノクテラは残る。あなたは家へ帰れるが、この世界はここに在り続ける。</p>
+    </div>
+    <div class="ev">
+      <div class="when">— 刻印八つ</div>
+      <div class="what">灯火の化身（真エンディング）</div>
+      <p>冠の下にあったのは王ではなく、世界が忘れた約束だった。失われた灯火は薄暮の中に隠されていた —— あなたはそれを運び出す。</p>
+    </div>
   </div>
-</section>
+</div></section>
 
-<section id="story">
-  <h2>物語</h2>
-  <p>かつて世界を照らしていた<strong>始原の灯火</strong>が失われ、空に<strong>灰冠</strong>が昇った。
-  以来、世界はゆっくりと薄暮に沈み、死者は眠らなくなった。人々はそれを「ノクテラ（滅星界）」と呼ぶ。</p>
-  <p>九つの地域には、それぞれ<strong>冠の者</strong>が座している。彼らは滅びた王国の残響であり、
-  <strong>王の刻印</strong>を守っている。刻印は八つ、冠に戻るべき欠片。</p>
-
-  <h3>迷わないための案内</h3>
-  <p><strong>探索手帳</strong>（初回入場時に入手）を右クリックすると、いまの状況と<strong>「次の目的」</strong>が表示されます。</p>
-  <table>
-    <tr><th>状況</th><th>手帳が出す案内</th></tr>
-    <tr><td>まだ誰とも話していない</td><td>「まず、話せる魂を探そう。到着地点の近くに灰の番人が現れる」</td></tr>
-    <tr><td>刻印が5個未満</td><td>「各地域の冠の者を討ち、刻印をあと N 個集めよう」</td></tr>
-    <tr><td>刻印5個以上</td><td>「黒冠城の玉座へ向かおう（真エンディングまであと N 個）」</td></tr>
-    <tr><td>刻印8個</td><td>「八つの刻印が揃った。玉座が真実を見せてくれる」</td></tr>
-  </table>
-
-  <h3>刻印と結末</h3>
-  <table>
-    <tr><th>刻印</th><th>守る冠の者</th><th>地域</th></tr>
-    <tr><td>朽葉の刻印</td><td>腐朽の森王</td><td>灰樹の森</td></tr>
-    <tr><td>悲嘆の刻印</td><td>悲嘆の聖女</td><td>嘆きの湿原</td></tr>
-    <tr><td>断罪の刻印</td><td>断罪の騎士長</td><td>亡国の城塞跡</td></tr>
-    <tr><td>双砂の刻印</td><td>砂時計の双王</td><td>紅砂の荒野</td></tr>
-    <tr><td>深淵の刻印</td><td>深淵の海帝</td><td>深淵の海</td></tr>
-    <tr><td>墜星の刻印</td><td>墜星竜アステル</td><td>星骸の浮島</td></tr>
-    <tr><td>白銀の刻印</td><td>白銀の処刑者</td><td>永劫の氷原</td></tr>
-    <tr><td>灼鋼の刻印</td><td>灼鋼の巨神</td><td>黒鉄の火山</td></tr>
-  </table>
-
-  <h3>折り返し地点：黒冠城</h3>
-  <p>刻印が集まると、黒冠城の<strong>黒冠の玉座</strong>が応える。</p>
-  <ul>
-    <li><strong>刻印5個以上 → 通常エンディング「薄暮は終わる」</strong>… 冠が緩み、灰の中に帰り道が開く。だがノクテラは残る。</li>
-    <li><strong>刻印8個 → 真エンディング「灯火の化身」</strong>… 冠の下にあったのは王ではなく、世界が忘れた約束だった。
-      失われたはずの始原の灯火を、あなたは運び出す。</li>
-  </ul>
-  <div class="note">エンディング後もワールドは続きます。探索・討伐・収集をそのまま継続できます。</div>
-
-  <h3>ノクテラで出会う魂</h3>
-  <div class="grid g2">
-    <div class="card"><h4>灰の番人</h4><p>灰樹の森の案内人。最初の依頼をくれる。初めてノクテラに来た者のそばに現れる。</p></div>
-    <div class="card"><h4>湿原の未亡人</h4><p>嘆きの湿原に住む。悲嘆の聖女の伝承と、その救い方を知っている。</p></div>
-    <div class="card"><h4>盲目の書記</h4><p>古代神殿に残された記録係。刻印と黒冠の王の真実を書き残した。</p></div>
-    <div class="card"><h4>門番</h4><p>黒冠城の前で刻印を数える。五つ揃えば、門を開ける。</p></div>
-    <div class="card"><h4>灰の商人</h4><p>瓦礫の中で商う。何を欲しがっているのかは、話してみてのお楽しみ。</p></div>
-    <div class="card"><h4>迷い子</h4><p>隠し要素。連れ帰ると、それなりの報酬がある。</p></div>
-  </div>
-</section>
-
-<section id="regions">
-  <h2>9つの地域</h2>
-  <p>各地域には固有の地形・植生・構造物と、<strong>地域の祭壇</strong>が生成されます。祭壇を右クリックすると、その地の冠の者が目覚めます。</p>
+<section id="features"><div class="wrap">
+  <h2><span class="num">FEATURES</span>このMODでできること</h2>
   <div class="grid g3">
-    <div class="card"><h4>灰樹の森</h4><p>灰と枯れ木の森。古代神殿が眠り、腐朽の祭壇がある。</p></div>
-    <div class="card"><h4>嘆きの湿原</h4><p>霧に沈む沼地。墓所と未亡人が待つ。</p></div>
-    <div class="card"><h4>黒冠遺跡帯</h4><p>黒い廃墟。黒冠城と、その主が座す。</p></div>
-    <div class="card"><h4>亡国の城塞跡</h4><p>崩れた城壁の残骸。断罪の騎士長が巡回する。</p></div>
-    <div class="card"><h4>紅砂の荒野</h4><p>赤い砂丘と砂岩の露頭。水は無く、砂嵐が吹く。</p></div>
-    <div class="card"><h4>深淵の海</h4><p>暗い水の底。深淵の海帝が水陸を支配する。</p></div>
-    <div class="card"><h4>星骸の浮島</h4><p>紫の結晶と星屑。墜星竜アステルが空を舞う。</p></div>
-    <div class="card"><h4>永劫の氷原</h4><p>雪と氷の白い世界。白銀の処刑者が静かに待つ。</p></div>
-    <div class="card"><h4>黒鉄の火山</h4><p>マグマと黒石の地。灼鋼の巨神が炉を守る。</p></div>
+    <div class="card"><h4>9つの地域</h4><p>灰樹の森から黒鉄の火山まで、気候ごとに分かれた9つのバイオーム。それぞれに固有の植生・遺構・冠の者がいます。</p></div>
+    <div class="card"><h4>12の冠の者</h4><p>2〜3フェーズのボス戦。予兆モーション、専用の装飾HPバー、ボスごとのポートレート、そしてBGM。</p></div>
+    <div class="card"><h4>ドロップ → クラフト</h4><p>敵が落とす素材を集めて武器・防具を作り、ボス素材で +1〜+3 に強化。装備が整うほど危険な地域へ踏み込めます。</p></div>
+    <div class="card"><h4>武器種の役割</h4><p>剣・大剣・短剣・槍・薙刀・槌・大槌・三叉槍・鎌・杖・王笏。間合い・速度・水中強化・背後攻撃など挙動が異なります。</p></div>
+    <div class="card"><h4>サーバー権威の戦闘</h4><p>スタミナ・回避・パリィ・強攻撃・武器戦技。すべてサーバー側で判定されるので、マルチでも破綻しません。</p></div>
+    <div class="card"><h4>物語と案内</h4><p>NPC6体・データ駆動の会話・クエスト10本。探索手帳が「次の目的」を教えてくれるので迷いません。</p></div>
   </div>
-</section>
+</div></section>
 
-<section id="progression">
-  <h2>進み方 — ドロップとクラフト</h2>
-  <p>ノクテラの装備は、<strong>敵が落とす素材から作る</strong>のが基本です。地域が危険なほど、得られる素材も強くなります。</p>
+<section id="world"><div class="wrap">
+  <h2><span class="num">WORLD</span>9つの地域と構造物</h2>
+  <div class="grid g3">
+    <div class="card"><h4>灰樹の森</h4><p>灰と枯れ木。古代神殿が眠り、腐朽の祭壇がある。</p><div class="meta">腐朽の森王</div></div>
+    <div class="card"><h4>嘆きの湿原</h4><p>霧に沈む沼地。墓所と未亡人が待つ。</p><div class="meta">悲嘆の聖女</div></div>
+    <div class="card"><h4>黒冠遺跡帯</h4><p>黒い廃墟。黒冠城と、その主が座す。</p><div class="meta">黒冠の王</div></div>
+    <div class="card"><h4>亡国の城塞跡</h4><p>崩れた城壁の残骸。断罪の騎士長が巡回する。</p><div class="meta">断罪の騎士長</div></div>
+    <div class="card"><h4>紅砂の荒野</h4><p>赤い砂丘と砂岩の露頭。砂嵐の色。</p><div class="meta">砂時計の双王</div></div>
+    <div class="card"><h4>深淵の海</h4><p>暗い水の底。水陸を支配する海帝。</p><div class="meta">深淵の海帝</div></div>
+    <div class="card"><h4>星骸の浮島</h4><p>紫の結晶と星屑。竜が空を舞う。</p><div class="meta">墜星竜アステル</div></div>
+    <div class="card"><h4>永劫の氷原</h4><p>雪と氷の白い世界。処刑者が静かに待つ。</p><div class="meta">白銀の処刑者</div></div>
+    <div class="card"><h4>黒鉄の火山</h4><p>マグマと黒石の地。巨神が炉を守る。</p><div class="meta">灼鋼の巨神</div></div>
+  </div>
+
+  <h3>構造物</h3>
   <table>
-    <tr><th>素材</th><th>主な入手元</th><th>用途</th></tr>
-    <tr><td>灰の繊維</td><td>灰樹の亡霊・灰樹の這い虫</td><td>序盤の武器・防具</td></tr>
-    <tr><td>亡霊の燐粉</td><td>嘆きの亡霊</td><td>軽量武器・魔法寄り</td></tr>
-    <tr><td>沼鉄</td><td>沼の屍鬼</td><td>重量武器の主素材</td></tr>
-    <tr><td>砕けた冠片</td><td>冠の者（ボス）全般</td><td>上位武器</td></tr>
-    <tr><td>深淵の鱗</td><td>深海系の冠の者</td><td>上位武器</td></tr>
-    <tr><td>火核</td><td>火系の冠の者</td><td>上位武器</td></tr>
+    <tr><th>構造物</th><th>場所</th><th>内容</th></tr>
+    <tr><td>古代神殿</td><td>灰樹の森</td><td>深層岩の遺構＋腐朽の祭壇</td></tr>
+    <tr><td>亡国の城塞</td><td>各地</td><td>24×24。外壁・四隅の塔・北門・地下牢</td></tr>
+    <tr><td>地下墓所</td><td>各地の地下</td><td>地表3×3開口→12段階段→防水シェルの墓所</td></tr>
+    <tr><td>地下要塞</td><td>洞窟内 y-20〜-40</td><td>2部屋・宝箱・入口の縦穴</td></tr>
+    <tr><td>灰の聖域</td><td>灰樹の森</td><td>焚き火・テント・祭壇の野営地</td></tr>
+    <tr><td>黒冠城</td><td>黒冠遺跡帯</td><td>40×40。大門・塔・本丸・黒冠の玉座</td></tr>
+    <tr><td>ネザー要塞</td><td>ネザー</td><td>24×24。溶岩堀・中央祭壇</td></tr>
+    <tr><td>エンド城塞</td><td>エンド</td><td>18×18。黒曜石柱・プルプァの塔・祭壇</td></tr>
+    <tr><td>地域の祭壇</td><td>全9地域＋ネザー/エンド</td><td>右クリックでその地域の冠の者を召喚</td></tr>
   </table>
-  <h3>防具</h3>
-  <p><strong>灰装備一式</strong>（兜2／鎧4／脚甲3／具足1、合計防御力10）もドロップ素材から作れます。
-  革（7）と鉄（15）の中間で、序盤〜中盤の探索を支えます。</p>
+</div></section>
 
-  <h3>武器 17 種 — 武器種ごとに挙動が違う</h3>
+<section id="bestiary"><div class="wrap">
+  <h2><span class="num">BESTIARY</span>敵とボス</h2>
+  <div class="shots">
+    <figure><img src="assets/20_model_sheet_bosses.png" alt="ボス12体"><figcaption>冠の者 12体（3方向プレビュー）</figcaption></figure>
+    <figure><img src="assets/21_model_sheet_mobs.png" alt="一般モブ4体"><figcaption>一般モブ 4種</figcaption></figure>
+  </div>
+  <h3>ボスのBGM</h3>
+  <table>
+    <tr><th>トラック</th><th>使われる場面</th></tr>
+    <tr><td>Ashen Crown（灰冠の残響）</td><td>腐朽の森王 / 悲嘆の聖女 / 断罪の騎士長</td></tr>
+    <tr><td>Void Choir（虚空の聖歌）</td><td>黒冠の王 / 墜星竜 / 深淵の海帝 / 名もなき観測者 / 忘却された騎士</td></tr>
+    <tr><td>Iron Verdict（鉄の審判）</td><td>灼鋼の巨神 / 白銀の処刑者 / 砂時計の双王 / 灯火の化身</td></tr>
+    <tr><td>Nocterra（静寂）</td><td>ノクテラ入場時の環境音</td></tr>
+  </table>
+  <div class="note">BGMはこのMODのために手続き合成したオリジナル曲です（外部の音源・既存曲は使っていません）。</div>
+</div></section>
+
+<section id="combat"><div class="wrap">
+  <h2><span class="num">COMBAT</span>戦闘と装備</h2>
+  <p><span class="kbd">R</span> 回避 ／ <span class="kbd">V</span> 強攻撃 ／ <span class="kbd">F</span> パリィ ／
+     <span class="kbd">G</span> 武器戦技 ／ <span class="kbd">C</span> 魔法（キーは設定画面で変更可）</p>
+  <h3>武器 17 種</h3>
+  <div class="shots" style="grid-template-columns:1fr">
+    <figure><img src="assets/22_weapon_sheet.png" alt="武器17種"><figcaption>武器種ごとに形と役割が違います</figcaption></figure>
+  </div>
   <table>
     <tr><th>系統</th><th>武器</th><th>特徴</th></tr>
-    <tr><td>剣・曲刀</td><td>灰木の刃 / 灰繊維のサーベル / 砂刃 / 冠砕き</td><td>標準的。砂刃は攻撃速度+0.4、冠砕きは単体250%+スタン</td></tr>
+    <tr><td>剣・曲刀</td><td>灰木の刃 / 灰繊維のサーベル / 砂刃 / 冠砕き</td><td>標準。砂刃は攻撃速度+0.4、冠砕きは250%+スタン</td></tr>
     <tr><td>大剣</td><td>墓所の大剣 / 沼鉄の大剣</td><td>高威力・前方180°薙ぎ払い</td></tr>
-    <tr><td>短剣</td><td>燐粉の短剣 / 白刃の短剣</td><td>3連刺し、白刃は<strong>背後攻撃+50%</strong></td></tr>
-    <tr><td>槍・薙刀</td><td>樹脂の長槍 / 星屑の薙刀</td><td>槍は<strong>攻撃間合い+1.5</strong>、薙刀は扇状に一掃</td></tr>
-    <tr><td>槌・大槌</td><td>墓土の戦槌 / 火山の大槌</td><td>鈍足／着火＋ノックバック、広範囲</td></tr>
-    <tr><td>三叉槍・大鎌</td><td>潮の三叉槍 / 霜の大鎌 / 嘆きの大鎌</td><td>三叉槍は<strong>水中+30%</strong>、鎌は移動速度低下</td></tr>
-    <tr><td>杖・王笏</td><td>ベールの杖 / 冠の王笏</td><td>杖は<strong>魔力消費-20%</strong>、王笏は周囲の味方を強化</td></tr>
+    <tr><td>短剣</td><td>燐粉の短剣 / 白刃の短剣</td><td>3連刺し、白刃は背後攻撃+50%</td></tr>
+    <tr><td>槍・薙刀</td><td>樹脂の長槍 / 星屑の薙刀</td><td>槍は攻撃間合い+1.5、薙刀は扇状一掃</td></tr>
+    <tr><td>槌・大槌</td><td>墓土の戦槌 / 火山の大槌</td><td>鈍足／着火＋ノックバック</td></tr>
+    <tr><td>三叉槍・鎌</td><td>潮の三叉槍 / 霜の大鎌 / 嘆きの大鎌</td><td>三叉槍は水中+30%、鎌は移動速度低下</td></tr>
+    <tr><td>杖・王笏</td><td>ベールの杖 / 冠の王笏</td><td>杖は魔力消費-20%、王笏は周囲の味方を強化</td></tr>
   </table>
+  <h3>防具 3 セット</h3>
+  <table>
+    <tr><th>セット</th><th>防御力</th><th>性格</th><th>修理素材</th></tr>
+    <tr><td>灰装備</td><td>10</td><td>標準（革と鉄の中間）</td><td>灰の繊維</td></tr>
+    <tr><td>樹脂装備</td><td>7</td><td>軽装・エンチャント向き</td><td>朽葉の樹脂</td></tr>
+    <tr><td>霜装備</td><td>15</td><td>重装・toughness 1.0・ノックバック耐性</td><td>霜の結晶</td></tr>
+  </table>
+</div></section>
 
+<section id="craft"><div class="wrap">
+  <h2><span class="num">PROGRESSION</span>遊びの流れ</h2>
+  <div class="flow">
+    <div class="step"><b>STEP 1</b>エンバーシャードを作る</div>
+    <div class="step"><b>STEP 2</b>古代の骨組みで門を作る</div>
+    <div class="step"><b>STEP 3</b>点火してノクテラへ</div>
+    <div class="step"><b>STEP 4</b>敵の素材で装備を整える</div>
+    <div class="step"><b>STEP 5</b>祭壇で冠の者を討つ</div>
+    <div class="step"><b>STEP 6</b>刻印5個→玉座へ</div>
+    <div class="step"><b>STEP 7</b>刻印8個→真エンディング</div>
+  </div>
   <h3>強化 +1 〜 +3</h3>
-  <p>武器は<strong>砕けた冠片</strong>（ボス共通ドロップ）と地域素材で段階強化できます。
-  1 段階ごとに攻撃力 <strong>+2</strong>、名前にも「 +N」が付きます。</p>
   <table>
     <tr><th>段階</th><th>必要素材</th><th>効果</th></tr>
     <tr><td>+1</td><td>武器 ＋ 砕けた冠片 ×1</td><td>攻撃力 +2</td></tr>
     <tr><td>+2</td><td>武器 ＋ 砕けた冠片 ×2 ＋ 地域素材 ×1</td><td>攻撃力 +4</td></tr>
     <tr><td>+3</td><td>武器 ＋ 砕けた冠片 ×2 ＋ 星屑の欠片 ×1</td><td>攻撃力 +6</td></tr>
   </table>
-
-  <h3>防具 3 セット</h3>
-  <table>
-    <tr><th>セット</th><th>防御力</th><th>性格</th></tr>
-    <tr><td>灰装備</td><td>10</td><td>標準（革と鉄の中間）</td></tr>
-    <tr><td>樹脂装備</td><td>7</td><td>軽装・エンチャントしやすい</td></tr>
-    <tr><td>霜装備</td><td>15</td><td>重装・toughness 1.0・ノックバック耐性</td></tr>
-  </table>
-
-  <h3>素材 14 種</h3>
-  <p>一般モブからは <strong>灰の繊維・亡霊の燐粉・沼鉄</strong>。
-  地域ボスからは <strong>朽葉の樹脂・ベールの絹・墓土の塵・黄金の砂・潮の真珠・星屑の欠片・霜の結晶・火山の鱗</strong>（各地域 1 種）と、
-  全ボス共通の <strong>砕けた冠片</strong>。深淵系は<strong>深淵の鱗</strong>、火系は<strong>火核</strong>も落とします。</p>
-  <div class="note">武器は <strong>R 回避 / V 強攻撃 / F パリィ / G 武器戦技</strong> で戦います。スタミナ管理が要。</div>
-</section>
-
-<section id="screenshots">
-  <h2>スクリーンショット</h2>
-  <div class="shots">
-    <figure><img src="assets/01_boss_rotwood_king.png" alt="腐朽の森王"><figcaption>腐朽の森王</figcaption></figure>
-    <figure><img src="assets/05_bossbar_rotwood_king.png" alt="豪華なボスHPバー"><figcaption>装飾付きボスHPバー</figcaption></figure>
-    <figure><img src="assets/06_bossbar_multi_boss.png" alt="複数ボス"><figcaption>複数の冠の者が同時に</figcaption></figure>
-    <figure><img src="assets/07_ai_portraits_12.png" alt="12体のポートレート"><figcaption>ボス12体のポートレート</figcaption></figure>
-    <figure><img src="assets/11_dialogue_warden.png" alt="会話UI"><figcaption>NPCとの会話</figcaption></figure>
-    <figure><img src="assets/13_true_ending_title.png" alt="真エンディング"><figcaption>真エンディング「灯火の化身」</figcaption></figure>
+  <div class="cta" style="justify-content:flex-start;margin-top:18px">
+    <a class="btn ghost" href="recipes.html">全レシピ・ドロップ一覧（自動生成）</a>
+    <a class="btn ghost" href="RECIPES.md">RECIPES.md（テキスト）</a>
+    <a class="btn ghost" href="ITEMS.md">ITEMS.md（全アイテムの入手方法）</a>
   </div>
-</section>
+</div></section>
 
-<section id="download">
-  <h2>ダウンロードと導入</h2>
+<section id="start"><div class="wrap">
+  <h2><span class="num">GETTING STARTED</span>はじめかた（古代の門）</h2>
+  <h3>1. エンバーシャードを作る</h3>
+  <p>作業台で <strong>石炭 ×1 ＋ 火打石 ×1 ＋ 金インゴット ×1</strong>（シャップレス） → <strong>エンバーシャード ×2</strong></p>
+  <p style="color:#9d92b0;font-size:13px">火打石＝砂利＋鉄インゴット／金インゴット＝金鉱石の精錬／石炭＝石炭鉱石の精錬</p>
+  <h3>2. 古代の門の骨組みを作る</h3>
+  <p>作業台で <strong>石レンガ ×8 ＋ エンバーシャード ×1</strong>（シャップレス） → <strong>古代の門の骨組み ×8</strong></p>
+  <p style="color:#9d92b0;font-size:13px">石レンガ＝石 ×4 を精錬して石レンガ ×4</p>
+  <h3>3. 門の枠を組む</h3>
+  <ul>
+    <li>骨組みで<strong>内側が横2×縦3以上</strong>（最大21×21）の四角い枠を作る</li>
+    <li><strong>角も骨組みで埋める</strong>。内側は空気にしておく</li>
+    <li>設置する向きは自由（X軸・Z軸どちらでも可）</li>
+  </ul>
+  <h3>4. 点火する</h3>
+  <p>骨組みの<strong>どこか1ブロックをエンバーシャードで右クリック</strong>すると点火し、灰冠の門（水色の通過面）が開きます。</p>
+  <div class="note">
+    <strong>点火できないときのチェック</strong>
+    <ul style="margin:8px 0 0">
+      <li>内側が空気で埋まっているか（水・草・松明があると開きません）</li>
+      <li>枠が四角く閉じているか（角が欠けていないか）</li>
+      <li>内側の大きさが 横2×縦3 以上あるか</li>
+      <li>クリックしたのが骨組みブロックか（内側の空気をクリックしても点火しません）</li>
+    </ul>
+  </div>
+  <h3>5. ノクテラへ</h3>
+  <p>門の中に入るとノクテラへ転送されます。到着地点には<strong>帰還用の門</strong>が自動で作られ、初回は<strong>探索手帳</strong>と案内人「灰の番人」が手元に現れます。</p>
+  <h3>6. 以降の流れ</h3>
+  <p>手帳を右クリックすると「次の目的」が出ます。各地域の祭壇を右クリック → 冠の者を討つ → 刻印を集める → 5個で黒冠城の玉座、8個で真エンディング。</p>
+</div></section>
+
+<section id="download"><div class="wrap">
+  <h2><span class="num">DOWNLOAD</span>ダウンロードと導入</h2>
+  <div class="dl">
+    <div class="file">nocterra-0.1.0-alpha.jar（約 5 MB）</div>
+    <div class="file">GeckoLib 5.5.7（別途）</div>
+  </div>
   <h3>必要なもの</h3>
   <ul>
     <li><strong>Minecraft Java Edition 26.3</strong></li>
     <li><strong>NeoForge 26.3.0.99</strong></li>
     <li><strong>GeckoLib 5.5.7</strong>（26.3 対応版・必須）</li>
-    <li>Java 25（NeoForge 26.3 の要件）</li>
+    <li>Java 25</li>
   </ul>
   <h3>手順</h3>
   <ol>
-    <li>NeoForge 26.3.0.99 を導入した Minecraft 26.3 を用意する</li>
-    <li><code>mods/</code> フォルダに <strong>GeckoLib 5.5.7</strong> と <strong>nocterra-*.jar</strong> を入れる</li>
+    <li>NeoForge 26.3.0.99 を導入した Minecraft 26.3 を用意</li>
+    <li><code>mods/</code> に <strong>GeckoLib 5.5.7</strong> と <strong>nocterra-*.jar</strong> を入れる</li>
     <li>起動（クライアント／専用サーバーどちらでも可）</li>
   </ol>
   <div class="cta" style="justify-content:flex-start">
     <a class="btn primary" href="https://github.com/Madoa5561/nocterra/releases">Releases からダウンロード</a>
-    <a class="btn" href="https://github.com/Madoa5561/nocterra">ソースコード</a>
+    <a class="btn ghost" href="https://github.com/Madoa5561/nocterra">ソースコード</a>
   </div>
-  <h3>はじめかた</h3>
-  <ol>
-    <li><strong>エンバーシャード</strong>を作る（石炭＋火打石＋金インゴット）</li>
-    <li><strong>古代の門の骨組み</strong>を作り、内側 2×3 以上の枠にする</li>
-    <li>エンバーシャードを右クリックして点火 → 灰冠の門が開く</li>
-    <li>門に入るとノクテラへ。初回はタイトル演出と<strong>探索手帳</strong>が渡される</li>
-    <li>各地域の<strong>祭壇</strong>を右クリックして冠の者を目覚めさせ、討って<strong>刻印</strong>を集める</li>
-    <li>刻印5個で<strong>黒冠城</strong>へ。玉座で結末を見る（8個なら真エンディング）</li>
-  </ol>
-</section>
+</div></section>
 
-<section id="status">
-  <h2>開発状況（正直な記載）</h2>
-  <p>このMODは<strong>開発中のビルド</strong>です。以下は実際に実機で確認した範囲と、していない範囲の区別です。</p>
+<section id="history"><div class="wrap">
+  <h2><span class="num">CHANGELOG</span>更新履歴</h2>
+  <div class="timeline">
+    <div class="ev"><div class="when">v0.1.0-alpha · 2026-10</div><div class="what">最初の公開ビルド</div>
+      <p>9地域・12ボス・武器17種・防具3セット・NPC6体/クエスト10本・8刻印と2つの結末・
+      構造物10種・ボスBGM・探索手帳を収録。</p></div>
+    <div class="ev"><div class="when">修正</div><div class="what">古代の門が点火できない不具合</div>
+      <p>骨組みをクリックしても点火できなかった問題を修正（周囲2ブロックから内部マスを探索）。
+      地形の Feature 順序・レシピのパースで起動しない不具合も修正済み。</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <h2><span class="num">FAQ</span>よくある質問</h2>
+  <h3>Q. 門に火がつかない</h3>
+  <p>A. 内側が空気か／枠が閉じているか／内側が2×3以上かを確認してください。骨組みブロックをエンバーシャードで右クリックします。</p>
+  <h3>Q. ノクテラから戻れない</h3>
+  <p>A. 到着地点に帰還門があります。入ると現世へ戻ります。門が壊れている場合は、現世の門が残っていればそこから再度入れます。</p>
+  <h3>Q. 何をすればいいか分からない</h3>
+  <p>A. <strong>探索手帳</strong>（初回入手）を右クリックしてください。「次の目的」が表示されます。</p>
+  <h3>Q. ボスが強すぎる</h3>
+  <p>A. 敵のドロップ素材で武器を強化してください。+1〜+3 強化、防具3セット、地域素材の武器が用意されています。</p>
+</div></section>
+
+<section id="notes"><div class="wrap">
+  <h2><span class="num">NOTES</span>注意と検証状況</h2>
+  <p>このMODは<strong>開発中のビルド</strong>です。以下は実際に確認した範囲です。</p>
   <table>
     <tr><th>要素</th><th>状態</th></tr>
-    <tr><td>9地域のバイオーム・気候パラメータ</td><td><span class="tag ok">実装済み</span> 起動・生成を確認</td></tr>
-    <tr><td>ボス12体（AI・フェーズ・専用HPバー）</td><td><span class="tag ok">実装済み</span> 召喚・描画・戦闘を確認</td></tr>
-    <tr><td>刻印8種・進行データ・2つの結末</td><td><span class="tag ok">実装済み</span> コマンド経由で動作確認</td></tr>
-    <tr><td>NPC6体・会話UI・クエスト10本</td><td><span class="tag ok">実装済み</span> 会話・受注・完了を確認</td></tr>
-    <tr><td>構造物（神殿・城塞・墓所・黒冠城・聖域・祭壇）</td><td><span class="tag ok">実装済み</span> 配置・ブロック監査を確認</td></tr>
-    <tr><td>ドロップ素材6種・クラフト武器4種</td><td><span class="tag ok">実装済み</span> 這い虫から灰の繊維が実際にドロップ、ボスから砕けた冠片を確認</td></tr>
-    <tr><td>灰装備セット（4部位）</td><td><span class="tag ok">実装済み</span> フル装備で防御力10を実機確認</td></tr>
-    <tr><td>ボスBGM（3曲）・環境音</td><td><span class="tag ok">実装済み</span> 出現で再生・撃破で停止を実機確認</td></tr>
-    <tr><td>ボイス24本</td><td><span class="tag warn">一部未検証</span> イベント解決は修正済み・試聴は未実施</td></tr>
-    <tr><td>3Dモデル（モブ4・ボス12）</td><td><span class="tag ok">刷新済み</span> 46〜90キューブ・部位分離・固有シルエット。12ボスを実機で描画確認</td></tr>
-    <tr><td>マウス操作（会話のクリック・玉座の右クリック）</td><td><span class="tag warn">手動確認が必要</span></td></tr>
+    <tr><td>9地域・構造物10種・12ボス・BGM・クラフト・NPC/クエスト・エンディング</td><td><span class="tag ok">実装・実機確認</span></td></tr>
+    <tr><td>武器戦技の実戦バランス</td><td><span class="tag warn">数値のみ検証</span></td></tr>
+    <tr><td>マウス操作（会話クリック等）／ボイス試聴</td><td><span class="tag warn">未検証</span></td></tr>
+    <tr><td>3構造物の自然生成</td><td><span class="tag warn">/place でのみ確認</span></td></tr>
   </table>
-</section>
-
-<section id="credits">
-  <h2>クレジットと注意</h2>
   <ul>
-    <li>本MODは GeckoLib 5.5.7 を必須依存とします（同梱していません）。</li>
-    <li>一部のアセット（ボスポートレート・テクスチャ・音声）は生成AIサービスで作成しました。
-      利用条件は各サービスの規約に従います（<strong>商用利用条件は未確認</strong>）。</li>
-    <li>Minecraft / NeoForge は Mojang Studios / NeoForged の商標・著作物です。本MODは非公式です。</li>
+    <li>GeckoLib 5.5.7 を必須依存とします（同梱していません）。</li>
+    <li>一部アセットは生成AIで作成しました（商用利用条件は未確認）。音楽は本MOD用のオリジナルです。</li>
+    <li>Minecraft / NeoForge は各権利者の著作物です。本MODは非公式です。</li>
   </ul>
-</section>
+</div></section>
 
 </main>
 
 <footer>
-  NOCTERRA — 灰冠の残響 · Minecraft 26.3 / NeoForge 26.3.0.99 · 開発中
+  NOCTERRA — 灰冠の残響 · Minecraft 26.3 / NeoForge 26.3.0.99 · 開発中<br>
+  <a href="https://github.com/Madoa5561/nocterra">GitHub</a> ·
+  <a href="recipes.html">全レシピ</a> ·
+  <a href="RECIPES.md">全レシピ</a> ·
+  <a href="ITEMS.md">アイテム一覧</a>
 </footer>
 
 </body>

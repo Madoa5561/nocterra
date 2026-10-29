@@ -213,6 +213,40 @@ public final class AshenPortalShape {
     }
 
     /**
+     * 骨組みブロックをクリックしたときに、隣接する内部マスから門を点火する。所有: Lead。
+     *
+     * <p>{@link #findEmptyPortalShape} は「内部の空気マス」を起点にしか形状を認識できないため、
+     * 骨組みを直接クリックした場合は、上下・四方・自分自身を起点として両軸を試す。</p>
+     *
+     * @return 点火できたら true
+     */
+    public static boolean igniteNearFrame(LevelAccessor level, BlockPos framePos, Direction.Axis preferredAxis) {
+        Direction.Axis[] axes = preferredAxis == Direction.Axis.X
+                ? new Direction.Axis[]{Direction.Axis.X, Direction.Axis.Z}
+                : new Direction.Axis[]{Direction.Axis.Z, Direction.Axis.X};
+        // クリックした骨組みの周囲 2 ブロックまでを起点候補にする
+        // （角の骨組みをクリックした場合、内部マスは斜め方向にあるため）
+        for (int dx = -2; dx <= 2; dx++) {
+            for (int dy = -2; dy <= 2; dy++) {
+                for (int dz = -2; dz <= 2; dz++) {
+                    BlockPos candidate = framePos.offset(dx, dy, dz);
+                    if (!isEmpty(level.getBlockState(candidate))) {
+                        continue;
+                    }
+                    for (Direction.Axis axis : axes) {
+                        java.util.Optional<AshenPortalShape> shape = findEmptyPortalShape(level, candidate, axis);
+                        if (shape.isPresent()) {
+                            shape.get().createPortalBlocks(level);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * 指定位置を内部左下として、骨組みのみを構築する。
      *
      * @return 内部左下の座標
